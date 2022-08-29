@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useContext, useState} from 'react';
 import {
     StyleSheet,
     Text,
@@ -13,9 +13,24 @@ import {Context as AuthContext} from '../context/AuthContext'
 import { useNavigation } from '@react-navigation/native';
 
 
+const _colors = {
+    inactive: `#BBBABA`,
+    active: `#2B83F2`
+}
+
 function Home() {
-    const { signOut } = React.useContext(AuthContext);
+
+    const { signOut } = useContext(AuthContext);
     const navigation = useNavigation();
+
+    const ref = useRef<FlatList>(null);
+    const [index, setIndex] = React.useState(0);
+    React.useEffect (() => {
+        ref.current?.scrollToIndex({
+            index,
+            animated: true
+        })
+    }, [index])
 
     const listaAutos = [
         {
@@ -121,9 +136,11 @@ function Home() {
             >
                 <FlatList
                     horizontal
+                    // ref={ref}
+                    initialScrollIndex={index}
                     data={listaAutos}
                     keyExtractor={(item) => item.id}
-                    renderItem={({ item }) =>
+                    renderItem={({ item, index: fIndex}) =>
                         <View
                             style={styles.contenedorAutos}
                         >
@@ -249,7 +266,9 @@ const styles = StyleSheet.create({
     InputAuto: {
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#BBBABA',
+        borderColor: _colors.inactive,
+        // backgroundColor:
+        //     (fIndex === index ? _colors.inactive: _colors.active),
         borderWidth: 1,
         borderRadius: 12,
         padding: 15,
