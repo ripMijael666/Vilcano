@@ -335,22 +335,22 @@ function Detalle() {
                         <View
                             style={styles.circulo}
                         />
-      <View
-                        style={styles.barraLargaAzul}
-                    />
+                        <View
+                            style={styles.barraLargaAzul}
+                        />
                         <View
                             style={styles.circulo}
                         />
 
-<View
-                        style={styles.barraLargaAzul}
-                    />
+                        <View
+                            style={styles.barraLargaAzul}
+                        />
                         <View
                             style={styles.circulo}
                         />
-      <View
-                        style={styles.barraLargaAzul}
-                    />
+                        <View
+                            style={styles.barraLargaAzul}
+                        />
                         <View
                             style={styles.circulo}
                         />
