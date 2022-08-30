@@ -6,9 +6,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import * as SecureStore from 'expo-secure-store';
 
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
 import { Provider as AuthProvider } from './context/AuthContext'
 import { Context as AuthContext } from './context/AuthContext'
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import Login from './tabs/Login';
 import Home from './Screens/Home';
@@ -90,7 +93,7 @@ function HomeFlow() {
               break;
           }
           return (
-            <AntDesign name="checkcircleo" size={24} color="#2B83F2" />
+            <MaterialIcons name="home-filled" size={30} color="#2B83F2" />
           );
         },
       })}
@@ -165,8 +168,16 @@ function App() {
 
 export default () => {
   return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={{
+          flex: 1
+        }}
+      >
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };

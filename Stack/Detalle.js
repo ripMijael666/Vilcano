@@ -320,7 +320,7 @@ function Detalle() {
                     </View>
 
                     <Text
-                        style={styles.TituloAuto}
+                        style={styles.estadoOt}
                     >
                         ESTADO OT
                     </Text>
@@ -394,9 +394,11 @@ function Detalle() {
                     <View
                         style={styles.circuloDos}
                     >
-                        <View>
+                        <View
+                            style={styles.finalizacion}
+                        >
                             <Text
-                                style={styles.TituloAuto}
+                                style={styles.TituloAutoFinalizacion}
                             >
                                 FINALIZACIÓN
                             </Text>
@@ -432,7 +434,6 @@ function Detalle() {
                     <Progress.Bar
                         progress={0.6}
                         width={330}
-                        // borderWidth={false}
                         unfilledColor={'#BBBABA'}
                     />
                     <View
@@ -448,7 +449,7 @@ function Detalle() {
                     </View>
 
                     <View
-                        style={styles.ContenedorDos}
+                        style={styles.ContenedorDosAzul}
                     >
                         <TouchableOpacity>
                             <View
@@ -545,18 +546,18 @@ function Detalle() {
 }
 
 const styles = StyleSheet.create({
+    finalizacion: {
+        marginTop: 15
+    },
     container: {
         flex: 1,
         backgroundColor: '#FDFDFD',
-        // justifyContent: 'center',
         alignItems: 'center',
-        // overflow: 'scroll'
     },
     contenedorHeader: {
-        marginTop: 40,
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // alignItems: 'center'
     },
     atras: {
         marginRight: 150
@@ -582,29 +583,22 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     logoAuto: {
-        width: 48,
-        height: 46,
+        width: 38,
+        height: 36,
     },
     contenedorAuto: {
         backgroundColor: '#FDFDFD',
-        width: 62,
-        height: 62,
+        width: 52,
+        height: 52,
         borderRadius: 100,
         marginTop: 28,
         marginRight: 28,
         justifyContent: 'center',
-        alignItems: 'center'
-    },
-    TituloAuto: {
-        fontSize: 22,
-        marginTop: 28,
-        marginLeft: 28,
-        color: '#000000',
-        fontWeight: '600'
+        alignItems: 'center',
+        marginHorizontal: 17
     },
     TituloAutoFinalizacion: {
         fontSize: 22,
-        // marginTop: 28,
         marginLeft: 28,
         color: '#000000',
         fontWeight: '600'
@@ -612,13 +606,33 @@ const styles = StyleSheet.create({
     Cliente: {
         fontSize: 22,
         marginTop: 5,
-        marginLeft: 28,
+        color: '#000000',
+        marginLeft: -140,
+        color: '#000000',
+        fontWeight: '600'
+    },
+    TituloAuto: {
+        fontSize: 22,
+        marginTop: 38,
+        marginLeft: 50,
+        color: '#000000',
+        fontWeight: '600'
+    },
+    estadoOt: {
+        fontSize: 22,
+        marginTop: 38,
+        marginLeft: -220,
         color: '#000000',
         fontWeight: '600'
     },
     ContenedorDos: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+    },
+    ContenedorDosAzul: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: 8
     },
     OT: {
         fontSize: 28,
@@ -635,7 +649,8 @@ const styles = StyleSheet.create({
     },
     contenedorCaracteristicas: {
         marginTop: 28,
-        marginLeft: 28
+        marginLeft: 28,
+        marginHorizontal: 17
     },
     imagenAutoGrande: {
         width: 290,
@@ -665,25 +680,27 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     contenedorTransparente: {
-        width: 180,
+        width: 245,
         height: 55,
         borderRadius: 12,
         justifyContent: 'center',
         marginTop: 10,
         borderColor: '#BBBABA',
-        borderWidth: 1
+        borderWidth: 1,
+        marginHorizontal: 5
     },
     contenedorTransparenteTelefono: {
-        width: 100,
-        height: 55,
+        width: 93,
+        height:55,
         borderRadius: 12,
         justifyContent: 'center',
         marginTop: 10,
         borderColor: '#BBBABA',
-        borderWidth: 1
+        borderWidth: 1,
+        marginHorizontal: 5
     },
     contenedorTransparenteLargo: {
-        width: 300,
+        width: 350,
         height: 55,
         borderRadius: 12,
         justifyContent: 'center',
@@ -713,19 +730,18 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
         marginTop: 24,
-        // marginHorizontal: -83,
-        // paddingHorizontal: -90
+        marginHorizontal: -8,
     },
     circuloDos: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // justifyContent: 'center',
         alignItems: 'center',
     },
     letraAzul: {
         color: '#2B83F2',
         fontSize: 14,
-        fontWeight: '500'
+        fontWeight: '500',
+        marginHorizontal: 12
     },
     barraLargaAzul: {
         backgroundColor: '#2B83F2',
@@ -733,13 +749,12 @@ const styles = StyleSheet.create({
         height: 5,
         marginTop: 32
     },
-
     porcentaje: {
         fontSize: 45,
         color: '#2B83F2',
-        marginTop: 18,
+        marginTop: 15,
         fontWeight: '600',
-        marginRight: 12
+        paddingHorizontal: 65
     },
     imagenGigante: {
         width: 330,
@@ -747,7 +762,6 @@ const styles = StyleSheet.create({
     },
     contenedorImagenGigante: {
         width: '100%',
-        // height: '100%',
         marginLeft: 60
     },
     completadoPorcentaje: {
@@ -755,7 +769,8 @@ const styles = StyleSheet.create({
         color: '#000000',
         fontSize: 16,
         fontWeight: '600',
-        marginLeft: 5,
+        marginLeft: -190,
+        padding:5
     },
     verTodo: {
         color: '#FFFF',
