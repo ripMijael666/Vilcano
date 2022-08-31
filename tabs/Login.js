@@ -135,7 +135,7 @@ function Login() {
                     </View>
 
                     <View
-                        style={styles.dos}
+                        style={styles.ContenedorDos}
                     >
                         <View
                             style={styles.GGFB}
@@ -269,23 +269,27 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 8,
     },
+    ContenedorDos: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginTop: 12
+    },
     dos: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: 35
     },
     GGFB: {
-        flex: 1,
         borderWidth: 1,
         borderRadius: 18,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 185,
+        width:155,
         height: 90,
         borderRadius: 12,
         borderColor: '#BBBABA',
-        // marginLeft: 20,
-        // marginRight: 20
+        marginLeft: 10,
+        marginRight:10
     },
     google: {
         height: 27,

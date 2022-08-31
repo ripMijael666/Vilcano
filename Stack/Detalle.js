@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     Image,
@@ -17,6 +17,13 @@ import * as Progress from 'react-native-progress';
 
 function Detalle() {
     const navigation = useNavigation();
+    const abierto = true;
+    const finalizado = true;
+    const cerrado = true;
+    const entrega = false;
+
+
+
     return (
         <View
             style={styles.container}
@@ -325,69 +332,101 @@ function Detalle() {
                         ESTADO OT
                     </Text>
 
-                    {/* <View
-                        style={styles.barraLargaAzul}
-                    /> */}
-
                     <View
-                        style={styles.ContenedorDos}
+                        style={styles.ContenedorDosEstado}
                     >
                         <View
-                            style={styles.circulo}
-                        />
-                        <View
-                            style={styles.barraLargaAzul}
-                        />
-                        <View
-                            style={styles.circulo}
-                        />
-
-                        <View
-                            style={styles.barraLargaAzul}
-                        />
-                        <View
-                            style={styles.circulo}
-                        />
-                        <View
-                            style={styles.barraLargaAzul}
-                        />
-                        <View
-                            style={styles.circulo}
-                        />
-                    </View>
-
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <Text
-                            style={styles.letraAzul}
+                            style={styles.centroCirculoTexto}
+                            onPress={()=>{
+                                abierto= !abierto;
+                                console.log(abierto);
+                            }}
                         >
-                            ABIERTO
-                        </Text>
+                        
+                             { abierto ? (<View style={styles.circulo} />) : 
+                                          <View style={styles.circuloGris} /> }
 
-                        <Text
-                            style={styles.letraAzul}
+                             { abierto ? (<Text style={styles.letraAzul} > ABIERTO </Text>) : 
+                                          <Text style={styles.letraGris} > ABIERTO </Text>}
+                            
+                        </View>
+
+                        <View style={styles.barraLargaAzul} />
+
+                        <View
+                            style={styles.centroCirculoTexto}
+                            onPress={()=>{
+                                finalizado= !finalizado;
+                                console.log(finalizado);
+                            }}
                         >
-                            FINALIZADO
-                        </Text>
+                        
+                             { finalizado ? (<View style={styles.circulo} />) : 
+                                          <View style={styles.circuloGris} /> }
 
-                        <Text
-                            style={styles.letraAzul}
+                             { finalizado ? (<Text style={styles.letraAzul} > FINALIZADO </Text>) : 
+                                          <Text style={styles.letraGris} > FINALIZADO </Text>}
+                            
+                        </View>
+
+                        <View style={styles.barraLargaAzul} />
+
+                        <View
+                            style={styles.centroCirculoTexto}
+                            onPress={()=>{
+                                cerrado= !cerrado;
+                                console.log(cerrado);
+                            }}
                         >
-                            CERRADO
-                        </Text>
+                        
+                             { cerrado ? (<View style={styles.circulo} />) : 
+                                          <View style={styles.circuloGris} /> }
 
-                        <View>
-                            <Text
-                                style={styles.letraAzul}
-                            >
-                                PROMESA
-                            </Text>
-                            <Text
-                                style={styles.letraAzul}
-                            >
-                                ENTREGA
-                            </Text>
+                             { cerrado ? (<Text style={styles.letraAzul} > CERRADO </Text>) : 
+                                          <Text style={styles.letraGris} > CERRADO </Text>}
+                            
+                        </View>
+
+                        <View style={styles.barraLargaGris} />
+
+                        <View
+                            style={{ marginTop: 18 }}
+                        >
+                            <View
+                            style={styles.centroCirculoTexto}
+                            onPress={()=>{
+                                entrega= !entrega;
+                                console.log(entrega);
+                            }}
+                        >
+                                { entrega ? (<View style={styles.circulo} />) : 
+                                          <View style={styles.circuloGris} /> }
+
+                             { entrega ? (<View>
+                                    <Text
+                                        style={styles.letraAzul}
+                                    >
+                                        PROMESA
+                                    </Text>
+                                    <Text
+                                        style={styles.letraAzul}
+                                    >
+                                        ENTREGA
+                                    </Text>
+                                </View>) : 
+                                          <View>
+                                    <Text
+                                        style={styles.letraGris}
+                                    >
+                                        PROMESA
+                                    </Text>
+                                    <Text
+                                        style={styles.letraGris}
+                                    >
+                                        ENTREGA
+                                    </Text>
+                                </View>}
+                            </View>
                         </View>
                     </View>
 
@@ -546,6 +585,65 @@ function Detalle() {
 }
 
 const styles = StyleSheet.create({
+    ContenedorDosEstado: {
+        flexDirection: 'row',
+        // justifyContent: 'space-around',
+    },
+    centroCirculoTexto: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: -35
+    },
+    circulo: {
+        backgroundColor: '#2B83F2',
+        borderRadius: 100,
+        width: 20,
+        height: 20,
+        marginTop: 24,
+        zIndex: 10
+    },
+    circuloGris: {
+        backgroundColor: '#BBBABA',
+        borderColor: '#BBBABA',
+        borderRadius: 100,
+        width: 20,
+        height: 20,
+        marginTop: 24,
+        zIndex: 10
+    },
+    circuloDos: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    letraAzul: {
+        color: '#2B83F2',
+        fontSize: 14,
+        fontWeight: '500',
+        marginHorizontal: 12
+    },
+    letraGris: {
+        color: '#BBBABA',
+        fontSize: 14,
+        fontWeight: '500',
+        marginHorizontal: 12
+    },
+    barraLargaGris: {
+        backgroundColor: '#BBBABA',
+        width: 85,
+        marginHorizontal: -9,
+        height: 5,
+        marginTop: 49,
+        zIndex:1
+    },
+    barraLargaAzul: {
+        backgroundColor: '#2B83F2',
+        width: 85,
+        marginHorizontal: -9,
+        height: 5,
+        marginTop: 49,
+        zIndex:1
+    },
     finalizacion: {
         marginTop: 15
     },
@@ -691,7 +789,7 @@ const styles = StyleSheet.create({
     },
     contenedorTransparenteTelefono: {
         width: 93,
-        height:55,
+        height: 55,
         borderRadius: 12,
         justifyContent: 'center',
         marginTop: 10,
@@ -724,31 +822,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 10,
     },
-    circulo: {
-        backgroundColor: '#2B83F2',
-        borderRadius: 100,
-        width: 20,
-        height: 20,
-        marginTop: 24,
-        marginHorizontal: -8,
-    },
-    circuloDos: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    letraAzul: {
-        color: '#2B83F2',
-        fontSize: 14,
-        fontWeight: '500',
-        marginHorizontal: 12
-    },
-    barraLargaAzul: {
-        backgroundColor: '#2B83F2',
-        width: 90,
-        height: 5,
-        marginTop: 32
-    },
     porcentaje: {
         fontSize: 45,
         color: '#2B83F2',
@@ -770,7 +843,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         marginLeft: -190,
-        padding:5
+        padding: 5
     },
     verTodo: {
         color: '#FFFF',
