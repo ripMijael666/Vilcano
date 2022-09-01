@@ -23,7 +23,15 @@ function Detalle() {
     // const [cerrado, setCerrado] = useState(true);
     // const [entrega, setEntrega] = useState(true);
 
-
+    const Estado = (props) => {
+        const [abierto, setAbierto] = useState(false);
+        const [finalizado, setFinalizado] = useState(false);
+        const [cerrado, setCerrado] = useState(false);
+        const [entrega, setEntrega] = useState(false);
+        return (
+            {abierto, finalizado, cerrado, entrega}
+        );
+    }
 
 
 
@@ -42,7 +50,7 @@ function Detalle() {
                 style={styles.centroCirculoTexto}
             >
                 {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} /> }
-                {status ? <Text style={styles.letraAzul}> {name} </Text> : <Text style={styles.letraGris}> {name} </Text> }
+                {status ? <Text style={styles.letraAzul}> {Estado} </Text> : <Text style={styles.letraGris}> {Estado} </Text> }
 
                 {status ? <View style={styles.barraLargaAzul} /> : <View style={styles.barraLargaGris} /> }
             </View>
@@ -360,12 +368,12 @@ function Detalle() {
                     <View
                         style={styles.ContenedorDosEstado}
                     >
-                        {/* <BarraEstado /> */}
-                        {/* <estado name='ABIERTO'></estado> */}
-                        <BarraEstado name='ABIERTO' status={true} />
+                        <BarraEstado name='ABIERTO' status={true}/>
+                        {/* <estado ></estado> 
+                        <BarraEstado name='ABIERTO' />
                         <BarraEstado name= 'FINALIZADO' status={true} />
                         <BarraEstado name= 'CERRADO' status={true} />
-                        <BarraEstado name= 'PROMESA ENTREGA' status={false} />
+                        <BarraEstado name= 'PROMESA ENTREGA' status={false} /> */}
                     </View>
 
                     <View
