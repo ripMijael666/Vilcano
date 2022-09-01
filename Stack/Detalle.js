@@ -17,12 +17,37 @@ import * as Progress from 'react-native-progress';
 
 function Detalle() {
     const navigation = useNavigation();
-    const abierto = true;
-    const finalizado = true;
-    const cerrado = true;
-    const entrega = false;
+    
+    // const [abierto, setAbierto] = useState(true);
+    // const [finalizado, setFinalizado] = useState(true);
+    // const [cerrado, setCerrado] = useState(true);
+    // const [entrega, setEntrega] = useState(true);
 
 
+
+
+
+    const BarraEstado = (props) => {
+
+        const {name, status }= props;
+        
+        console.log('status'+ status);
+        console.log('name'+ name);
+
+        // const nombres= ['ABIERTO', 'FINALIZADO', 'CERRADO', 'PROMESA ENTREGA'];
+        // console.log(nombres);
+
+        return (
+            <View
+                style={styles.centroCirculoTexto}
+            >
+                {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} /> }
+                {status ? <Text style={styles.letraAzul}> {name} </Text> : <Text style={styles.letraGris}> {name} </Text> }
+
+                {status ? <View style={styles.barraLargaAzul} /> : <View style={styles.barraLargaGris} /> }
+            </View>
+        );
+    }
 
     return (
         <View
@@ -335,99 +360,12 @@ function Detalle() {
                     <View
                         style={styles.ContenedorDosEstado}
                     >
-                        <View
-                            style={styles.centroCirculoTexto}
-                            onPress={()=>{
-                                abierto= !abierto;
-                                console.log(abierto);
-                            }}
-                        >
-                        
-                             { abierto ? (<View style={styles.circulo} />) : 
-                                          <View style={styles.circuloGris} /> }
-
-                             { abierto ? (<Text style={styles.letraAzul} > ABIERTO </Text>) : 
-                                          <Text style={styles.letraGris} > ABIERTO </Text>}
-                            
-                        </View>
-
-                        <View style={styles.barraLargaAzul} />
-
-                        <View
-                            style={styles.centroCirculoTexto}
-                            onPress={()=>{
-                                finalizado= !finalizado;
-                                console.log(finalizado);
-                            }}
-                        >
-                        
-                             { finalizado ? (<View style={styles.circulo} />) : 
-                                          <View style={styles.circuloGris} /> }
-
-                             { finalizado ? (<Text style={styles.letraAzul} > FINALIZADO </Text>) : 
-                                          <Text style={styles.letraGris} > FINALIZADO </Text>}
-                            
-                        </View>
-
-                        <View style={styles.barraLargaAzul} />
-
-                        <View
-                            style={styles.centroCirculoTexto}
-                            onPress={()=>{
-                                cerrado= !cerrado;
-                                console.log(cerrado);
-                            }}
-                        >
-                        
-                             { cerrado ? (<View style={styles.circulo} />) : 
-                                          <View style={styles.circuloGris} /> }
-
-                             { cerrado ? (<Text style={styles.letraAzul} > CERRADO </Text>) : 
-                                          <Text style={styles.letraGris} > CERRADO </Text>}
-                            
-                        </View>
-
-                        <View style={styles.barraLargaGris} />
-
-                        <View
-                            style={{ marginTop: 18 }}
-                        >
-                            <View
-                            style={styles.centroCirculoTexto}
-                            onPress={()=>{
-                                entrega= !entrega;
-                                console.log(entrega);
-                            }}
-                        >
-                                { entrega ? (<View style={styles.circulo} />) : 
-                                          <View style={styles.circuloGris} /> }
-
-                             { entrega ? (<View>
-                                    <Text
-                                        style={styles.letraAzul}
-                                    >
-                                        PROMESA
-                                    </Text>
-                                    <Text
-                                        style={styles.letraAzul}
-                                    >
-                                        ENTREGA
-                                    </Text>
-                                </View>) : 
-                                          <View>
-                                    <Text
-                                        style={styles.letraGris}
-                                    >
-                                        PROMESA
-                                    </Text>
-                                    <Text
-                                        style={styles.letraGris}
-                                    >
-                                        ENTREGA
-                                    </Text>
-                                </View>}
-                            </View>
-                        </View>
+                        {/* <BarraEstado /> */}
+                        {/* <estado name='ABIERTO'></estado> */}
+                        <BarraEstado name='ABIERTO' status={true} />
+                        <BarraEstado name= 'FINALIZADO' status={true} />
+                        <BarraEstado name= 'CERRADO' status={true} />
+                        <BarraEstado name= 'PROMESA ENTREGA' status={false} />
                     </View>
 
                     <View
@@ -592,7 +530,7 @@ const styles = StyleSheet.create({
     centroCirculoTexto: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: -35
+        // marginHorizontal: -35
     },
     circulo: {
         backgroundColor: '#2B83F2',
@@ -631,18 +569,18 @@ const styles = StyleSheet.create({
     barraLargaGris: {
         backgroundColor: '#BBBABA',
         width: 85,
-        marginHorizontal: -9,
+        // marginHorizontal: -9,
         height: 5,
-        marginTop: 49,
-        zIndex:1
+        // marginTop: 49,
+        zIndex: 1
     },
     barraLargaAzul: {
         backgroundColor: '#2B83F2',
         width: 85,
-        marginHorizontal: -9,
+        // marginHorizontal: -9,
         height: 5,
-        marginTop: 49,
-        zIndex:1
+        // marginTop: -20,
+        zIndex: 1
     },
     finalizacion: {
         marginTop: 15
@@ -832,10 +770,12 @@ const styles = StyleSheet.create({
     imagenGigante: {
         width: 330,
         height: 235,
+        zIndex: 10,
+        marginLeft: 80
     },
     contenedorImagenGigante: {
         width: '100%',
-        marginLeft: 60
+        marginLeft: 60,
     },
     completadoPorcentaje: {
         marginTop: 24,

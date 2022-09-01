@@ -16,7 +16,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Login from './tabs/Login';
 import Home from './Screens/Home';
 import Detalle from './Stack/Detalle';
-
+import HomeDos from './Screens/HomeDos';
 
 
 
@@ -91,6 +91,11 @@ function HomeFlow() {
                 ? 'ios-checkbox'
                 : 'ios-checkbox-outline';
               break;
+            case 'HomeDos':
+              iconName = focused
+                ? 'ios-checkbox'
+                : 'ios-checkbox-outline';
+              break;
           }
           return (
             <MaterialIcons name="home-filled" size={30} color="#2B83F2" />
@@ -102,6 +107,13 @@ function HomeFlow() {
       <Tab.Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="HomeDos"
+        component={HomeDos}
         options={{
           headerShown: false,
         }}
