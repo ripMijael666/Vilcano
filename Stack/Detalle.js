@@ -17,42 +17,102 @@ import * as Progress from 'react-native-progress';
 
 function Detalle() {
     const navigation = useNavigation();
-    
-    // const [abierto, setAbierto] = useState(true);
-    // const [finalizado, setFinalizado] = useState(true);
-    // const [cerrado, setCerrado] = useState(true);
-    // const [entrega, setEntrega] = useState(true);
 
     const Estado = (props) => {
-        const [abierto, setAbierto] = useState(false);
-        const [finalizado, setFinalizado] = useState(false);
-        const [cerrado, setCerrado] = useState(false);
-        const [entrega, setEntrega] = useState(false);
+
+        const { estado } = props;
+
+        console.log(estado);
+
         return (
-            {abierto, finalizado, cerrado, entrega}
+            <View 
+            // style={styles.circuloDosNuevo}
+            >
+                {estado == "ABIERTO" ?
+                    <View
+                        style= {styles.ContenedorDosEstado}
+                    >
+                        <BarraEstado name="ABIERTO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="FINALIZADO" status={false}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="CERRADO" status={false}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
+                        {/* <View style={styles.barraLargaGris} /> */}
+                    </View>
+                    : <></>
+                }
+                {estado == "FINALIZADO" ?
+                    <View
+                        style= {styles.ContenedorDosEstado}
+                    >
+                        <BarraEstado name="ABIERTO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="FINALIZADO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="CERRADO" status={false}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
+                        {/* <View style={styles.barraLargaGris} /> */}
+                    </View>
+                    : <></>
+                }
+                {estado == "CERRADO" ?
+                    <View
+                        style= {styles.ContenedorDosEstado}
+                    >
+                        <BarraEstado name="ABIERTO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="FINALIZADO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="CERRADO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaGris} />
+                        <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
+                        {/* <View style={styles.barraLargaGris} /> */}
+                    </View>
+                    : <></>
+                }
+                {estado == "ENTREGADO" ?
+                    <View
+                        style= {styles.ContenedorDosEstado}
+                    >
+                        <BarraEstado name="ABIERTO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="FINALIZADO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="CERRADO" status={true}></BarraEstado>
+                        <View style={styles.barraLargaAzul} />
+                        <BarraEstado name="ENTREGADO" status={true}></BarraEstado>
+                        {/* <View style={styles.barraLargaGris} /> */}
+                    </View>
+                    : <></>
+                }
+            </View>
         );
+
     }
 
 
 
     const BarraEstado = (props) => {
 
-        const {name, status }= props;
-        
-        console.log('status'+ status);
-        console.log('name'+ name);
+        const { name, status } = props;
 
-        // const nombres= ['ABIERTO', 'FINALIZADO', 'CERRADO', 'PROMESA ENTREGA'];
-        // console.log(nombres);
+        console.log('status' + status);
+        console.log('name' + name);
 
         return (
             <View
+                style= {styles.ContenedorDosEstado}
+            >
+            <View
                 style={styles.centroCirculoTexto}
             >
-                {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} /> }
-                {status ? <Text style={styles.letraAzul}> {Estado} </Text> : <Text style={styles.letraGris}> {Estado} </Text> }
+                {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} />}
+                {status ? <Text style={styles.letraAzul}> {name} </Text> : <Text style={styles.letraGris}> {name} </Text>}
 
-                {status ? <View style={styles.barraLargaAzul} /> : <View style={styles.barraLargaGris} /> }
+            </View>
             </View>
         );
     }
@@ -368,7 +428,8 @@ function Detalle() {
                     <View
                         style={styles.ContenedorDosEstado}
                     >
-                        <BarraEstado name='ABIERTO' status={true}/>
+                        <Estado estado='FINALIZADO'></Estado>
+                        {/* <BarraEstado name='ABIERTO' status={true}/> */}
                         {/* <estado ></estado> 
                         <BarraEstado name='ABIERTO' />
                         <BarraEstado name= 'FINALIZADO' status={true} />
@@ -531,9 +592,16 @@ function Detalle() {
 }
 
 const styles = StyleSheet.create({
+    // circuloDosNuevo: {
+        // flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // alignItems: 'center',
+    // },
     ContenedorDosEstado: {
+        flex: 1,
+        // display: 'flex',
         flexDirection: 'row',
-        // justifyContent: 'space-around',
+        justifyContent:'space-evenly',
     },
     centroCirculoTexto: {
         justifyContent: 'center',
@@ -545,7 +613,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         width: 20,
         height: 20,
-        marginTop: 24,
+        marginTop: 35,
         zIndex: 10
     },
     circuloGris: {
@@ -554,7 +622,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         width: 20,
         height: 20,
-        marginTop: 24,
+        marginTop: 34,
         zIndex: 10
     },
     circuloDos: {
@@ -564,22 +632,26 @@ const styles = StyleSheet.create({
     },
     letraAzul: {
         color: '#2B83F2',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '500',
-        marginHorizontal: 12
+        width: 80,
+        // height:35
+        // marginHorizontal: 12
     },
     letraGris: {
         color: '#BBBABA',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '500',
-        marginHorizontal: 12
+        width: 80,
+        // height:35
+        // marginHorizontal: 12
     },
     barraLargaGris: {
         backgroundColor: '#BBBABA',
         width: 85,
         // marginHorizontal: -9,
         height: 5,
-        // marginTop: 49,
+        marginTop:42,
         zIndex: 1
     },
     barraLargaAzul: {
@@ -587,7 +659,7 @@ const styles = StyleSheet.create({
         width: 85,
         // marginHorizontal: -9,
         height: 5,
-        // marginTop: -20,
+        marginTop: 42,
         zIndex: 1
     },
     finalizacion: {

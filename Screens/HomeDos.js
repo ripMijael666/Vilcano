@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from 'react';
 import {
     View,
     StyleSheet,
@@ -12,8 +12,12 @@ import {
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Context as AuthContext } from '../context/AuthContext'
+import { useNavigation } from '@react-navigation/native';
 
 function HomeDos() {
+    const { signOut } = useContext(AuthContext);
+    const navigation = useNavigation();
     return (
         <View
             style={styles.containerGobal}
