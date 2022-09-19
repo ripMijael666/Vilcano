@@ -14,9 +14,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import Login from './tabs/Login';
-import Home from './Screens/Home';
-import Detalle from './Stack/Detalle';
-import HomeDos from './Screens/HomeDos';
+import Home from './Screens/Home/Home';
+import Detalle from './Stack/Detalle/Detalle';
+import HomeDos from './Screens/Home Dos/HomeDos';
 
 
 

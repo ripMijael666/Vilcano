@@ -12,8 +12,11 @@ import {
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Context as AuthContext } from '../context/AuthContext'
+import { Context as AuthContext } from '../../context/AuthContext'
 import { useNavigation } from '@react-navigation/native';
+import Azul from './Azul';
+import Verde from './Verde';
+import Rojo from './Rojo';
 
 function HomeDos() {
     const { signOut } = useContext(AuthContext);
@@ -31,13 +34,13 @@ function HomeDos() {
                     >
                         <Image
                             style={styles.logoAzul}
-                            source={require("../assets/logo_azul.png")}
+                            source={require("../../assets/logo_azul.png")}
                         />
                     </TouchableOpacity>
 
                     <Image
                         style={styles.campana}
-                        source={require("../assets/campana.png")}
+                        source={require("../../assets/campana.png")}
                     />
                 </View>
 
@@ -54,7 +57,7 @@ function HomeDos() {
                             />
                             <Image
                                 style={styles.lupa}
-                                source={require("../assets/lupa.png")}
+                                source={require("../../assets/lupa.png")}
                             />
                         </View>
 
@@ -97,7 +100,7 @@ function HomeDos() {
                                 <Text
                                     style={styles.NumeroColorAzul}
                                 >
-                                    67
+                                    <Azul />
                                 </Text>
 
                                 <Text
@@ -124,7 +127,7 @@ function HomeDos() {
                                 <Text
                                     style={styles.NumeroColorVerde}
                                 >
-                                    56
+                                    <Verde />
                                 </Text>
 
                                 <Text
@@ -151,7 +154,7 @@ function HomeDos() {
                                 <Text
                                     style={styles.NumeroColorRojo}
                                 >
-                                    11
+                                    <Rojo />
                                 </Text>
 
                                 <Text
@@ -194,7 +197,7 @@ function HomeDos() {
                                     >
                                         <Image
                                             style={styles.logoAuto}
-                                            source={require("../assets/logoAuto.png")}
+                                            source={require("../../assets/logoAuto.png")}
                                         />
                                     </View>
 
@@ -301,7 +304,7 @@ function HomeDos() {
                                     >
                                         <Image
                                             style={styles.logoAuto}
-                                            source={require("../assets/logoAuto.png")}
+                                            source={require("../../assets/logoAuto.png")}
                                         />
                                     </View>
 
@@ -408,7 +411,7 @@ function HomeDos() {
                                     >
                                         <Image
                                             style={styles.logoAuto}
-                                            source={require("../assets/logoAuto.png")}
+                                            source={require("../../assets/logoAuto.png")}
                                         />
                                     </View>
 

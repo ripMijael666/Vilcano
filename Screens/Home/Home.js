@@ -11,12 +11,17 @@ import {
     Dimensions
 } from 'react-native';
 
-import { Context as AuthContext } from '../context/AuthContext'
+import { Context as AuthContext } from '../../context/AuthContext'
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { BarChart } from 'react-native-chart-kit'
+import Azul from './Azul';
+import Naranja from './Naranja';
+import Rojo from './Rojo';
+import Verde from './Verde';
+import Placa from './Placa';
 
 const _colors = {
     inactive: `#BBBABA`,
@@ -40,37 +45,37 @@ function Home() {
     const listaAutos = [
         {
             id: '0',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '1',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '2',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '3',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '4',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '5',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
         {
             id: '6',
-            marca: 'BMW M4 2020',
+            marca: <Placa /> ,
             placa: 'Placa/VIN'
         },
     ];
@@ -87,13 +92,13 @@ function Home() {
                 >
                     <Image
                         style={styles.logoAzul}
-                        source={require("../assets/logo_azul.png")}
+                        source={require("../../assets/logo_azul.png")}
                     />
                 </TouchableOpacity>
 
                 <Image
                     style={styles.campana}
-                    source={require("../assets/campana.png")}
+                    source={require("../../assets/campana.png")}
                 />
             </View>
 
@@ -110,7 +115,7 @@ function Home() {
                         />
                         <Image
                             style={styles.lupa}
-                            source={require("../assets/lupa.png")}
+                            source={require("../../assets/lupa.png")}
                         />
                     </View>
 
@@ -145,7 +150,6 @@ function Home() {
                 >
                     <FlatList
                         horizontal
-                        // ref={ref}
                         initialScrollIndex={index}
                         data={listaAutos}
                         keyExtractor={(item) => item.id}
@@ -162,7 +166,7 @@ function Home() {
                                     >
                                         <Image
                                             style={styles.ImagenAuto}
-                                            source={require("../assets/autos/auto_2.png")}
+                                            source={require("../../assets/autos/auto_2.png")}
                                         />
                                         <View
                                             style={styles.TextoAuto}
@@ -215,7 +219,7 @@ function Home() {
                                 <Text
                                     style={styles.NumeroColorAzul}
                                 >
-                                    5645
+                                    <Azul />
                                 </Text>
 
                                 <Text
@@ -236,7 +240,7 @@ function Home() {
                                 <Text
                                     style={styles.NumeroColorNaranja}
                                 >
-                                    5645
+                                    <Naranja />
                                 </Text>
 
                                 <Text
@@ -258,7 +262,7 @@ function Home() {
                                 <Text
                                     style={styles.NumeroColorRojo}
                                 >
-                                    5645
+                                        <Rojo />
                                 </Text>
 
                                 <Text
@@ -279,7 +283,7 @@ function Home() {
                                 <Text
                                     style={styles.NumeroColorVerde}
                                 >
-                                    5645
+                                    <Verde />
                                 </Text>
 
                                 <Text
@@ -311,7 +315,7 @@ function Home() {
                             >
                                 <Image
                                     style={styles.ImagenAutoPng}
-                                    source={require("../assets/auto.png")}
+                                    source={require("../../assets/auto.png")}
                                 />
                                 <View
                                     style={styles.TextoBlancoDos}
@@ -332,7 +336,7 @@ function Home() {
                         </View>
                         <Image
                             style={styles.Triangulo}
-                            source={require("../assets/triangulo.png")}
+                            source={require("../../assets/triangulo.png")}
                         />
                     </View>
 
@@ -492,12 +496,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '500'
     },
-    NumeroColorVerde: {
-        color: '#60BB29',
-        fontSize: 25,
-        fontWeight: '700',
 
-    },
     TextoColorRojo: {
         color: '#DC2A2A',
         marginTop: -6,
@@ -508,7 +507,6 @@ const styles = StyleSheet.create({
         color: '#DC2A2A',
         fontSize: 25,
         fontWeight: '700',
-
     },
     TextoColorNaranja: {
         color: '#EA981E',
@@ -520,7 +518,6 @@ const styles = StyleSheet.create({
         color: '#EA981E',
         fontSize: 25,
         fontWeight: '700',
-
     },
     TextoColorAzul: {
         color: '#2B83F2',

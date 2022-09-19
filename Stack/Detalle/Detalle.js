@@ -13,6 +13,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
+import DatosVehiculo from "./DatosVehiculo";
 
 
 function Detalle() {
@@ -133,7 +134,7 @@ function Detalle() {
 
                 <Image
                     style={styles.campana}
-                    source={require("../assets/campana.png")}
+                    source={require("../../assets/campana.png")}
                 />
             </View>
 
@@ -177,7 +178,7 @@ function Detalle() {
                         >
                             <Image
                                 style={styles.logoAuto}
-                                source={require("../assets/logoAuto.png")}
+                                source={require("../../assets/logoAuto.png")}
                             />
                         </View>
                     </View>
@@ -187,170 +188,13 @@ function Detalle() {
                     >
                         <Image
                             style={styles.imagenAutoGrande}
-                            source={require("../assets/autos/auto_2.png")}
+                            source={require("../../assets/autos/auto_2.png")}
                         />
                     </View>
 
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Marca
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Mercedes Benz
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Modelo
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Modelo
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Versión
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Versión
-                            </Text>
-                        </View>
+                    <View>
+                        <DatosVehiculo />
                     </View>
-
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Año
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                43534
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Color
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Color
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Placa
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                4534634
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorBlanco}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Transmisión
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Automática
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorBlancoLargo}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                VIN
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                4346346343634634346
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorBlancoLargoKilo}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                Kilometraje
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                5634624523523
-                            </Text>
-                        </View>
-                    </View>
-
 
                 </View>
 
@@ -467,7 +311,7 @@ function Detalle() {
                     >
                         <Image
                             style={styles.imagenGigante}
-                            source={require("../assets/autos/auto_1.1.png")}
+                            source={require("../../assets/autos/auto_1.1.png")}
                         />
                     </View>
 
@@ -506,7 +350,7 @@ function Detalle() {
                                 >
                                     <Image
                                         style={styles.partes}
-                                        source={require("../assets/partes.png")}
+                                        source={require("../../assets/partes.png")}
                                     />
 
                                     <Text
@@ -527,7 +371,7 @@ function Detalle() {
                                 >
                                     <Image
                                         style={styles.externos}
-                                        source={require("../assets/externos.png")}
+                                        source={require("../../assets/externos.png")}
                                     />
                                     <View>
                                         <Text
@@ -557,7 +401,7 @@ function Detalle() {
 
                                 <Image
                                     style={styles.observaciones}
-                                    source={require("../assets/observaciones.png")}
+                                    source={require("../../assets/observaciones.png")}
                                 />
 
                                 <Text
@@ -575,7 +419,7 @@ function Detalle() {
 
                                 <Image
                                     style={styles.recomendaciones}
-                                    source={require("../assets/recomendaciones.png")}
+                                    source={require("../../assets/recomendaciones.png")}
                                 />
                                 <Text
                                     style={styles.textoRecomendaciones}
