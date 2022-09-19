@@ -80,7 +80,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                             {row.car.cars_models_version.cars_model.name}
+                            {row.car.cars_models_version.cars_model.name}
                         </Text>
                     </View>
 
@@ -96,7 +96,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                           {row.car.cars_models_version.name}
+                            {row.car.cars_models_version.name}
                         </Text>
                     </View>
                 </View>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         marginLeft: 5
-    },  
+    },
     contenedorBlancoLargo: {
         backgroundColor: '#FFFFFF',
         width: 205,
@@ -253,4 +253,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 10,
     },
-})
+}
+);
