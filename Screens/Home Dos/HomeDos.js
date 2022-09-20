@@ -6,7 +6,7 @@ import {
     Image,
     ScrollView,
     TouchableOpacity,
-    TextInput
+    TextInput,
 } from "react-native";
 
 import { Entypo } from '@expo/vector-icons';
@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import Azul from './Azul';
 import Verde from './Verde';
 import Rojo from './Rojo';
+import Reservas from './Reservas';
 
 function HomeDos() {
     const { signOut } = useContext(AuthContext);
@@ -179,7 +180,7 @@ function HomeDos() {
                         RESERVAS DEL DÍA
                     </Text>
 
-                    <View
+                    {/* <View
                         styles={styles.derecha}
                     >
                         <View
@@ -501,7 +502,10 @@ function HomeDos() {
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    </View> */}
+
+
+                    <Reservas />
 
                 </ScrollView>
             </View>

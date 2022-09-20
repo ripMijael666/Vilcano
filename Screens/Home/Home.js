@@ -22,6 +22,7 @@ import Naranja from './Naranja';
 import Rojo from './Rojo';
 import Verde from './Verde';
 import Placa from './Placa';
+import Grafico from './Grafico';
 
 const _colors = {
     inactive: `#BBBABA`,
@@ -160,7 +161,6 @@ function Home() {
                                 <TouchableOpacity
                                     onPress={() => navigation.navigate("Detalle")}
                                 >
-
                                     <View
                                         style={styles.InputAuto}
                                     >
@@ -176,8 +176,6 @@ function Home() {
                                             >
                                                 {item.marca}
                                             </Text>
-
-
 
                                             <Text
                                                 style={styles.TextoDos}
@@ -340,7 +338,9 @@ function Home() {
                         />
                     </View>
 
-                    <BarChart
+                    <Grafico />
+
+                    {/* <BarChart
                         data={{
                             labels: [
                                 "17/Ene",
@@ -391,8 +391,8 @@ function Home() {
                             borderColor: '#2B83F2',
                             borderWidth: 1.5,
                         }}
-                    />
-                    <View
+                    />*/}
+                    <View 
                         style={styles.verificado}
                     >
                         <View

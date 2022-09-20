@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 import DatosVehiculo from "./DatosVehiculo";
+import DatosCliente from "./DatosCliente";
 
 
 function Detalle() {
@@ -208,60 +209,7 @@ function Detalle() {
                         DATOS DEL CLIENTE
                     </Text>
 
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorTransparente}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                NOMBRE
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Pericle Robles
-                            </Text>
-                        </View>
-
-                        <View
-                            style={styles.contenedorTransparenteTelefono}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                TELÉFONO
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                6856856895
-                            </Text>
-                        </View>
-                    </View>
-                    <View
-                        style={styles.ContenedorDos}
-                    >
-                        <View
-                            style={styles.contenedorTransparenteLargo}
-                        >
-                            <Text
-                                style={styles.textoTresNegro}
-                            >
-                                EMAIL
-                            </Text>
-
-                            <Text
-                                style={styles.contenedorTresClaro}
-                            >
-                                Pericle Robles.gmail.com
-                            </Text>
-                        </View>
-                    </View>
+                    <DatosCliente />
 
                     <Text
                         style={styles.estadoOt}

@@ -20,7 +20,7 @@ export default function Azul() {
                     }
                 })
                 .then(setShowDots(false))
-        }, 4000);
+        }, 1000);
     }, [])
 
     return (
