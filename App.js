@@ -174,6 +174,7 @@ function App() {
   useEffect(() => {
     console.log('User Role: ' + typeof userType);
   }, [userType]
+  
   );
 
   return (
