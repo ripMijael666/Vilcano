@@ -157,21 +157,23 @@ function App() {
 
 
 
+  const bootstrapAsync = async () => {
+    let userToken;
+    let userRole;
+    userToken = await SecureStore.getItemAsync('userToken');
+    userRole = await SecureStore.getItemAsync('role');
+    restoreToken({ userToken });
+    setUserType(userRole);
+  };
 
-
-  React.useEffect(() => {
-    const bootstrapAsync = async () => {
-      let userToken;
-      try {
-        userToken = await SecureStore.getItemAsync('userToken');
-        userType = await SecureStore.getItemAsync('city')
-      } catch (e) {
-      }
-      restoreToken({ userToken });
-      setUserType(userType);
-    };
+  useEffect(() => {
     bootstrapAsync();
   }, []
+  );
+
+  useEffect(() => {
+    console.log('User Role: ' + typeof userType);
+  }, [userType]
   );
 
   return (
@@ -192,7 +194,7 @@ function App() {
               component={AuthFlow}
             />
           </>
-        ) : state.userToken !== null && userType !== 'CBBA' ? (
+        ) : state.userToken !== null && userType == 'ADMIN' ? (
           <Stack.Screen
             name="HomeDos"
             component={HomeDos}

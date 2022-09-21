@@ -43,24 +43,24 @@ const signIn = dispatch => {
       data.append("password", password);
 
       const response = await fetch(
-        'https://onelifefitness.xyz/clients/loginMobile',
-        // 'https://slogan.com.bo/vulcano/users/loginMobile',
+        // 'https://onelifefitness.xyz/clients/loginMobile',
+        'https://slogan.com.bo/vulcano/users/loginMobile',
         {
           method: 'POST',
           body: data
         }
       );
       const json = await response.json();
-      console.log('data: ' + json.response.data);
+      console.log('data: ' + Object.keys(json));
 
-      if (json.response.status) {
-        Alert.alert('Bienvenido' + json.response.data.names);
+      if (json.status) {
+        Alert.alert('Bienvenido ' + json.data.name);
         console.log(email);
         console.log(password);
-        console.log(json.response.data.city);
+        console.log(json.data.role);
         await SecureStore.setItemAsync('email', email);
         await SecureStore.setItemAsync('password', password);
-        await SecureStore.setItemAsync('type', json.response.data.city);
+        await SecureStore.setItemAsync('role', json.data.role);
         await SecureStore.setItemAsync('userToken', 'dummy-auth-token');
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
 

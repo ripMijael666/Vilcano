@@ -76,15 +76,7 @@ class TableRow extends React.Component {
                                 <Image
                                     style={styles.logoAuto}
                                     source={require("../../assets/logoAuto.png")}
-
                                 />
-                                {/* <Image
-                                src={row.additional_info}
-                                alt="brand"
-                                layout="responsive"
-                                width={40}
-                                height={40}
-                            /> */}
                             </View>
 
                             <View
@@ -457,7 +449,7 @@ const styles = StyleSheet.create({
     ContenedorDosReserva: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        // marginLeft: 12
+        // alignItems: 'flex-start'
     },
     contenedorDatosUno: {
         marginTop: 8,
@@ -511,7 +503,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginTop: 25,
         marginLeft: 16,
-        paddingBottom: 90
+        // paddingBottom: 90
     },
     ContenedorReservaAzul: {
         backgroundColor: '#2B83F2',
@@ -535,12 +527,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: 60,
         height: 60,
-        borderRadius: 12,
+        borderRadius: 15,
         marginTop: 28,
-        marginLeft: -58,
+        marginLeft: -50,
+        marginHorizontal: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        // marginHorizontal: 17
     },
     TextoColorVerde: {
         color: '#60BB29',
