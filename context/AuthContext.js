@@ -26,14 +26,14 @@ const authReducer = (state, action) => {
 
 const signUp = dispatch => {
 
-  
-  return ({email, password}) => {
+
+  return ({ email, password }) => {
     dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
   };
 };
 
 const signIn = dispatch => {
-  return async ({email, password}) => {
+  return async ({ email, password }) => {
 
 
     try {
@@ -41,36 +41,38 @@ const signIn = dispatch => {
       var data = new FormData();
       data.append("username", email);
       data.append("password", password);
-  
+
       const response = await fetch(
-        'https://slogan.com.bo/vulcano/users/loginMobile',
+        'https://onelifefitness.xyz/clients/loginMobile',
         {
           method: 'POST',
           body: data
         }
       );
       const json = await response.json();
-      console.log(json);
-  
+      console.log('data: ' + json.response.data);
+
       if (json.response.status) {
         Alert.alert('Bienvenido' + json.response.data.names);
         console.log(email);
         console.log(password);
+        console.log(json.response.data.city);
         await SecureStore.setItemAsync('email', email);
         await SecureStore.setItemAsync('password', password);
+        await SecureStore.setItemAsync('type', json.response.data.city);
         await SecureStore.setItemAsync('userToken', 'dummy-auth-token');
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
-  
+
       } else {
         Alert.alert('error');
       }
-  
+
     } catch (error) {
       console.error(error);
     }
 
 
-        
+
   };
 };
 
@@ -82,15 +84,15 @@ const signOut = dispatch => {
 };
 
 const restoreToken = dispatch => {
-  return ({userToken}) => {
+  return ({ userToken }) => {
     console.log('UserToken: ' + userToken);
     dispatch({ type: 'RESTORE_TOKEN', token: userToken });
   };
 };
 
-export const {Provider, Context} = createDataContext(
+export const { Provider, Context } = createDataContext(
   authReducer,
-  {signIn, signOut, signUp, restoreToken},
+  { signIn, signOut, signUp, restoreToken },
   {
     isLoading: true,
     isSignout: false,

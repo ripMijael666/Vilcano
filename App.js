@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
@@ -102,8 +102,11 @@ function HomeFlow() {
           );
         },
       })}
-
     >
+
+
+
+      {/* {state.isLoading ? ( */}
       <Tab.Screen
         name="Home"
         component={Home}
@@ -111,6 +114,8 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
+      {/* ) : state.userToken === null ?( */}
+      {/* <> */}
       <Tab.Screen
         name="HomeDos"
         component={HomeDos}
@@ -118,6 +123,8 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
+      {/* </>
+      ) :  */}
     </Tab.Navigator>
   );
 }
@@ -128,15 +135,40 @@ const Stack = createStackNavigator();
 function App() {
 
   const { state, restoreToken } = React.useContext(AuthContext);
+  const [userType, setUserType] = useState('');
+
+
+
+
+
+
+
+
+  // const response = fetch(
+  //   'https://onelifefitness.xyz/clients/loginMobile',
+  //   {
+  //     method: 'POST',
+  //     body: data
+  //   }
+  // );
+
+  // console.log(response);
+
+
+
+
+
 
   React.useEffect(() => {
     const bootstrapAsync = async () => {
       let userToken;
       try {
         userToken = await SecureStore.getItemAsync('userToken');
+        userType = await SecureStore.getItemAsync('city')
       } catch (e) {
       }
       restoreToken({ userToken });
+      setUserType(userType);
     };
     bootstrapAsync();
   }, []
@@ -145,7 +177,7 @@ function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         {state.isLoading ? (
           <Stack.Screen
             options={{ headerShown: false }}
@@ -160,13 +192,25 @@ function App() {
               component={AuthFlow}
             />
           </>
+        ) : state.userToken !== null && userType !== 'CBBA' ? (
+          <Stack.Screen
+            name="HomeDos"
+            component={HomeDos}
+            options={{
+              headerShown: false,
+            }}
+          />
         ) : (
           <Stack.Screen
-            options={{ headerShown: false }}
-            name="HomeFlow"
-            component={HomeFlow}
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: false,
+            }}
           />
-        )}
+        )
+
+        }
 
         <Stack.Screen
           name="Detalle"
@@ -181,11 +225,7 @@ function App() {
 export default () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView
-        style={{
-          flex: 1
-        }}
-      >
+      <SafeAreaView style={{ flex: 1 }}>
         <AuthProvider>
           <App />
         </AuthProvider>
