@@ -44,6 +44,7 @@ const signIn = dispatch => {
 
       const response = await fetch(
         'https://onelifefitness.xyz/clients/loginMobile',
+        // 'https://slogan.com.bo/vulcano/users/loginMobile',
         {
           method: 'POST',
           body: data
