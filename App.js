@@ -135,27 +135,7 @@ const Stack = createStackNavigator();
 function App() {
 
   const { state, restoreToken } = React.useContext(AuthContext);
-  const [userType, setUserType] = useState('');
-
-
-
-
-
-
-
-
-  // const response = fetch(
-  //   'https://onelifefitness.xyz/clients/loginMobile',
-  //   {
-  //     method: 'POST',
-  //     body: data
-  //   }
-  // );
-
-  // console.log(response);
-
-
-
+  const [userType, setUserType] = useState("");
 
   const bootstrapAsync = async () => {
     let userToken;
@@ -172,9 +152,9 @@ function App() {
   );
 
   useEffect(() => {
-    console.log('User Role: ' + typeof userType);
+    console.log('User Role: ' + userType);
   }, [userType]
-  
+
   );
 
   return (
@@ -195,7 +175,7 @@ function App() {
               component={AuthFlow}
             />
           </>
-        ) : state.userToken !== null && userType == 'ADMIN' ? (
+        ) : state.userToken !== null && userType !== "ADMIN" ? (
           <Stack.Screen
             name="HomeDos"
             component={HomeDos}
@@ -203,7 +183,7 @@ function App() {
               headerShown: false,
             }}
           />
-        ) : (
+        ) : state.userToken == null && userType == "ASESOR" ? (
           <Stack.Screen
             name="Home"
             component={Home}
@@ -211,7 +191,7 @@ function App() {
               headerShown: false,
             }}
           />
-        )
+        ) : null
 
         }
 
