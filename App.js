@@ -183,23 +183,23 @@ function App() {
               headerShown: false,
             }}
           />
-        ) : state.userToken == null && userType == "ASESOR" ? (
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              headerShown: false,
-            }}
-          />
-        ) : null
+        ) : null}
+        {/* // ) : state.userToken == null && userType == "ASESOR" ? (
+        //   <Stack.Screen
+        //     name="Home"
+        //     component={Home}
+        //     options={{
+        //       headerShown: false,
+        //     }}
+        //   />
+        // ) : null
 
-        }
-
-        <Stack.Screen
-          name="Detalle"
-          component={Detalle}
-          options={{ headerShown: false }}
-        />
+        // }
+        // <Stack.Screen
+        //   name="Detalle"
+        //   component={Detalle}
+        //   options={{ headerShown: false }}
+        // /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -69,7 +69,6 @@ class TableRow extends React.Component {
                         <View
                             style={styles.ContenedorDosReserva}
                         >
-
                             <View
                                 style={styles.contenedorAuto}
                             >
