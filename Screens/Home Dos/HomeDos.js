@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     View,
     StyleSheet,
@@ -26,7 +26,7 @@ function HomeDos() {
                     </TouchableOpacity>
 
                     <View style={styles.usuarioTextConstainer}>
-                        <View>
+                        <View style={styles.datos}>
                             <Text style={styles.textUser}>
                                 Henry T.
                             </Text>
@@ -40,6 +40,95 @@ function HomeDos() {
                         <View style={styles.usuarioImage}></View>
                     </View>
                 </View>
+
+                <View style={styles.containerInput}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Search order"
+                    />
+                    <View style={styles.contenedorLupaAzul}>
+                        <Image
+                            source={require("../../assets/lupa_blanca.png")}
+                        />
+                    </View>
+                </View>
+
+                <View>
+                    <Text>
+                        Orders status
+                    </Text>
+                </View>
+
+                <View style={styles.containerOrders}>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.containerOrders}>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                    <View style={styles.blancoOrders}>
+                        <View style={styles.typeStatus}>
+                            <Text>Open</Text>
+                            <Image
+                                source={require("../../assets/orders/open.png")}
+                            />
+                        </View>
+                        <Text>
+                            177
+                        </Text>
+                    </View>
+                </View>
             </View>
         </View>
     )
@@ -48,48 +137,42 @@ function HomeDos() {
 const styles = StyleSheet.create({
     containerGobal: {
         flex: 1,
-        backgroundColor: '#FDFDFD',
+        backgroundColor: '#F6F6FA',
         alignItems: 'center',
-        marginRight: 15,
     },
     container: {
         flex: 1,
-        backgroundColor: '#FDFDFD',
-        // backgroundColor: '#EAEBEC',
+        backgroundColor: '#F6F6FA',
         borderRadius: 40,
         width: 420,
-        // height: 650,
         marginTop: 25,
         marginHorizontal: 37
     },
     contenedorLogo: {
-        // marginTop: 5,
         marginLeft: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    campana: {
-        width: 28,
-        height: 35,
-        marginRight: 15
     },
     usuarioTextConstainer: {
         flex: 1,
         flexDirection: 'row',
         alignContent: 'flex-end',
-        justifyContent:'flex-end'
+        justifyContent: 'flex-end',
+    },
+    datos: {
+        marginTop: 6,
+        marginRight: 10
     },
     textUser: {
         textAlign: 'right',
-        // alignItems: 'center',
+        fontSize: 18,
     },
     textTipo: {
         textAlign: 'right',
-        // alignItems: 'center',
     },
     textSingOut: {
+        color: '#2B83F2',
         textAlign: 'right',
-        // alignItems: 'center',
     },
     usuarioImage: {
         backgroundColor: '#D9D9D9',
@@ -98,6 +181,42 @@ const styles = StyleSheet.create({
         height: 51,
         marginRight: 15
     },
+    input: {
+        fontSize: 16,
+        borderRadius: 12,
+        width: 220,
+        height: 45,
+        justifyContent: 'center',
+        marginTop: 22,
+    },
+    containerInput: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    contenedorLupaAzul: {
+        backgroundColor: '#2B83F2',
+        width: 41,
+        height: 37,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 12
+    },
+    blancoOrders: {
+        backgroundColor: '#FFFFFF',
+        width: 103,
+        height: 69,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    typeStatus: {
+        flexDirection: 'row'
+    },
+    containerOrders: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 
 export default HomeDos;
