@@ -73,60 +73,96 @@ function HomeDos() {
                     </View>
                     <View style={styles.blancoOrders}>
                         <View style={styles.typeStatus}>
-                            <Text>Open</Text>
+                            <Text>Assigned</Text>
                             <Image
-                                source={require("../../assets/orders/open.png")}
+                                source={require("../../assets/orders/assigned.png")}
                             />
                         </View>
                         <Text>
-                            177
+                            3490
                         </Text>
                     </View>
                     <View style={styles.blancoOrders}>
                         <View style={styles.typeStatus}>
-                            <Text>Open</Text>
+                            <Text>Ongoing</Text>
                             <Image
-                                source={require("../../assets/orders/open.png")}
+                                source={require("../../assets/orders/ongoing.png")}
                             />
                         </View>
                         <Text>
-                            177
+                            22
                         </Text>
                     </View>
                 </View>
                 <View style={styles.containerOrders}>
                     <View style={styles.blancoOrders}>
                         <View style={styles.typeStatus}>
-                            <Text>Open</Text>
+                            <Text>Paused</Text>
                             <Image
-                                source={require("../../assets/orders/open.png")}
+                                source={require("../../assets/orders/paused.png")}
                             />
                         </View>
                         <Text>
-                            177
+                            4
                         </Text>
                     </View>
                     <View style={styles.blancoOrders}>
                         <View style={styles.typeStatus}>
-                            <Text>Open</Text>
+                            <Text>Finalized</Text>
                             <Image
-                                source={require("../../assets/orders/open.png")}
+                                source={require("../../assets/orders/finalized.png")}
                             />
                         </View>
                         <Text>
-                            177
+                            80
                         </Text>
                     </View>
                     <View style={styles.blancoOrders}>
                         <View style={styles.typeStatus}>
-                            <Text>Open</Text>
+                            <Text>Closed</Text>
                             <Image
-                                source={require("../../assets/orders/open.png")}
+                                source={require("../../assets/orders/closed.png")}
                             />
                         </View>
                         <Text>
-                            177
+                            27
                         </Text>
+                    </View>
+                </View>
+                <View style={styles.contenedorPorcentaje}>
+                    <View>
+                        <View>
+                            <Text>
+                                Orders entered
+                            </Text>
+                            <Text>
+                                Waiting Mechanic Assignment
+                            </Text>
+                        </View>
+                        <View style={styles.porcentaje}>
+                            <View style={styles.porcentajeAzul}>
+                                <Text>
+                                    See all
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View>
+                        <View>
+                            <Text>
+                                Orders with work done
+                            </Text>
+                            <Text>
+                                Waiting Quality Control
+                            </Text>
+                        </View>
+                        <View style={styles.porcentaje}>
+                            <View style={styles.porcentajeAzul}>
+                                <Text>
+                                    See all
+                                </Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -208,6 +244,10 @@ const styles = StyleSheet.create({
         height: 69,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 20,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15
     },
     typeStatus: {
         flexDirection: 'row'
@@ -216,6 +256,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    contenedorPorcentaje: {
+        flexDirection: 'row',
+    },
+    porcentaje: {
+        backgroundColor: '#FFFFFF',
+        width: 150,
+        height: 130,
+        borderRadius: 20,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+    },
+    porcentajeAzul: {
+        backgroundColor: '#3682F7',
+        width: 150,
+        height: 25,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#FFFFFF',
     }
 });
 
