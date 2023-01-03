@@ -50,8 +50,8 @@ function HomeDos() {
                 </View>
             </View>
 
-            <View>
-                <Text>
+            <View style={styles.contenedorOrdersEstatus}>
+                <Text style={styles.tituloOrdersEstatus}>
                     Orders status
                 </Text>
             </View>
@@ -59,34 +59,34 @@ function HomeDos() {
             <View style={styles.containerOrders}>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Open</Text>
+                        <Text style={styles.textOrders}>Open</Text>
                         <Image
                             source={require("../../assets/orders/open.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         177
                     </Text>
                 </View>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Assigned</Text>
+                        <Text style={styles.textOrders}>Assigned</Text>
                         <Image
                             source={require("../../assets/orders/assigned.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         3490
                     </Text>
                 </View>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Ongoing</Text>
+                        <Text style={styles.textOrders}>Ongoing</Text>
                         <Image
                             source={require("../../assets/orders/ongoing.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         22
                     </Text>
                 </View>
@@ -94,77 +94,80 @@ function HomeDos() {
             <View style={styles.containerOrders}>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Paused</Text>
+                        <Text style={styles.textOrders}>Paused</Text>
                         <Image
                             source={require("../../assets/orders/paused.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         4
                     </Text>
                 </View>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Finalized</Text>
+                        <Text style={styles.textOrders}>Finalized</Text>
                         <Image
                             source={require("../../assets/orders/finalized.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         80
                     </Text>
                 </View>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text>Closed</Text>
+                        <Text style={styles.textOrders}>Closed</Text>
                         <Image
                             source={require("../../assets/orders/closed.png")}
                         />
                     </View>
-                    <Text>
+                    <Text style={styles.numberOrders}>
                         27
                     </Text>
                 </View>
             </View>
             <View style={styles.contenedorPorcentaje}>
-                <View>
+                <View style={styles.contenedorOrdersEntered}>
                     <View>
-                        <Text>
+                        <Text style={styles.titleBar}>
                             Orders entered
                         </Text>
-                        <Text>
+                        <Text style={styles.textEntered}>
                             Waiting Mechanic Assignment
                         </Text>
                     </View>
                     <View style={styles.porcentaje}>
                         <View style={styles.porcentajeAzul}>
-                            <Text>
+                            <Text style={styles.textSeeAll}>
                                 See all
                             </Text>
                         </View>
                     </View>
                 </View>
-                <View>
+                <View style={styles.contenedorOrdersWork}>
                     <View>
-                        <Text>
+                        <Text style={styles.titleBar}>
                             Orders with work done
                         </Text>
-                        <Text>
+                        <Text style={styles.textEntered}>
                             Waiting Quality Control
                         </Text>
                     </View>
                     <View style={styles.porcentaje}>
                         <View style={styles.porcentajeAzul}>
-                            <Text>
+                            <Text style={styles.textSeeAll}>
                                 See all
                             </Text>
                         </View>
                     </View>
                 </View>
             </View>
-            <View>
-                <Text>
-                    Latest orders / En espera de Control de Calidad
+            <View style={styles.contenedorTitleLatest}>
+                <Text style={styles.textLatest}>
+                    Latest orders
+                </Text>
+                <Text style={styles.textLatestDelgado}>
+                    / En espera de Control de Calidad
                 </Text>
             </View>
             <View style={styles.contenedorLatestOrders}>
@@ -173,29 +176,29 @@ function HomeDos() {
                         source={require("../../assets/logo_auto.png")}
                     />
                 </View>
-                <View>
+                <View style={styles.contenedorDatosLatersOrders}>
                     <View style={styles.contenedorEstado}>
                         <Text style={styles.textEstado}>
                             FINALIZED
                         </Text>
                     </View>
-                    <Text>
+                    <Text style={styles.textName}>
                         HENRY MCCORMIK
                     </Text>
                     <View style={styles.contenedorDatos}>
-                        <Text>
+                        <Text style={styles.datosAuto}>
                             FORD
                         </Text>
-                        <Text>
+                        <Text style={styles.textName}>
                             •
                         </Text>
-                        <Text>
+                        <Text style={styles.datosAuto}>
                             FIESTA SE
                         </Text>
-                        <Text>
+                        <Text style={styles.textName}>
                             •
                         </Text>
-                        <Text>
+                        <Text style={styles.datosAuto}>
                             4477EED
                         </Text>
                     </View>
@@ -211,7 +214,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F6F6FA',
         // alignItems: 'center',
         marginTop: 25,
-        // justifyContent: 'center', 
+        // justifyContent: 'center',
         // marginLeft: 35,
         // marginRight: 35
     },
@@ -233,12 +236,19 @@ const styles = StyleSheet.create({
     textUser: {
         textAlign: 'right',
         fontSize: 18,
-        fontWeight: '700'
+        color: '#000000',
+        fontWeight: '800',
     },
     textTipo: {
         textAlign: 'right',
+        fontSize: 16,
+        color: '#000000',
+        fontWeight: '400',
     },
     textSingOut: {
+        fontSize: 14,
+        color: '#000000',
+        fontWeight: '400',
         color: '#2B83F2',
         textAlign: 'right',
     },
@@ -252,48 +262,55 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     contenedorLogoAuto: {
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#F6F6FA',
         borderRadius: 100,
         width: 46,
         height: 46,
-        marginRight: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: 15
     },
     input: {
+        flex: 1,
+        // backgroundColor: '#ff0000',
         fontSize: 16,
         borderRadius: 12,
-        width: 220,
         height: 45,
-        justifyContent: 'center',
-        marginTop: 22,
     },
     containerInput: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        // backgroundColor: '#fff000',
+        borderBottomLeftRadius: 12,
+        borderTopLeftRadius: 12,
+        marginTop: 16,
+        marginLeft: 25,
+        marginRight: 25,
     },
     contenedorLupaAzul: {
         backgroundColor: '#2B83F2',
-        width: 41,
-        height: 37,
+        width: 48,
+        height: 45,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12
+        borderBottomRightRadius: 8,
+        borderTopRightRadius: 8,
     },
     blancoOrders: {
+        flex: 1,
         backgroundColor: '#FFFFFF',
         width: 103,
         height: 69,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: 14,
         marginLeft: 15,
         marginRight: 15,
         marginTop: 15
     },
     typeStatus: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     containerOrders: {
         flexDirection: 'row',
@@ -302,18 +319,23 @@ const styles = StyleSheet.create({
     },
     contenedorPorcentaje: {
         flexDirection: 'row',
+        marginRight: 15,
+        marginLeft: 15,
+        marginTop: 15,
+        // backgroundColor: '#ff0'
     },
     porcentaje: {
         backgroundColor: '#FFFFFF',
-        width: 150,
-        height: 130,
+        width: 180,
+        height: 150,
         borderRadius: 20,
         justifyContent: 'flex-end',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        marginTop: 15
     },
     porcentajeAzul: {
         backgroundColor: '#3682F7',
-        width: 150,
+        width: 180,
         height: 25,
         // borderRadius: 20,
         borderBottomStartRadius: 20,
@@ -325,7 +347,11 @@ const styles = StyleSheet.create({
     contenedorLatestOrders: {
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
+        height: 90,
         flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 15,
+        marginRight: 15
     },
     contenedorEstado: {
         backgroundColor: '#71AD46',
@@ -333,13 +359,90 @@ const styles = StyleSheet.create({
         height: 22,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 16
+        borderRadius: 16,
+        fontWeight: '300'
     },
     textEstado: {
         color: '#FFFFFF',
     },
     contenedorDatos: {
         flexDirection: 'row'
+    },
+    tituloOrdersEstatus: {
+        color: '#000000',
+        fontSize: 24,
+        fontWeight: '700'
+    },
+    contenedorOrdersEstatus: {
+        marginTop: 14,
+        marginLeft: 15
+    },
+    numberOrders: {
+        fontSize: 28,
+        color: '#000000',
+        fontWeight: '400',
+        marginRight: 40
+    },
+    textOrders: {
+        fontSize: 15,
+        fontWeight: '300',
+        marginRight: 40
+    },
+    titleBar: {
+        fontSize: 20,
+        fontWeight: '800'
+    },
+    textEntered: {
+        fontSize: 12,
+        fontWeight: '400'
+    },
+    contenedorOrdersEntered: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        // backgroundColor: '#fd5580',
+        marginRight: 15,
+    },
+    contenedorOrdersWork: {
+        justifyContent: 'flex-start',
+        // backgroundColor: '#ff0000',
+        alignItems: 'flex-start',
+        marginLeft: 10,
+    },
+    textSeeAll: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: '300'
+    },
+    textLatest: {
+        color: '#000000',
+        fontSize: 24,
+        fontWeight: '700'
+    },
+    textLatestDelgado: {
+        color: '#000000',
+        fontSize: 18,
+        fontWeight: '300'
+    },
+    contenedorTitleLatest: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        marginTop: 15,
+        marginLeft: 15
+    },
+    textName: {
+        color: '#000000',
+        fontWeight: '700',
+        fontSize: 16
+    },
+    datosAuto: {
+        color: '#000000',
+        fontWeight: '300',
+        fontSize: 16
+    },
+    contenedorDatosLatersOrders: {
+        marginLeft: 15,
+        justifyContent:'flex-start',
+        alignItems: 'flex-start'
     }
 });
 
