@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { StatusBar } from 'expo-status-bar';
+import tailwind from 'twrnc';
 
 import {
     View,
@@ -117,6 +117,14 @@ function Assigned() {
                         </Text>
                     </View>
                 </View>
+            </View>
+            <View style={tailwind.style("bg-[#ff0000]  justify-center items-center w-full h-[100px]")}>
+                <Text style={tailwind.style("text-[#FFFF] text-[30px] ")}>
+                    Hola Tailwind
+                </Text>
+                <Text style={tailwind.style("text-[#FFFF] text-[18px] ")}>
+                    Jose Mijael Rocha Vera
+                </Text>
             </View>
         </View>
     )

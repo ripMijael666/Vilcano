@@ -218,7 +218,7 @@ function App() {
           }}
           />
 
-{/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
+          {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
         {/* // ) : state.userToken == null && userType == "ASESOR" ? (
         //   <Stack.Screen
         //     name="Home"
