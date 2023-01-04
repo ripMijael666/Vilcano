@@ -24,9 +24,9 @@ function Grafico() {
             .then(response => response.json())
             .then(data => {
                 if (data) {
-                    console.log(data.data);
+                    // console.log(data.data);
                     // setData(data.data)
-                    console.log(data.data.labels);
+                    // console.log(data.data.labels);
                     
                     const graph = {
                         labels: data.data.labels,

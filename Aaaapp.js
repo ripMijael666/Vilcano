@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
-
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -15,7 +13,6 @@ import { Context as AuthContext } from './context/AuthContext'
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-
 import Login from './tabs/Login';
 import Home from './Screens/Home/Home';
 import Detalle from './Stack/Detalle/Detalle';
@@ -23,7 +20,7 @@ import HomeDos from './Screens/Home Dos/HomeDos';
 
 import Orders from './Screens/Orders/Orders';
 import Assigned from './Screens/Assignied/Assigned';
-
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
@@ -65,7 +62,8 @@ const styles = StyleSheet.create({
 
 
 
-const AuthStack = createStackNavigator();
+// const AuthStack = createStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 function AuthFlow() {
   return (
@@ -107,18 +105,17 @@ function HomeFlow() {
                 ? 'ios-checkbox'
                 : 'ios-checkbox-outline';
               break;
-            case 'Assigned':
-              iconName = focused
-                ? 'ios-checkbox'
-                : 'ios-checkbox-outline';
-              break;
           }
           return (
-            <MaterialIcons name={iconName} size={30} color="#2B83F2" />
+            <MaterialIcons name="home-filled" size={30} color="#2B83F2" />
           );
         },
       })}
     >
+
+
+
+      {/* {state.isLoading ? ( */}
       <Tab.Screen
         name="Home"
         component={Home}
@@ -126,6 +123,8 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
+      {/* ) : state.userToken === null ?( */}
+      {/* <> */}
       <Tab.Screen
         name="HomeDos"
         component={HomeDos}
@@ -133,28 +132,17 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
-      <Tab.Screen
-        name="Orders"
-        component={Orders}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Assigned"
-        component={Assigned}
-        options={{
-          headerShown: false,
-        }}
-      />
+      {/* </>
+      ) :  */}
     </Tab.Navigator>
   );
 }
 
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function App() {
+
   const { state, restoreToken } = React.useContext(AuthContext);
   const [userType, setUserType] = useState("");
 
@@ -180,6 +168,7 @@ function App() {
 
   return (
     <NavigationContainer>
+
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {state.isLoading ? (
           <Stack.Screen
@@ -195,46 +184,30 @@ function App() {
               component={AuthFlow}
             />
           </>
+        ) : state.userToken !== null && userType !== "ADMIN" ? (
+          <Stack.Screen
+            name="HomeDos"
+            component={HomeDos}
+            options={{
+              headerShown: false,
+            }}
+          />
+        ) : state.userToken == null && userType == "ASESOR" ? (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Detalle"
+              component={Detalle}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
         ) : null}
-        {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
-        <Stack.Screen
-          name="HomeDos"
-          component={HomeDos}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Orders"
-          component={Orders}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Assigned"
-          component={Assigned}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        {/* // ) : state.userToken == null && userType == "ASESOR" ? (
-        //   <Stack.Screen
-        //     name="Home"
-        //     component={Home}
-        //     options={{
-        //       headerShown: false,
-        //     }}
-        //   />
-        // ) : null
-
-        // }
-        // <Stack.Screen
-        //   name="Detalle"
-        //   component={Detalle}
-        //   options={{ headerShown: false }}
-        // /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
     View,
     StyleSheet,
@@ -9,10 +10,27 @@ import {
     TextInput,
 } from "react-native";
 
+import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Context as AuthContext } from '../../context/AuthContext'
+import { useNavigation } from '@react-navigation/native';
+import Azul from './Azul';
+import Verde from './Verde';
+import Rojo from './Rojo';
+import Reservas from './Reservas';
+
 function HomeDos() {
+    const { signOut } = useContext(AuthContext);
+    const navigation = useNavigation();
     return (
-        <View style={styles.containerGobal}>
-            <View style={styles.contenedorLogo}>
+        <View
+            style={styles.containerGobal}
+        >
+            <StatusBar translucent backgroundColor='#F6F6FA' />
+            <View
+                style={styles.contenedorLogo}
+            >
                 <TouchableOpacity
                     onPress={() => signOut()}
                 >
@@ -22,428 +40,802 @@ function HomeDos() {
                     />
                 </TouchableOpacity>
 
-                <View style={styles.usuarioTextConstainer}>
-                    <View style={styles.datos}>
-                        <Text style={styles.textUser}>
-                            Henry T.
-                        </Text>
-                        <Text style={styles.textTipo}>
-                            Shop Manager
-                        </Text>
-                        <Text style={styles.textSingOut}>
-                            Sign out
-                        </Text>
-                    </View>
-                    <View style={styles.usuarioImage}></View>
-                </View>
-            </View>
-
-            <View style={styles.containerInput}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Search order"
+                <Image
+                    style={styles.campana}
+                    source={require("../../assets/campana.png")}
                 />
-                <View style={styles.contenedorLupaAzul}>
-                    <Image
-                        source={require("../../assets/lupa_blanca.png")}
-                    />
-                </View>
             </View>
 
-            <View style={styles.contenedorOrdersEstatus}>
-                <Text style={styles.tituloOrdersEstatus}>
-                    Orders status
-                </Text>
-            </View>
+            <ScrollView>
+                <View
+                    style={styles.busqueda}
+                >
+                    <View
+                        style={styles.vistaInput}
+                    >
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Placa/VIN"
+                        />
+                        <Image
+                            style={styles.lupa}
+                            source={require("../../assets/lupa.png")}
+                        />
+                    </View>
 
-            <View style={styles.containerOrders}>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Open</Text>
-                        <Image
-                            source={require("../../assets/orders/open.png")}
-                        />
+
+                    <View
+                        style={styles.seleccionar}
+                    >
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("Orders")}
+                            style={styles.botonseleccionar}
+                        >
+                            <Text
+                                style={styles.textoSeleccionar}
+                            >
+                                Seleccionar
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <Text style={styles.numberOrders}>
-                        177
-                    </Text>
                 </View>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Assigned</Text>
-                        <Image
-                            source={require("../../assets/orders/assigned.png")}
-                        />
-                    </View>
-                    <Text style={styles.numberOrders}>
-                        3490
-                    </Text>
-                </View>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Ongoing</Text>
-                        <Image
-                            source={require("../../assets/orders/ongoing.png")}
-                        />
-                    </View>
-                    <Text style={styles.numberOrders}>
-                        22
-                    </Text>
-                </View>
-            </View>
-            <View style={styles.containerOrders}>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Paused</Text>
-                        <Image
-                            source={require("../../assets/orders/paused.png")}
-                        />
-                    </View>
-                    <Text style={styles.numberOrders}>
-                        4
-                    </Text>
-                </View>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Finalized</Text>
-                        <Image
-                            source={require("../../assets/orders/finalized.png")}
-                        />
-                    </View>
-                    <Text style={styles.numberOrders}>
-                        80
-                    </Text>
-                </View>
-                <View style={styles.blancoOrders}>
-                    <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Closed</Text>
-                        <Image
-                            source={require("../../assets/orders/closed.png")}
-                        />
-                    </View>
-                    <Text style={styles.numberOrders}>
-                        27
-                    </Text>
-                </View>
-            </View>
-            <View style={styles.contenedorPorcentaje}>
-                <View style={styles.contenedorOrdersEntered}>
-                    <View>
-                        <Text style={styles.titleBar}>
-                            Orders entered
-                        </Text>
-                        <Text style={styles.textEntered}>
-                            Waiting Mechanic Assignment
-                        </Text>
-                    </View>
-                    <View style={styles.porcentaje}>
-                        <View style={styles.porcentajeAzul}>
-                            <Text style={styles.textSeeAll}>
-                                See all
+                <Text
+                    style={styles.TituloAuto}
+                >
+                    ESTADO OTS
+                </Text>
+
+                <View
+                    style={styles.margin}
+                >
+                    <View
+                        style={styles.ContenedorDos}
+                    >
+                        <View
+                            style={styles.contenedorAzul}
+                        >
+                            <View
+                                style={styles.circuloCentroAzul}
+                            >
+                                <MaterialIcons name="calendar-today" size={30} color="#FFFF" />
+                            </View>
+                            <Text
+                                style={styles.NumeroColorAzul}
+                            >
+                                <Azul />
+                            </Text>
+
+                            <Text
+                                style={styles.TextoColorAzul}
+                            >
+                                Reservas
+                            </Text>
+                            <Text
+                                style={styles.TextoColorAzul}
+                            >
+                                para hoy
                             </Text>
                         </View>
-                    </View>
-                </View>
-                <View style={styles.contenedorOrdersWork}>
-                    <View>
-                        <Text style={styles.titleBar}>
-                            Orders with work done
-                        </Text>
-                        <Text style={styles.textEntered}>
-                            Waiting Quality Control
-                        </Text>
-                    </View>
-                    <View style={styles.porcentaje}>
-                        <View style={styles.porcentajeAzul}>
-                            <Text style={styles.textSeeAll}>
-                                See all
+
+                        <View
+                            style={styles.contenedorVerde}
+                        >
+                            <View
+                                style={styles.circuloCentroVerde}
+                            >
+                                <Entypo name="check" size={35} color="#FFFF" />
+
+                            </View>
+                            <Text
+                                style={styles.NumeroColorVerde}
+                            >
+                                <Verde />
+                            </Text>
+
+                            <Text
+                                style={styles.TextoColorVerde}
+                            >
+                                Reservas
+                            </Text>
+                            <Text
+                                style={styles.TextoColorVerde}
+                            >
+                                confirmadas
                             </Text>
                         </View>
+
+                        <View
+                            style={styles.contenedorRojo}
+                        >
+                            <View
+                                style={styles.circuloCentroRojo}
+                            >
+                                <Ionicons name="close" size={38} color="#FFFF" />
+
+                            </View>
+                            <Text
+                                style={styles.NumeroColorRojo}
+                            >
+                                <Rojo />
+                            </Text>
+
+                            <Text
+                                style={styles.TextoColorRojo}
+                            >
+                                Reservas
+                            </Text>
+                            <Text
+                                style={styles.TextoColorRojo}
+                            >
+                                canceladas
+                            </Text>
+                        </View>
+
+
                     </View>
                 </View>
-            </View>
-            <View style={styles.contenedorTitleLatest}>
-                <Text style={styles.textLatest}>
-                    Latest orders
+
+                <Text style={styles.TituloAuto}>
+                    RESERVAS DEL DÍA
                 </Text>
-                <Text style={styles.textLatestDelgado}>
-                    / En espera de Control de Calidad
-                </Text>
-            </View>
-            <View style={styles.contenedorLatestOrders}>
-                <View style={styles.contenedorLogoAuto}>
-                    <Image
-                        source={require("../../assets/logo_auto.png")}
-                    />
-                </View>
-                <View style={styles.contenedorDatosLatersOrders}>
-                    <View style={styles.contenedorEstado}>
-                        <Text style={styles.textEstado}>
-                            FINALIZED
-                        </Text>
-                    </View>
-                    <Text style={styles.textName}>
-                        HENRY MCCORMIK
-                    </Text>
-                    <View style={styles.contenedorDatos}>
-                        <Text style={styles.datosAuto}>
-                            FORD
-                        </Text>
-                        <Text style={styles.textName}>
-                            •
-                        </Text>
-                        <Text style={styles.datosAuto}>
-                            FIESTA SE
-                        </Text>
-                        <Text style={styles.textName}>
-                            •
-                        </Text>
-                        <Text style={styles.datosAuto}>
-                            4477EED
-                        </Text>
-                    </View>
-                </View>
-            </View>
+
+                {/* <View
+                        styles={styles.derecha}
+                    >
+                        <View
+                            style={styles.ContenedorReservaAzul}
+                        >
+                            <View
+                                style={styles.ContenedorReservaBlanco}
+                            >
+                                <View
+                                    style={styles.ContenedorDosReserva}
+                                >
+
+                                    <View
+                                        style={styles.contenedorAuto}
+                                    >
+                                        <Image
+                                            style={styles.logoAuto}
+                                            source={require("../../assets/logoAuto.png")}
+                                        />
+                                    </View>
+
+                                    <View
+                                        style= {styles.contenedorDatosUno}
+                                    >
+                                        <Text
+                                            style={styles.titulo}
+                                        >
+                                            OT 523673
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Modelo
+                                        </Text>
+
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Mercedes Benz
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Cliente
+                                        </Text>
+                                        
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Pericle Robles
+                                        </Text>
+                                    </View>
+
+                                    <View
+                                        style={styles.contenedorDatosDos}
+                                    >
+                                        <Text
+                                            style={styles.subtituloHora}
+                                        >
+                                            Hora
+                                        </Text>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
+
+                                            <Text
+                                                style={styles.datosHora}
+                                            >
+                                                15:40, 05 de Agosto
+                                            </Text>
+                                        </View>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Text
+                                                style={styles.subtituloHora}
+                                            >
+                                                Estado
+                                            </Text>
+
+                                            <View
+                                                style={styles.contenedorEstado}
+                                            >
+                                                <Text
+                                                   style={styles.TextoColorAzul} 
+                                                >
+                                                    Hoy
+                                                </Text>
+                                            </View>
+                                        </View>
+
+                                        <TouchableOpacity>
+                                            <Text
+                                                style={styles.verDetalles} 
+                                            >
+                                                Ver detalles
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+
+                        <View
+                            style={styles.ContenedorReservaVerde}
+                        >
+                            <View
+                                style={styles.ContenedorReservaBlancoVerde}
+                            >
+                                <View
+                                    style={styles.ContenedorDosReserva}
+                                >
+
+                                    <View
+                                        style={styles.contenedorAuto}
+                                    >
+                                        <Image
+                                            style={styles.logoAuto}
+                                            source={require("../../assets/logoAuto.png")}
+                                        />
+                                    </View>
+
+                                    <View
+                                        style= {styles.contenedorDatosUno}
+                                    >
+                                        <Text
+                                            style={styles.titulo}
+                                        >
+                                            OT 523673
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Modelo
+                                        </Text>
+
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Mercedes Benz
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Cliente
+                                        </Text>
+                                        
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Pericle Robles
+                                        </Text>
+                                    </View>
+
+                                    <View
+                                        style={styles.contenedorDatosDos}
+                                    >
+                                        <Text
+                                            style={styles.subtituloHora}
+                                        >
+                                            Hora
+                                        </Text>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
+
+                                            <Text
+                                                style={styles.datosHora}
+                                            >
+                                                15:40, 05 de Agosto
+                                            </Text>
+                                        </View>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Text
+                                                style={styles.subtituloHora}
+                                            >
+                                                Estado
+                                            </Text>
+
+                                            <View
+                                                style={styles.contenedorEstadoVerde}
+                                            >
+                                                <Text
+                                                   style={styles.TextoColorVerde} 
+                                                >
+                                                    Confirmado
+                                                </Text>
+                                            </View>
+                                        </View>
+
+                                        <TouchableOpacity>
+                                            <Text
+                                                style={styles.verDetalles} 
+                                            >
+                                                Ver detalles
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+
+                        <View
+                            style={styles.ContenedorReservaRojo}
+                        >
+                            <View
+                                style={styles.ContenedorReservaBlancoRojo}
+                            >
+                                <View
+                                    style={styles.ContenedorDosReserva}
+                                >
+
+                                    <View
+                                        style={styles.contenedorAuto}
+                                    >
+                                        <Image
+                                            style={styles.logoAuto}
+                                            source={require("../../assets/logoAuto.png")}
+                                        />
+                                    </View>
+
+                                    <View
+                                        style= {styles.contenedorDatosUno}
+                                    >
+                                        <Text
+                                            style={styles.titulo}
+                                        >
+                                            OT 523673
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Modelo
+                                        </Text>
+
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Mercedes Benz
+                                        </Text>
+
+                                        <Text
+                                            style={styles.subtitulo}
+                                        >
+                                            Cliente
+                                        </Text>
+                                        
+                                        <Text
+                                            style= {styles.datos}
+                                        >
+                                            Pericle Robles
+                                        </Text>
+                                    </View>
+
+                                    <View
+                                        style={styles.contenedorDatosDos}
+                                    >
+                                        <Text
+                                            style={styles.subtituloHora}
+                                        >
+                                            Hora
+                                        </Text>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
+
+                                            <Text
+                                                style={styles.datosHora}
+                                            >
+                                                15:40, 05 de Agosto
+                                            </Text>
+                                        </View>
+
+                                        <View
+                                            style={styles.ContenedorDosHora}
+                                        >
+                                            <Text
+                                                style={styles.subtituloHora}
+                                            >
+                                                Estado
+                                            </Text>
+
+                                            <View
+                                                style={styles.contenedorEstadoRojo}
+                                            >
+                                                <Text
+                                                   style={styles.TextoColorRojo} 
+                                                >
+                                                    Cancelado
+                                                </Text>
+                                            </View>
+                                        </View>
+
+                                        <TouchableOpacity>
+                                            <Text
+                                                style={styles.verDetalles} 
+                                            >
+                                                Ver detalles
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </View> */}
+
+
+                {/* <Reservas /> */}
+
+            </ScrollView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    verDetalles: {
+        color: '#2B83F2',
+        marginTop: 8,
+        fontSize: 12,
+        fontWeight: '600',
+        marginLeft: 78,
+    },
+    contenedorEstado: {
+        borderColor: '#2B83F2',
+        borderWidth: 1,
+        width: 85,
+        height: 22,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    contenedorEstadoVerde: {
+        borderColor: '#74C343',
+        borderWidth: 1,
+        width: 85,
+        height: 22,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    contenedorEstadoRojo: {
+        borderColor: '#EA3F3F',
+        borderWidth: 1,
+        width: 85,
+        height: 22,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    ContenedorDosHora: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    contenedorDatosDos: {
+        marginTop: 27,
+        marginLeft: -45
+    },
+    datosHora: {
+        color: '#B6B6B6',
+        fontWeight: '700',
+    },
+    datos: {
+        color: '#B6B6B6',
+        fontWeight: '700',
+        marginLeft: -15
+    },
+    subtitulo: {
+        color: '#000000',
+        fontWeight: '700',
+        marginLeft: -15
+    },
+    subtituloHora: {
+        color: '#000000',
+        fontWeight: '700',
+        // marginLeft: -15
+    },
+    ContenedorDosReserva: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        // marginLeft: 12
+    },
+    contenedorDatosUno: {
+        marginTop: 8,
+        marginLeft: -38
+    },
+    titulo: {
+        fontSize: 16,
+        color: '#000000',
+        fontWeight: '700',
+        marginLeft: -15
+    },
+    ContenedorReservaBlanco: {
+        backgroundColor: '#FFFF',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        borderColor: '#2B83F2',
+        borderWidth: 1,
+        marginLeft: 20
+    },
+    ContenedorReservaBlancoVerde: {
+        backgroundColor: '#FFFF',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        borderColor: '#74C343',
+        borderWidth: 1,
+        marginLeft: 20
+    },
+    ContenedorReservaBlancoRojo: {
+        backgroundColor: '#FFFF',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        borderColor: '#EA3F3F',
+        borderWidth: 1,
+        marginLeft: 20
+    },
+    ContenedorReservaRojo: {
+        backgroundColor: '#EA3F3F',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        marginTop: 25,
+        marginLeft: 16
+    },
+    ContenedorReservaVerde: {
+        backgroundColor: '#74C343',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        marginTop: 25,
+        marginLeft: 16
+    },
+    ContenedorReservaAzul: {
+        backgroundColor: '#2B83F2',
+        width: 410,
+        height: 125,
+        borderRadius: 12,
+        marginTop: 25,
+        marginLeft: 16
+    },
+    derecha: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 25
+    },
+    logoAuto: {
+        width: 38,
+        height: 36,
+    },
+    contenedorAuto: {
+        borderColor: '#BBBABA',
+        borderWidth: 1,
+        width: 60,
+        height: 60,
+        borderRadius: 12,
+        marginTop: 28,
+        marginLeft: -58,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // marginHorizontal: 17
+    },
+    TextoColorVerde: {
+        color: '#60BB29',
+        marginTop: -3,
+        fontSize: 12,
+        fontWeight: '500'
+    },
+    NumeroColorVerde: {
+        color: '#60BB29',
+        fontSize: 21,
+        fontWeight: '700',
+        paddingVertical: 5
+    },
+    TextoColorRojo: {
+        color: '#DC2A2A',
+        marginTop: -3,
+        fontSize: 12,
+        fontWeight: '500'
+    },
+    NumeroColorRojo: {
+        color: '#DC2A2A',
+        fontSize: 21,
+        fontWeight: '700',
+        paddingVertical: 5
+    },
+    TextoColorAzul: {
+        color: '#2B83F2',
+        marginTop: -3,
+        fontSize: 12,
+        fontWeight: '500'
+    },
+    NumeroColorAzul: {
+        color: '#2B83F2',
+        fontSize: 21,
+        fontWeight: '700',
+        paddingVertical: 5
+    },
+    ContenedorDos: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    circuloCentroVerde: {
+        width: 55,
+        height: 55,
+        backgroundColor: '#60BB29',
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    circuloCentroRojo: {
+        width: 55,
+        height: 55,
+        backgroundColor: '#DC2A2A',
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    circuloCentroAzul: {
+        width: 55,
+        height: 55,
+        backgroundColor: '#2B83F2',
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    contenedorVerde: {
+        borderColor: '#60BB29',
+        borderWidth: 1.5,
+        borderRadius: 12,
+        width: 105,
+        height: 150,
+        justifyContent: 'center',
+        marginHorizontal: 6,
+        alignItems: 'center',
+    },
+    contenedorRojo: {
+        borderColor: '#DC2A2A',
+        borderWidth: 1.5,
+        borderRadius: 12,
+        width: 105,
+        height: 150,
+        marginHorizontal: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    contenedorAzul: {
+        borderColor: '#2B83F2',
+        borderWidth: 1.5,
+        borderRadius: 12,
+        width: 105,
+        height: 150,
+        marginHorizontal: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     containerGobal: {
         flex: 1,
         backgroundColor: '#F6F6FA',
         // alignItems: 'center',
-        marginTop: 25,
+        paddingTop: 5,
         // justifyContent: 'center',
         // marginLeft: 35,
         // marginRight: 35
     },
     contenedorLogo: {
+        // marginTop: 5,
         marginLeft: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    usuarioTextConstainer: {
-        flex: 1,
+    logoAzul: {
+        width: 135,
+        height: 24
+    },
+    campana: {
+        width: 28,
+        height: 35,
+        marginRight: 15
+    },
+    busqueda: {
         flexDirection: 'row',
-        alignContent: 'flex-end',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
+        marginTop: 35
     },
-    datos: {
-        marginTop: 6,
-        marginRight: 10
-    },
-    textUser: {
-        textAlign: 'right',
-        fontSize: 18,
-        color: '#000000',
-        fontWeight: '800',
-    },
-    textTipo: {
-        textAlign: 'right',
+    vistaInput: {
         fontSize: 16,
+        borderRadius: 12,
+        width: 240,
+        height: 45,
+        borderWidth: 1,
+        borderColor: '#BBBABA',
         color: '#000000',
-        fontWeight: '400',
-    },
-    textSingOut: {
-        fontSize: 14,
-        color: '#000000',
-        fontWeight: '400',
-        color: '#2B83F2',
-        textAlign: 'right',
-    },
-    usuarioImage: {
-        backgroundColor: '#D9D9D9',
-        borderRadius: 100,
-        width: 51,
-        height: 51,
-        marginRight: 15,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    contenedorLogoAuto: {
-        backgroundColor: '#F6F6FA',
-        borderRadius: 100,
-        width: 46,
-        height: 46,
+        padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         marginLeft: 15
     },
     input: {
-        flex: 1,
-        // backgroundColor: '#ff0000',
         fontSize: 16,
         borderRadius: 12,
+        width: 220,
         height: 45,
+        padding: 5,
+        justifyContent: 'center'
     },
-    containerInput: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // backgroundColor: '#fff000',
-        borderBottomLeftRadius: 12,
-        borderTopLeftRadius: 12,
-        marginTop: 16,
-        marginLeft: 25,
-        marginRight: 25,
+    lupa: {
+        marginLeft: -105
     },
-    contenedorLupaAzul: {
+    seleccionar: {
+        width: 120,
+        height: 45,
         backgroundColor: '#2B83F2',
-        width: 48,
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderBottomRightRadius: 8,
-        borderTopRightRadius: 8,
-    },
-    blancoOrders: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-        width: 103,
-        height: 69,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 14,
-        marginLeft: 15,
         marginRight: 15,
-        marginTop: 15
+        borderRadius: 8,
     },
-    typeStatus: {
-        flexDirection: 'row',
+    textoSeleccionar: {
+        color: '#FFFF',
+        fontSize: 20,
+        fontWeight: '400',
     },
-    containerOrders: {
-        flexDirection: 'row',
+    botonseleccionar: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    contenedorPorcentaje: {
-        flexDirection: 'row',
-        marginRight: 15,
-        marginLeft: 15,
-        marginTop: 15,
-        // backgroundColor: '#ff0'
-    },
-    porcentaje: {
-        backgroundColor: '#FFFFFF',
-        width: 180,
-        height: 150,
-        borderRadius: 20,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        marginTop: 15
-    },
-    porcentajeAzul: {
-        backgroundColor: '#3682F7',
-        width: 180,
-        height: 25,
-        // borderRadius: 20,
-        borderBottomStartRadius: 20,
-        borderBottomEndRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: '#FFFFFF',
-    },
-    contenedorLatestOrders: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        height: 90,
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginLeft: 15,
-        marginRight: 15
-    },
-    contenedorEstado: {
-        backgroundColor: '#71AD46',
-        width: 85,
-        height: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 16,
-        fontWeight: '300'
-    },
-    textEstado: {
-        color: '#FFFFFF',
-    },
-    contenedorDatos: {
-        flexDirection: 'row'
-    },
-    tituloOrdersEstatus: {
+    TituloAuto: {
+        fontSize: 22,
+        marginTop: 28,
+        marginLeft: 18,
         color: '#000000',
-        fontSize: 24,
-        fontWeight: '700'
+        fontWeight: '600'
     },
-    contenedorOrdersEstatus: {
-        marginTop: 14,
-        marginLeft: 15
+    margin: {
+        marginTop: 24
     },
-    numberOrders: {
-        fontSize: 28,
-        color: '#000000',
-        fontWeight: '400',
-        marginRight: 40
-    },
-    textOrders: {
-        fontSize: 15,
-        fontWeight: '300',
-        marginRight: 40
-    },
-    titleBar: {
-        fontSize: 20,
-        fontWeight: '800'
-    },
-    textEntered: {
-        fontSize: 12,
-        fontWeight: '400'
-    },
-    contenedorOrdersEntered: {
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        // backgroundColor: '#fd5580',
-        marginRight: 15,
-    },
-    contenedorOrdersWork: {
-        justifyContent: 'flex-start',
-        // backgroundColor: '#ff0000',
-        alignItems: 'flex-start',
-        marginLeft: 10,
-    },
-    textSeeAll: {
-        color: '#FFFFFF',
-        fontSize: 14,
-        fontWeight: '300'
-    },
-    textLatest: {
-        color: '#000000',
-        fontSize: 24,
-        fontWeight: '700'
-    },
-    textLatestDelgado: {
-        color: '#000000',
-        fontSize: 18,
-        fontWeight: '300'
-    },
-    contenedorTitleLatest: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        marginTop: 15,
-        marginLeft: 15
-    },
-    textName: {
-        color: '#000000',
-        fontWeight: '700',
-        fontSize: 16
-    },
-    datosAuto: {
-        color: '#000000',
-        fontWeight: '300',
-        fontSize: 16
-    },
-    contenedorDatosLatersOrders: {
-        marginLeft: 15,
-        justifyContent:'flex-start',
-        alignItems: 'flex-start'
-    }
 });
 
 export default HomeDos;

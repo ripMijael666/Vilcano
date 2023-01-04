@@ -1,5 +1,6 @@
 import React from 'react';
 import { Context as AuthContext } from '../context/AuthContext'
+import { StatusBar } from 'expo-status-bar';
 import {
     StyleSheet,
     Text,
@@ -22,6 +23,7 @@ function Login() {
                 flex: 1
             }}
         >
+            <StatusBar translucent style='auto'/>
             <ScrollView>
                 <View
                     style={styles.container}

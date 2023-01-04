@@ -24,7 +24,7 @@ function Detalle() {
 
         const { estado } = props;
 
-        console.log(estado);
+        // console.log(estado);
 
         return (
             <View 
@@ -101,8 +101,8 @@ function Detalle() {
 
         const { name, status } = props;
 
-        console.log('status' + status);
-        console.log('name' + name);
+        // console.log('status' + status);
+        // console.log('name' + name);
 
         return (
             <View
@@ -194,7 +194,7 @@ function Detalle() {
                     </View>
 
                     <View>
-                        <DatosVehiculo />
+                        {/* <DatosVehiculo /> */}
                     </View>
 
                 </View>
@@ -209,7 +209,7 @@ function Detalle() {
                         DATOS DEL CLIENTE
                     </Text>
 
-                    <DatosCliente />
+                    {/* <DatosCliente /> */}
 
                     <Text
                         style={styles.estadoOt}
