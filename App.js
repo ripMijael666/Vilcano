@@ -196,7 +196,6 @@ function App() {
             />
           </>
         ) : null}
-        {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
         <Stack.Screen
           name="HomeDos"
           component={HomeDos}
@@ -210,15 +209,16 @@ function App() {
           options={{
             headerShown: false,
           }}
-        />
+          />
         <Stack.Screen
           name="Assigned"
           component={Assigned}
           options={{
             headerShown: false,
           }}
-        />
+          />
 
+{/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
         {/* // ) : state.userToken == null && userType == "ASESOR" ? (
         //   <Stack.Screen
         //     name="Home"
