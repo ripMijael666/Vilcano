@@ -2,6 +2,14 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import tailwind from 'twrnc';
 
+
+import ProgressChart from './progresschart/Progresschart';
+
+const data = {
+    labels: ["Swim", "Bike", "Run"], // optional
+    data: [0.4, 0.6, 0.8]
+};
+
 import {
     View,
     StyleSheet,
@@ -15,7 +23,7 @@ import {
 function Assigned() {
     return (
         <View style={styles.containerGobal}>
-            <StatusBar translucent backgroundColor='#F6F6FA'/>
+            <StatusBar translucent backgroundColor='#F6F6FA' />
             <View style={styles.contenedorLogo}>
                 <TouchableOpacity
                     onPress={() => signOut()}
@@ -63,6 +71,7 @@ function Assigned() {
 
             <View style={styles.contenedorPorcentaje}>
                 <View style={styles.porcentaje}>
+                        <ProgressChart />
                     <View style={styles.porcentajeAzul}>
                         <Text style={styles.textSeeAll}>
                             See all
@@ -118,14 +127,14 @@ function Assigned() {
                     </View>
                 </View>
             </View>
-            <View style={tailwind.style("bg-[#ff0000]  justify-center items-center w-full h-[100px]")}>
+            {/* <View style={tailwind.style("bg-[#ff0000]  justify-center items-center w-full h-[100px]")}>
                 <Text style={tailwind.style("text-[#FFFF] text-[30px] ")}>
                     Hola Tailwind
                 </Text>
                 <Text style={tailwind.style("text-[#FFFF] text-[18px] ")}>
                     Jose Mijael Rocha Vera
                 </Text>
-            </View>
+            </View> */}
         </View>
     )
 }
@@ -244,7 +253,7 @@ const styles = StyleSheet.create({
         height: 250,
         borderRadius: 20,
         justifyContent: 'flex-end',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         marginTop: 15
     },
     porcentajeAzul: {
@@ -365,7 +374,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-    },  
+    },
     contenedorLogoAuto: {
         backgroundColor: '#F6F6FA',
         borderRadius: 100,
@@ -380,8 +389,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: 35,
-        height:35,
-        zIndex:10,
+        height: 35,
         marginStart: 35,
         position: 'absolute',
         bottom: 4,
