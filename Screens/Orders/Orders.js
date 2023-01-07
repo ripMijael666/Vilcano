@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
+import tailwind from 'twrnc';
 
 function Orders() {
     const navigation = useNavigation();
@@ -64,7 +65,7 @@ function Orders() {
                     <View style={styles.typeStatus}>
                         <Text style={styles.textOrders}>Open</Text>
                         <Image
-                            source={require("../../assets/orders/open.png")}
+                           source={require("../../assets/orders/1/Vector.svg")}
                         />
                     </View>
                     <Text style={styles.numberOrders}>
