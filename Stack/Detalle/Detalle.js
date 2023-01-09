@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { StatusBar } from 'expo-status-bar';
 import {
     View,
     Image,
@@ -21,15 +22,9 @@ function Detalle() {
     const navigation = useNavigation();
 
     const Estado = (props) => {
-
         const { estado } = props;
-
-        // console.log(estado);
-
         return (
-            <View 
-            // style={styles.circuloDosNuevo}
-            >
+            <View>
                 {estado == "ABIERTO" ?
                     <View
                         style= {styles.ContenedorDosEstado}
@@ -123,6 +118,7 @@ function Detalle() {
         <View
             style={styles.container}
         >
+            <StatusBar translucent style='auto' />
             <View
                 style={styles.contenedorHeader}
             >

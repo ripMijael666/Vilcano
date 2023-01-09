@@ -37,7 +37,7 @@ function Grafico() {
                         ]
                     };
 
-                    console.warn(graph);
+                    // console.warn(graph);
                     setDataGraph(
                        graph
                     );

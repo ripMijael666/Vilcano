@@ -8,19 +8,17 @@ export default function Azul() {
 
 
     useEffect(() => {
-        setTimeout(function () {
-            fetch('https://slogan.com.bo/vulcano/orders/total/abierto')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        // console.log(data.data);
-                        setData(data.data)
-                    } else {
-                        // console.error(data.error)
-                    }
-                })
-                .then(setShowDots(false))
-        }, 1000);
+        fetch('https://slogan.com.bo/vulcano/orders/total/abierto')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    // console.log(data.data);
+                    setData(data.data)
+                } else {
+                    // console.error(data.error)
+                }
+            })
+            .then(setShowDots(false))
     }, [])
 
     return (
@@ -30,7 +28,7 @@ export default function Azul() {
             :
             <View>
                 <Text
-                style={styles.TextoColorAzul}
+                    style={styles.TextoColorAzul}
                 >
                     {data}
                 </Text>
