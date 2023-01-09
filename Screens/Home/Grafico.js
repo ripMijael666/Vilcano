@@ -98,8 +98,9 @@ const Table = (props) => {
 class TableRow extends React.Component {
     render() {
         let row = this.props.row;
+        let key = this.props.key;
         return (
-            <View>
+            <View key={key}>
                 {dataGraph != null ?
                     <BarChart
                         data={row.data}

@@ -13,8 +13,9 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as AuthProvider } from './context/AuthContext'
 import { Context as AuthContext } from './context/AuthContext'
 import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import Login from './tabs/Login';
 import Home from './Screens/Home/Home';
@@ -110,8 +111,8 @@ function HomeFlow() {
           switch (route.name) {
             case 'Home':
               iconName = focused
-                ? 'ios-checkbox'
-                : 'ios-checkbox-outline';
+                ? 'home'
+                : 'home-outline';
               break;
             case 'HomeDos':
               iconName = focused
@@ -130,7 +131,7 @@ function HomeFlow() {
               break;
           }
           return (
-            <MaterialIcons name={iconName} size={30} color="#2B83F2" />
+            <Ionicons name={iconName} size={30} color="#2B83F2" />
           );
         },
       })}
@@ -212,7 +213,12 @@ function App() {
             />
           </>
         ) : null}
-        {/* <Stack.Screen
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="HomeFlow"
+          component={HomeFlow}
+        />
+        <Stack.Screen
           name="HomeDos"
           component={HomeDos}
           options={{
@@ -232,25 +238,24 @@ function App() {
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
 
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Home"
           component={Home}
           options={{
             headerShown: false,
           }}
-        /> */}
-        {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
-        {/* // ) : state.userToken == null && userType == "ASESOR" ? (
-        // ) : null
-
-        // } */}
-        <Stack.Screen
-          name="Detalle"
-          component={Detalle}
-          options={{ headerShown: false }}
         />
+        {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
+         {/* ) : state.userToken == null && userType == "ASESOR" ? (
+         ) : nul
+         } */}
+         <Stack.Screen
+           name="Detalle"
+           component={Detalle}
+           options={{ headerShown: false }}
+         />
       </Stack.Navigator>
     </NavigationContainer>
   );

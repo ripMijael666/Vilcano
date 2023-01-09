@@ -56,8 +56,10 @@ const Table = (props) => {
 class TableRow extends React.Component {
     render() {
         let row = this.props.row;
+        let key = this.props.key;
         return (
             <View
+                key={key}
                 styles={styles.derecha}
             >
                 <View
@@ -191,7 +193,7 @@ class TableRow extends React.Component {
                                 <Text
                                     style={styles.titulo}
                                 >
-                                   {row.code}
+                                    {row.code}
                                 </Text>
 
                                 <Text
@@ -203,7 +205,7 @@ class TableRow extends React.Component {
                                 <Text
                                     style={styles.datos}
                                 >
-                                     {row.car.cars_models_version.cars_model.catalogues_record.name}
+                                    {row.car.cars_models_version.cars_model.catalogues_record.name}
                                 </Text>
 
                                 <Text
@@ -310,7 +312,7 @@ class TableRow extends React.Component {
                                 <Text
                                     style={styles.datos}
                                 >
-                                   {row.car.cars_models_version.cars_model.catalogues_record.name}
+                                    {row.car.cars_models_version.cars_model.catalogues_record.name}
                                 </Text>
 
                                 <Text
@@ -322,7 +324,7 @@ class TableRow extends React.Component {
                                 <Text
                                     style={styles.datos}
                                 >
-                                     {row.contact_name}
+                                    {row.contact_name}
                                 </Text>
                             </View>
 
