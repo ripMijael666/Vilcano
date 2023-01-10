@@ -217,11 +217,8 @@ function HomeDos() {
                                 canceladas
                             </Text>
                         </View>
-
-
                     </View>
                 </View>
-
                 <Text style={styles.TituloAuto}>
                     RESERVAS DEL DÍA
                 </Text>
@@ -551,7 +548,7 @@ function HomeDos() {
                     </View> */}
 
 
-                {/* <Reservas /> */}
+                <Reservas />
 
             </ScrollView>
         </View>

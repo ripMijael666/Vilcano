@@ -62,103 +62,59 @@ class TableRow extends React.Component {
                 key={key}
                 styles={styles.derecha}
             >
-                <View
-                    style={styles.ContenedorReservaAzul}
-                >
-                    <View
-                        style={styles.ContenedorReservaBlanco}
-                    >
-                        <View
-                            style={styles.ContenedorDosReserva}
-                        >
-                            <View
-                                style={styles.contenedorAuto}
-                            >
+                <View style={styles.ContenedorReservaAzul}>
+                    <View style={styles.ContenedorReservaBlanco}>
+                        <View style={styles.ContenedorDosReserva}>
+                            <View style={styles.contenedorAuto}>
                                 <Image
                                     style={styles.logoAuto}
                                     source={require("../../assets/logoAuto.png")}
                                 />
                             </View>
-
-                            <View
-                                style={styles.contenedorDatosUno}
-                            >
-                                <Text
-                                    style={styles.titulo}
-                                >
+                            <View style={styles.contenedorDatosUno}>
+                                <Text style={styles.titulo}>
                                     {row.code}
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Modelo
                                 </Text>
-
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.car.cars_models_version.cars_model.catalogues_record.name}
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Cliente
                                 </Text>
-
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.contact_name}
                                 </Text>
                             </View>
 
-                            <View
-                                style={styles.contenedorDatosDos}
-                            >
-                                <Text
-                                    style={styles.subtituloHora}
-                                >
+                            <View style={styles.contenedorDatosDos}>
+                                <Text style={styles.subtituloHora}>
                                     Hora
                                 </Text>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
-
-                                    <Text
-                                        style={styles.datosHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Ionicons
+                                        name="md-time-outline"
+                                        size={18}
+                                        color="#B6B6B6"
+                                    />
+                                    <Text style={styles.datosHora}>
                                         {row.modified}
                                     </Text>
                                 </View>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Text
-                                        style={styles.subtituloHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Text style={styles.subtituloHora}>
                                         Estado
                                     </Text>
-
-                                    <View
-                                        style={styles.contenedorEstado}
-                                    >
-                                        <Text
-                                            style={styles.TextoColorAzul}
-                                        >
+                                    <View style={styles.contenedorEstado}>
+                                        <Text style={styles.TextoColorAzul}>
                                             {row.status}
                                         </Text>
                                     </View>
                                 </View>
-
                                 <TouchableOpacity>
-                                    <Text
-                                        style={styles.verDetalles}
-                                    >
+                                    <Text style={styles.verDetalles}>
                                         Ver detalles
                                     </Text>
                                 </TouchableOpacity>
@@ -166,106 +122,58 @@ class TableRow extends React.Component {
                         </View>
                     </View>
                 </View>
-
-
-                <View
-                    style={styles.ContenedorReservaVerde}
-                >
-                    <View
-                        style={styles.ContenedorReservaBlancoVerde}
-                    >
-                        <View
-                            style={styles.ContenedorDosReserva}
-                        >
-
-                            <View
-                                style={styles.contenedorAuto}
-                            >
+                <View style={styles.ContenedorReservaVerde}>
+                    <View style={styles.ContenedorReservaBlancoVerde}>
+                        <View style={styles.ContenedorDosReserva}>
+                            <View style={styles.contenedorAuto}>
                                 <Image
                                     style={styles.logoAuto}
                                     source={require("../../assets/logoAuto.png")}
                                 />
                             </View>
-
-                            <View
-                                style={styles.contenedorDatosUno}
-                            >
-                                <Text
-                                    style={styles.titulo}
-                                >
+                            <View style={styles.contenedorDatosUno}>
+                                <Text style={styles.titulo}>
                                     {row.code}
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Modelo
                                 </Text>
-
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.car.cars_models_version.cars_model.catalogues_record.name}
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Cliente
                                 </Text>
-
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.contact_name}
                                 </Text>
                             </View>
-
-                            <View
-                                style={styles.contenedorDatosDos}
-                            >
-                                <Text
-                                    style={styles.subtituloHora}
-                                >
+                            <View style={styles.contenedorDatosDos}>
+                                <Text style={styles.subtituloHora}>
                                     Hora
                                 </Text>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
-
-                                    <Text
-                                        style={styles.datosHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Ionicons
+                                        name="md-time-outline"
+                                        size={18}
+                                        color="#B6B6B6"
+                                    />
+                                    <Text style={styles.datosHora}>
                                         {row.modified}
                                     </Text>
                                 </View>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Text
-                                        style={styles.subtituloHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Text style={styles.subtituloHora}>
                                         Estado
                                     </Text>
-
-                                    <View
-                                        style={styles.contenedorEstadoVerde}
-                                    >
-                                        <Text
-                                            style={styles.TextoColorVerde}
-                                        >
+                                    <View style={styles.contenedorEstadoVerde}>
+                                        <Text style={styles.TextoColorVerde}>
                                             {row.status}
                                         </Text>
                                     </View>
                                 </View>
-
                                 <TouchableOpacity>
-                                    <Text
-                                        style={styles.verDetalles}
-                                    >
+                                    <Text style={styles.verDetalles}>
                                         Ver detalles
                                     </Text>
                                 </TouchableOpacity>
@@ -273,106 +181,59 @@ class TableRow extends React.Component {
                         </View>
                     </View>
                 </View>
-
-
-                <View
-                    style={styles.ContenedorReservaRojo}
-                >
-                    <View
-                        style={styles.ContenedorReservaBlancoRojo}
-                    >
-                        <View
-                            style={styles.ContenedorDosReserva}
-                        >
-
-                            <View
-                                style={styles.contenedorAuto}
-                            >
+                <View style={styles.ContenedorReservaRojo}>
+                    <View style={styles.ContenedorReservaBlancoRojo}>
+                        <View style={styles.ContenedorDosReserva}>
+                            <View style={styles.contenedorAuto}>
                                 <Image
                                     style={styles.logoAuto}
                                     source={require("../../assets/logoAuto.png")}
                                 />
                             </View>
-
-                            <View
-                                style={styles.contenedorDatosUno}
-                            >
-                                <Text
-                                    style={styles.titulo}
-                                >
+                            <View style={styles.contenedorDatosUno}>
+                                <Text style={styles.titulo}>
                                     OT 523673
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Modelo
                                 </Text>
-
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.car.cars_models_version.cars_model.catalogues_record.name}
                                 </Text>
-
-                                <Text
-                                    style={styles.subtitulo}
-                                >
+                                <Text style={styles.subtitulo}>
                                     Cliente
                                 </Text>
 
-                                <Text
-                                    style={styles.datos}
-                                >
+                                <Text style={styles.datos}>
                                     {row.contact_name}
                                 </Text>
                             </View>
-
-                            <View
-                                style={styles.contenedorDatosDos}
-                            >
-                                <Text
-                                    style={styles.subtituloHora}
-                                >
+                            <View style={styles.contenedorDatosDos}>
+                                <Text style={styles.subtituloHora}>
                                     Hora
                                 </Text>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Ionicons name="md-time-outline" size={18} color="#B6B6B6" />
-
-                                    <Text
-                                        style={styles.datosHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Ionicons
+                                        name="md-time-outline"
+                                        size={18}
+                                        color="#B6B6B6"
+                                    />
+                                    <Text style={styles.datosHora}>
                                         {row.modified}
                                     </Text>
                                 </View>
-
-                                <View
-                                    style={styles.ContenedorDosHora}
-                                >
-                                    <Text
-                                        style={styles.subtituloHora}
-                                    >
+                                <View style={styles.ContenedorDosHora}>
+                                    <Text style={styles.subtituloHora}>
                                         Estado
                                     </Text>
-
-                                    <View
-                                        style={styles.contenedorEstadoRojo}
-                                    >
-                                        <Text
-                                            style={styles.TextoColorRojo}
-                                        >
+                                    <View style={styles.contenedorEstadoRojo}>
+                                        <Text style={styles.TextoColorRojo}>
                                             {row.status}
                                         </Text>
                                     </View>
                                 </View>
-
                                 <TouchableOpacity>
-                                    <Text
-                                        style={styles.verDetalles}
-                                    >
+                                    <Text style={styles.verDetalles}>
                                         Ver detalles
                                     </Text>
                                 </TouchableOpacity>

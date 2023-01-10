@@ -1,4 +1,5 @@
 import React from 'react';
+import tailwind from 'twrnc';
 import {
     View,
     StyleSheet,
@@ -170,7 +171,7 @@ function Orders() {
                         <View style={styles.porcentajeAzul}>
 
                             <View>
-                                
+
                             </View>
 
                             <TouchableOpacity
@@ -251,6 +252,15 @@ function Orders() {
                     </View>
                 </View>
             </View>
+            <View style={tailwind.style("justify-end items-end mr-[18px] mt-2 ")}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("Ver.js")}
+                >
+                    <Text style={tailwind.style("text-[#3682F7] text-[16px] font-normal")}>
+                        Ver todo
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -259,11 +269,7 @@ const styles = StyleSheet.create({
     containerGobal: {
         flex: 1,
         backgroundColor: '#F6F6FA',
-        // alignItems: 'center',
         paddingTop: 5,
-        // justifyContent: 'center',
-        // marginLeft: 35,
-        // marginRight: 35
     },
     contenedorLogo: {
         marginLeft: 15,

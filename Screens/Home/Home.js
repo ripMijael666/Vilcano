@@ -115,8 +115,6 @@ function Home() {
                         </Defs>
                     </Svg>
                 </TouchableOpacity>
-
-
                 <TouchableOpacity style={styles.campana}>
                     <Svg width="26" height="31" viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <G clip-path="url(#clip0_21_150)">
@@ -148,8 +146,6 @@ function Home() {
                             source={require("../../assets/lupa.png")}
                         />
                     </View>
-
-
                     <View
                         style={styles.seleccionar}
                     >
@@ -189,10 +185,10 @@ function Home() {
                                     onPress={() => navigation.navigate("Detalle")}
                                 >
                                     <View style={styles.InputAuto}>
-                                        {/* <Image
+                                        <Image
                                             style={styles.ImagenAuto}
                                             source={require("../../assets/autos/auto_2.png")}
-                                        /> */}
+                                        />
                                         <View style={styles.TextoAuto}>
                                             <Text
                                                 style={styles.TextoUno}
@@ -411,7 +407,7 @@ function Home() {
                             borderColor: '#2B83F2',
                             borderWidth: 1.5,
                         }}
-                    />*/}
+                    /> */}
                     <View
                         style={styles.verificado}
                     >
