@@ -34,9 +34,7 @@ export default function Placa() {
 }
 
 const Table = (props) => {
-
     const { data } = props;
-
     return (
             <View>
                 {data.map(row => <TableRow key={data.id} row={row} />)}

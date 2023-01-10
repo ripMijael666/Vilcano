@@ -4,10 +4,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    TextInput,
     StyleSheet,
     Text,
-    FlatList,
     ScrollView
 } from "react-native";
 
@@ -17,8 +15,7 @@ import * as Progress from 'react-native-progress';
 import DatosVehiculo from "./DatosVehiculo";
 import DatosCliente from "./DatosCliente";
 
-
-function Detalle() {
+export default function Detalle() {
     const navigation = useNavigation();
 
     const Estado = (props) => {
@@ -26,9 +23,7 @@ function Detalle() {
         return (
             <View>
                 {estado == "ABIERTO" ?
-                    <View
-                        style= {styles.ContenedorDosEstado}
-                    >
+                    <View style={styles.ContenedorDosEstado}>
                         <BarraEstado name="ABIERTO" status={true}></BarraEstado>
                         <View style={styles.barraLargaGris} />
                         <BarraEstado name="FINALIZADO" status={false}></BarraEstado>
@@ -36,13 +31,12 @@ function Detalle() {
                         <BarraEstado name="CERRADO" status={false}></BarraEstado>
                         <View style={styles.barraLargaGris} />
                         <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
-                        {/* <View style={styles.barraLargaGris} /> */}
                     </View>
                     : <></>
                 }
                 {estado == "FINALIZADO" ?
                     <View
-                        style= {styles.ContenedorDosEstado}
+                        style={styles.ContenedorDosEstado}
                     >
                         <BarraEstado name="ABIERTO" status={true}></BarraEstado>
                         <View style={styles.barraLargaAzul} />
@@ -51,13 +45,12 @@ function Detalle() {
                         <BarraEstado name="CERRADO" status={false}></BarraEstado>
                         <View style={styles.barraLargaGris} />
                         <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
-                        {/* <View style={styles.barraLargaGris} /> */}
                     </View>
                     : <></>
                 }
                 {estado == "CERRADO" ?
                     <View
-                        style= {styles.ContenedorDosEstado}
+                        style={styles.ContenedorDosEstado}
                     >
                         <BarraEstado name="ABIERTO" status={true}></BarraEstado>
                         <View style={styles.barraLargaAzul} />
@@ -66,13 +59,12 @@ function Detalle() {
                         <BarraEstado name="CERRADO" status={true}></BarraEstado>
                         <View style={styles.barraLargaGris} />
                         <BarraEstado name="ENTREGADO" status={false}></BarraEstado>
-                        {/* <View style={styles.barraLargaGris} /> */}
                     </View>
                     : <></>
                 }
                 {estado == "ENTREGADO" ?
                     <View
-                        style= {styles.ContenedorDosEstado}
+                        style={styles.ContenedorDosEstado}
                     >
                         <BarraEstado name="ABIERTO" status={true}></BarraEstado>
                         <View style={styles.barraLargaAzul} />
@@ -81,35 +73,21 @@ function Detalle() {
                         <BarraEstado name="CERRADO" status={true}></BarraEstado>
                         <View style={styles.barraLargaAzul} />
                         <BarraEstado name="ENTREGADO" status={true}></BarraEstado>
-                        {/* <View style={styles.barraLargaGris} /> */}
                     </View>
                     : <></>
                 }
             </View>
         );
-
     }
 
-
-
     const BarraEstado = (props) => {
-
         const { name, status } = props;
-
-        // console.log('status' + status);
-        // console.log('name' + name);
-
         return (
-            <View
-                style= {styles.ContenedorDosEstado}
-            >
-            <View
-                style={styles.centroCirculoTexto}
-            >
-                {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} />}
-                {status ? <Text style={styles.letraAzul}> {name} </Text> : <Text style={styles.letraGris}> {name} </Text>}
-
-            </View>
+            <View style={styles.ContenedorDosEstado}>
+                <View style={styles.centroCirculoTexto}>
+                    {status ? <View style={styles.circulo} /> : <View style={styles.circuloGris} />}
+                    {status ? <Text style={styles.letraAzul}> {name} </Text> : <Text style={styles.letraGris}> {name} </Text>}
+                </View>
             </View>
         );
     }
@@ -119,9 +97,7 @@ function Detalle() {
             style={styles.container}
         >
             <StatusBar translucent style='auto' />
-            <View
-                style={styles.contenedorHeader}
-            >
+            <View style={styles.contenedorHeader}>
                 <TouchableOpacity
                     style={styles.atras}
                     onPress={() => navigation.goBack()}
@@ -136,9 +112,7 @@ function Detalle() {
             </View>
 
             <ScrollView>
-                <View
-                    style={styles.contenedorDatos}
-                >
+                <View style={styles.contenedorDatos}>
                     <Text
                         style={styles.TituloAuto}
                     >
@@ -213,16 +187,8 @@ function Detalle() {
                         ESTADO OT
                     </Text>
 
-                    <View
-                        style={styles.ContenedorDosEstado}
-                    >
+                    <View style={styles.ContenedorDosEstado}>
                         <Estado estado='FINALIZADO'></Estado>
-                        {/* <BarraEstado name='ABIERTO' status={true}/> */}
-                        {/* <estado ></estado> 
-                        <BarraEstado name='ABIERTO' />
-                        <BarraEstado name= 'FINALIZADO' status={true} />
-                        <BarraEstado name= 'CERRADO' status={true} />
-                        <BarraEstado name= 'PROMESA ENTREGA' status={false} /> */}
                     </View>
 
                     <View
@@ -381,15 +347,15 @@ function Detalle() {
 
 const styles = StyleSheet.create({
     // circuloDosNuevo: {
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
-        // alignItems: 'center',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
     // },
     ContenedorDosEstado: {
         flex: 1,
         // display: 'flex',
         flexDirection: 'row',
-        justifyContent:'space-evenly',
+        justifyContent: 'space-evenly',
     },
     centroCirculoTexto: {
         justifyContent: 'center',
@@ -439,7 +405,7 @@ const styles = StyleSheet.create({
         width: 85,
         // marginHorizontal: -9,
         height: 5,
-        marginTop:42,
+        marginTop: 42,
         zIndex: 1
     },
     barraLargaAzul: {
@@ -721,4 +687,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Detalle;

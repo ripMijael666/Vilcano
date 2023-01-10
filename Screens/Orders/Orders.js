@@ -126,7 +126,6 @@ function Orders() {
                         <Svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <Path d="M4.54858 14.1827H1.60465C0.792007 14.1827 0.13269 13.5233 0.13269 12.7107V1.9163C0.13269 1.10365 0.792007 0.444336 1.60465 0.444336H4.54858C5.36122 0.444336 6.02054 1.10365 6.02054 1.9163V12.7107C6.02054 13.5233 5.36122 14.1827 4.54858 14.1827ZM13.871 12.7107V1.9163C13.871 1.10365 13.2117 0.444336 12.399 0.444336H9.45512C8.64247 0.444336 7.98316 1.10365 7.98316 1.9163V12.7107C7.98316 13.5233 8.64247 14.1827 9.45512 14.1827H12.399C13.2117 14.1827 13.871 13.5233 13.871 12.7107Z" fill="#3682F7" />
                         </Svg>
-
                     </View>
                     <Text style={styles.numberOrders}>
                         4
@@ -169,6 +168,11 @@ function Orders() {
                     </View>
                     <View style={styles.porcentaje}>
                         <View style={styles.porcentajeAzul}>
+
+                            <View>
+                                
+                            </View>
+
                             <TouchableOpacity
                                 style={styles.porcentajeAzul}
                                 onPress={() => navigation.navigate("Assigned")}

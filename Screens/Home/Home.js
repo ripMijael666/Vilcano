@@ -25,6 +25,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { BarChart } from 'react-native-chart-kit'
+
 import Azul from './Azul';
 import Naranja from './Naranja';
 import Rojo from './Rojo';
@@ -183,22 +184,16 @@ function Home() {
                         data={listaAutos}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item, index: fIndex }) =>
-                            <View
-                                style={styles.contenedorAutos}
-                            >
+                            <View style={styles.contenedorAutos}>
                                 <TouchableOpacity
                                     onPress={() => navigation.navigate("Detalle")}
                                 >
-                                    <View
-                                        style={styles.InputAuto}
-                                    >
-                                        <Image
+                                    <View style={styles.InputAuto}>
+                                        {/* <Image
                                             style={styles.ImagenAuto}
                                             source={require("../../assets/autos/auto_2.png")}
-                                        />
-                                        <View
-                                            style={styles.TextoAuto}
-                                        >
+                                        /> */}
+                                        <View style={styles.TextoAuto}>
                                             <Text
                                                 style={styles.TextoUno}
                                             >
@@ -218,10 +213,7 @@ function Home() {
                     />
                 </View>
 
-
-                <View
-                    style={styles.containerDos}
-                >
+                <View style={styles.containerDos}>
                     <Text
                         style={styles.TituloAuto}
                     >

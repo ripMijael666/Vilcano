@@ -80,7 +80,7 @@ function Assigned() {
 
             <View style={styles.contenedorPorcentaje}>
                 <View style={styles.porcentaje}>
-                        <ProgressChart />
+                        {/* <ProgressChart /> */}
                     <View style={styles.porcentajeAzul}>
                         <Text style={styles.textSeeAll}>
                             See all

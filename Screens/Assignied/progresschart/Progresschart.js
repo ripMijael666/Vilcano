@@ -1,24 +1,30 @@
 import React from 'react';
 
 import { View, Text, StyleSheet, Image } from 'react-native';
+import Gauge from "react-native-gauge";
 
 export default function ProgressChart() {
     return (
-        <View>
-            <Text>
-                BARCHART
-            </Text>
-        </View>
+        // <View style={styles.imagen}>
+            <Gauge
+                size={75}
+                progress={0.5}
+                animated={true}
+                alwaysUseEndAngle={true}
+                endAngle={0}
+                unfilledEndAngle={0.5}
+                thickness={4}
+                borderWidth={1}
+                needleWidth={3}
+                needleHeight={20}
+                needleBorderRadius={25}
+            />
+        // {/* </View> */}
     )
 }
 
 const styles = StyleSheet.create({
     imagen: {
-        width: 40,
-        marginTop: 2
-    },
-    View: {
-        fontSize: 12,
-        marginTop: 3
+        backgroundColor: "#FF0000"
     }
 })

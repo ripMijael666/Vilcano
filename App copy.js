@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -19,9 +21,9 @@ import Login from './tabs/Login';
 import Home from './Screens/Home/Home';
 import Detalle from './Stack/Detalle/Detalle';
 import HomeDos from './Screens/Home Dos/HomeDos';
-import Assigned from './Screens/Assignied/Assigned';
-import Orders from './Screens/Orders/Orders';
 
+import Orders from './Screens/Orders/Orders';
+import Assigned from './Screens/Assignied/Assigned';
 import Svg, {
   G,
   Path,
@@ -30,10 +32,11 @@ import Svg, {
   ClipPath,
 } from 'react-native-svg';
 
-
 function Splash() {
   return (
-    <View style={styles.splash}>
+    <View
+      style={styles.splash}
+    >
       <Svg width="180" height="35" viewBox="0 0 145 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <G clip-path="url(#clip0_1_42)">
           <Path d="M6.16744 4.39246L10.3305 18.3997L14.4316 4.39246H20.5693L12.754 25.7871H7.90276L-0.00450134 4.39246H6.16744Z" fill="white" />
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center'
   },
+
 });
 
 
@@ -106,16 +110,24 @@ function HomeFlow() {
 
           switch (route.name) {
             case 'Home':
-              iconName = focused ? "home" : 'home-outline';
+              iconName = focused
+                ? 'home'
+                : 'home-outline';
               break;
             case 'HomeDos':
-              iconName = focused ? "home" : 'home-outline';
+              iconName = focused
+                ? 'ios-checkbox'
+                : 'ios-checkbox-outline';
               break;
             case 'Orders':
-              iconName = focused ? 'checkbox' : 'checkmark-outline';
+              iconName = focused
+                ? 'ios-checkbox'
+                : 'ios-checkbox-outline';
               break;
             case 'Assigned':
-              iconName = focused ? 'skull' : 'skull-outline';
+              iconName = focused
+                ? 'ios-checkbox'
+                : 'ios-checkbox-outline';
               break;
           }
           return (
@@ -124,10 +136,6 @@ function HomeFlow() {
         },
       })}
     >
-
-
-
-      {/* {state.isLoading ? ( */}
       <Tab.Screen
         name="Home"
         component={Home}
@@ -135,8 +143,6 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
-      {/* ) : state.userToken === null ?( */}
-      {/* <> */}
       <Tab.Screen
         name="HomeDos"
         component={HomeDos}
@@ -158,17 +164,14 @@ function HomeFlow() {
           headerShown: false,
         }}
       />
-      {/* </>
-      ) :  */}
     </Tab.Navigator>
   );
 }
 
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 function App() {
-
   const { state, restoreToken } = React.useContext(AuthContext);
   const [userType, setUserType] = useState("");
 
@@ -194,7 +197,6 @@ function App() {
 
   return (
     <NavigationContainer>
-
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {state.isLoading ? (
           <Stack.Screen
@@ -237,6 +239,7 @@ function App() {
             headerShown: false,
           }}
         />
+
         <Stack.Screen
           name="Home"
           component={Home}
@@ -244,49 +247,15 @@ function App() {
             headerShown: false,
           }}
         />
-        {/* {state.isLoading ? (
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Splash"
-            component={Splash}
-          />
-        ) : state.userToken === null ? (
-          <>
-            <Stack.Screen
-              options={{ headerShown: false }}
-              name="Auth"
-              component={AuthFlow}
-            />
-          </>
-        ) : state.userToken !== null && userType !== "ADMIN" ? (
-          <Stack.Screen
-            name="HomeDos"
-            component={HomeDos}
-            options={{
-              headerShown: false,
-            }}
-          />
-        ) : state.userToken == null && userType == "ASESOR" ? (
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              headerShown: false,
-            }}
-          />
-        ) : null
-
-        }
-        <Stack.Screen
-          name="HomeFlow"
-          component={HomeFlow}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Detalle"
-          component={Detalle}
-          options={{ headerShown: false }}
-        /> */}
+        {/* // ) : state.userToken !== null && userType !== "ADMIN" ? ( )*/}
+         {/* ) : state.userToken == null && userType == "ASESOR" ? (
+         ) : nul
+         } */}
+         <Stack.Screen
+           name="Detalle"
+           component={Detalle}
+           options={{ headerShown: false }}
+         />
       </Stack.Navigator>
     </NavigationContainer>
   );
