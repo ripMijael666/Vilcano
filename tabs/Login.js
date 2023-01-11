@@ -32,13 +32,8 @@ function Login() {
         >
             <StatusBar translucent style='auto' />
             <ScrollView>
-                <View
-                    style={styles.container}
-                >
-
-                    <View
-                        style={styles.logo}
-                    >
+                <View style={styles.container}>
+                    <View style={styles.logo}>
                         <Svg width="185" height="35" viewBox="0 0 145 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <G clip-path="url(#clip0_1_42)">
                                 <Path d="M6.16744 4.39246L10.3305 18.3997L14.4316 4.39246H20.5693L12.754 25.7871H7.90276L-0.00450134 4.39246H6.16744Z" fill="white" />

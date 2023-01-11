@@ -254,7 +254,7 @@ function Orders() {
             </View>
             <View style={tailwind.style("justify-end items-end mr-[18px] mt-2 ")}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("Ver.js")}
+                    onPress={() => navigation.navigate("Ver")}
                 >
                     <Text style={tailwind.style("text-[#3682F7] text-[16px] font-normal")}>
                         Ver todo

@@ -7,145 +7,68 @@ import {
     ScrollView,
     TouchableOpacity,
     TextInput,
+    SafeAreaView,
 } from "react-native";
 
-import Svg, {
-    G,
-    Path,
-    Rect,
-    Defs,
-    ClipPath,
-} from 'react-native-svg';
+import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
+
+import TableOrdersAll from './TableOrdersAll';
 
 export default function Ver() {
+    const navigation = useNavigation();
     return (
-        <View style={styles.contenedorLatestOrders}>
-            <View style={styles.contenedorCirculos}>
-                <View style={styles.contenedorLogoAuto}>
-                    <Image
-                        source={require("../../../assets/logo_auto.png")}
-                    />
-                </View>
-                <View style={styles.contenedorCircleAzul}>
-                    <Text style={styles.textOt}>OT</Text>
-                    <Text style={styles.textAge}>1904</Text>
-                </View>
+        <View style={styles.container}>
+            <StatusBar translucent style='auto' />
+            <View style={styles.contenedorHeader}>
+                <TouchableOpacity
+                    style={styles.atras}
+                    onPress={() => navigation.goBack()}
+                >
+                    <AntDesign name="left" size={25} color="#2B83F2" />
+                </TouchableOpacity>
             </View>
-            <View style={styles.contenedorDatosLatersOrders}>
-                <View style={styles.contenedorEstado}>
-                    <Text style={styles.textEstado}>
-                        FINALIZED
-                    </Text>
-                </View>
-                <Text style={styles.textName}>
-                    HENRY MCCORMIK
+
+            <View style={styles.contenedorOrdersEstatus}>
+                <Text style={styles.tituloOrdersEstatus}>
+                    Orders status
                 </Text>
-                <View style={styles.contenedorDatos}>
-                    <Text style={styles.datosAuto}>
-                        FORD
-                    </Text>
-                    <Text style={styles.textName}>
-                        •
-                    </Text>
-                    <Text style={styles.datosAuto}>
-                        FIESTA SE
-                    </Text>
-                    <Text style={styles.textName}>
-                        •
-                    </Text>
-                    <Text style={styles.datosAuto}>
-                        4477EED
-                    </Text>
-                </View>
+            </View>
+            <View>
+                <SafeAreaView>
+                    <ScrollView scrollEnabled={true}>
+                        <TableOrdersAll />
+                    </ScrollView>
+                </SafeAreaView>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    contenedorLatestOrders: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        height: 90,
-        flexDirection: 'row',
-        alignItems: 'center',
+    container: {
+        flex: 1,
+        backgroundColor: '#F6F6FA',
+        paddingTop: 2,
         marginLeft: 15,
         marginRight: 15
     },
-    contenedorCirculos: {
-        width: 90,
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+    contenedorHeader: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    contenedorLogoAuto: {
-        backgroundColor: '#F6F6FA',
-        borderRadius: 100,
-        width: 50,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
+    atras: {
+        marginLeft: 20,
     },
-    contenedorCircleAzul: {
-        backgroundColor: '#3682F7',
-        borderRadius: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 35,
-        height: 35,
-        marginStart: 35,
-        position: 'absolute',
-        bottom: 4,
-        right: 5,
+    contenedorOrdersEstatus: {
+        marginTop: 14,
+        marginLeft: 15
     },
-    textOt: {
-        color: '#FFFFFF',
-        fontWeight: '300',
-        fontSize: 10,
-        // lineHeight: 12
-    },
-    textAge: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        fontWeight: '700',
-        lineHeight: 14
-    },
-    contenedorDatosLatersOrders: {
-        marginLeft: 15,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
-    },
-    contenedorEstado: {
-        backgroundColor: '#71AD46',
-        width: 85,
-        height: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 16,
-        fontWeight: '300'
-    },
-    textEstado: {
-        color: '#FFFFFF',
-        fontSize: 14
-    },
-    textName: {
+    tituloOrdersEstatus: {
         color: '#000000',
-        fontWeight: '700',
-        fontSize: 16
+        fontSize: 24,
+        fontWeight: '700'
     },
-    contenedorDatos: {
-        flexDirection: 'row'
-    },
-    contenedorDatosLatersOrders: {
-        marginLeft: 15,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
-    },
-    datosAuto: {
-        color: '#000000',
-        fontWeight: '300',
-        fontSize: 16
-    },
-
 })

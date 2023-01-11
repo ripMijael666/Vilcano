@@ -4,11 +4,11 @@ import {
     StyleSheet,
     Text,
     Image,
+    SafeAreaView,
     ScrollView,
     TouchableOpacity,
     TextInput,
 } from "react-native";
-
 import Svg, {
     G,
     Path,
@@ -17,60 +17,58 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
-export default function Ver() {
+import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
+import TableAssignedAll from './TableAssignedAll';
+
+export default function VerTodo() {
+    const navigation = useNavigation();
     return (
-        <View style={styles.contenedorLatestOrders}>
-            <View style={styles.contenedorCirculos}>
-                <View style={styles.contenedorLogoAuto}>
-                    <Image
-                        source={require("../../../assets/logo_auto.png")}
-                    />
-                </View>
-                <View style={styles.contenedorCircleAzul}>
-                    <Text style={styles.textOt}>OT</Text>
-                    <Text style={styles.textAge}>1904</Text>
-                </View>
+        <View style={styles.container}>
+            <StatusBar translucent style='auto' />
+            <View style={styles.contenedorHeader}>
+                <TouchableOpacity
+                    style={styles.atras}
+                    onPress={() => navigation.goBack()}
+                >
+                    <AntDesign name="left" size={25} color="#2B83F2" />
+                </TouchableOpacity>
             </View>
-            <View style={styles.contenedorDatosLatersOrders}>
-                <View style={styles.contenedorEstado}>
-                    <Text style={styles.textEstado}>
-                        FINALIZED
-                    </Text>
-                </View>
-                <Text style={styles.textName}>
-                    HENRY MCCORMIK
+
+            <View style={styles.contenedorOrdersEstatus}>
+                <Text style={styles.tituloOrdersEstatus}>
+                    Assigned tasks status
                 </Text>
-                <View style={styles.contenedorDatos}>
-                    <Text style={styles.datosAuto}>
-                        FORD
-                    </Text>
-                    <Text style={styles.textName}>
-                        •
-                    </Text>
-                    <Text style={styles.datosAuto}>
-                        FIESTA SE
-                    </Text>
-                    <Text style={styles.textName}>
-                        •
-                    </Text>
-                    <Text style={styles.datosAuto}>
-                        4477EED
-                    </Text>
-                </View>
+            </View>
+
+            <View>
+                <SafeAreaView>
+                    <ScrollView scrollEnabled={true}>
+                        <TableAssignedAll />
+                    </ScrollView>
+                </SafeAreaView>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    contenedorLatestOrders: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        height: 90,
-        flexDirection: 'row',
-        alignItems: 'center',
+    container: {
+        flex: 1,
+        backgroundColor: '#F6F6FA',
+        paddingTop: 2,
         marginLeft: 15,
         marginRight: 15
+    },
+    contenedorHeader: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    atras: {
+        // marginRight: 150,
+        marginLeft: 20,
     },
     contenedorCirculos: {
         width: 90,
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     contenedorDatosLatersOrders: {
         marginLeft: 15,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
     },
     contenedorEstado: {
         backgroundColor: '#71AD46',
@@ -134,18 +132,21 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16
     },
-    contenedorDatos: {
-        flexDirection: 'row'
-    },
-    contenedorDatosLatersOrders: {
-        marginLeft: 15,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
-    },
     datosAuto: {
         color: '#000000',
         fontWeight: '300',
         fontSize: 16
     },
-
+    contenedorDatos: {
+        flexDirection: 'row'
+    },
+    contenedorOrdersEstatus: {
+        marginTop: 14,
+        marginLeft: 15
+    },
+    tituloOrdersEstatus: {
+        color: '#000000',
+        fontSize: 24,
+        fontWeight: '700'
+    },
 })

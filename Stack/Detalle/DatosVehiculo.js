@@ -1,45 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 
-export default function DatosVehiculo() {
-    const [showDots, setShowDots] = useState(true);
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        setTimeout(function () {
-            fetch('https://slogan.com.bo/vulcano/orders/all/abierto')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        console.log(data.data);
-                        setData(data.data)
-                    } else {
-                        console.error(data.error)
-                    }
-                })
-                .then(setShowDots(false))
-        }, 1000);
-    }, [])
-
+export default function DatosVehiculo(props) {
+    const { row } = props;
     return (
-
-        showDots ?
-            <ActivityIndicator />
-            :
-            <View>
-
-                <Table data={data} />
-            </View>
+        <View>
+            <Table row={row} />
+        </View>
     )
 }
 
 const Table = (props) => {
-
-    const { data } = props;
-
+    const { row } = props;
     return (
         <View>
-            {data.map(row => <TableRow key={data.id} row={row} />)}
+            <TableRow row={row} />
         </View>
     );
 };
@@ -47,40 +22,23 @@ const Table = (props) => {
 class TableRow extends React.Component {
     render() {
         let row = this.props.row;
-        let key = this.props.key;
         return (
-            <View key={key}>
-                <View
-                    style={styles.ContenedorDos}
-                >
-                    <View
-                        style={styles.contenedorBlanco}
-                    >
-                        <Text
-                            style={styles.textoTresNegro}
-                        >
+            <View>
+                <View style={styles.ContenedorDos}>
+                    <View style={styles.contenedorBlanco}>
+                        <Text style={styles.textoTresNegro}>
                             Marca
                         </Text>
-
-                        <Text
-                            style={styles.contenedorTresClaro}
-                        >
+                        <Text style={styles.contenedorTresClaro}>
                             {row.car.cars_models_version.cars_model.catalogues_record.name}
                         </Text>
                     </View>
 
-                    <View
-                        style={styles.contenedorBlanco}
-                    >
-                        <Text
-                            style={styles.textoTresNegro}
-                        >
+                    <View style={styles.contenedorBlanco}>
+                        <Text style={styles.textoTresNegro}>
                             Modelo
                         </Text>
-
-                        <Text
-                            style={styles.contenedorTresClaro}
-                        >
+                        <Text style={styles.contenedorTresClaro}>
                             {row.car.cars_models_version.cars_model.name}
                         </Text>
                     </View>
@@ -117,7 +75,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                            {row.contact_phone}
+                            {row.car.year}
                         </Text>
                     </View>
 
@@ -133,7 +91,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                            {row.contact_phone}
+                            {row.car.color_id}
                         </Text>
                     </View>
 
@@ -169,7 +127,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                            {row.status}
+                            {row.car.transmission}
                         </Text>
                     </View>
 
@@ -185,7 +143,7 @@ class TableRow extends React.Component {
                         <Text
                             style={styles.contenedorTresClaro}
                         >
-                            {row.modified}
+                            {row.car.vin}
                         </Text>
                     </View>
                 </View>

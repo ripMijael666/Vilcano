@@ -1,7 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import tailwind from 'twrnc';
-import Ver from './progresschart/Ver';
 import {
     View,
     StyleSheet,
@@ -132,7 +131,7 @@ function Assigned() {
             </View>
             <View style={tailwind.style("justify-end items-end mr-[18px] mt-2 ")}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate("../progresschart/Ver.js")}
+                    onPress={() => navigation.navigate("VerTodo")}
                 >
                     <Text style={tailwind.style("text-[#3682F7] text-[16px] font-normal")}>
                         Ver todo

@@ -21,6 +21,8 @@ import Detalle from './Stack/Detalle/Detalle';
 import HomeDos from './Screens/Home Dos/HomeDos';
 import Assigned from './Screens/Assignied/Assigned';
 import Orders from './Screens/Orders/Orders';
+import VerTodo from './Screens/Assignied/progresschart/VerTodo';
+import Ver from './Screens/Orders/verMas/Ver';
 
 import Svg, {
   G,
@@ -244,6 +246,22 @@ function App() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="Detalle"
+          component={Detalle}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Ver"
+          component={Ver}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerTodo"
+          component={VerTodo}
+          options={{ headerShown: false }}
+        />
+        
         {/* {state.isLoading ? (
           <Stack.Screen
             options={{ headerShown: false }}
@@ -282,11 +300,7 @@ function App() {
           component={HomeFlow}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Detalle"
-          component={Detalle}
-          options={{ headerShown: false }}
-        /> */}
+        */}
       </Stack.Navigator>
     </NavigationContainer>
   );

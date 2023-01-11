@@ -15,9 +15,9 @@ import * as Progress from 'react-native-progress';
 import DatosVehiculo from "./DatosVehiculo";
 import DatosCliente from "./DatosCliente";
 
-export default function Detalle() {
+export default function Detalle({ route }) {
     const navigation = useNavigation();
-
+    const { row } = route.params;
     const Estado = (props) => {
         const { estado } = props;
         return (
@@ -93,9 +93,7 @@ export default function Detalle() {
     }
 
     return (
-        <View
-            style={styles.container}
-        >
+        <View style={styles.container}>
             <StatusBar translucent style='auto' />
             <View style={styles.contenedorHeader}>
                 <TouchableOpacity
@@ -120,7 +118,6 @@ export default function Detalle() {
                     </Text>
                     <View
                         style={styles.ContenedorDos}
-
                     >
                         <View
                             style={styles.contenedorCaracteristicas}
@@ -128,19 +125,19 @@ export default function Detalle() {
                             <Text
                                 style={styles.OT}
                             >
-                                OT 124142
+                                OT {row.id}
                             </Text>
 
                             <Text
                                 style={styles.marcaauto}
                             >
-                                BMWM4 2020
+                                {row.car.cars_models_version.cars_model.catalogues_record.name}&nbsp; {row.car.year}
                             </Text>
 
                             <Text
                                 style={styles.placaVIN}
                             >
-                                Placa/VIN
+                                {row.car.plate}&nbsp; /&nbsp; {row.car.vin}
                             </Text>
                         </View>
 
@@ -164,7 +161,7 @@ export default function Detalle() {
                     </View>
 
                     <View>
-                        {/* <DatosVehiculo /> */}
+                        <DatosVehiculo row={row}/>
                     </View>
 
                 </View>
@@ -179,7 +176,7 @@ export default function Detalle() {
                         DATOS DEL CLIENTE
                     </Text>
 
-                    {/* <DatosCliente /> */}
+                    <DatosCliente row={row}/>
 
                     <Text
                         style={styles.estadoOt}
@@ -188,7 +185,7 @@ export default function Detalle() {
                     </Text>
 
                     <View style={styles.ContenedorDosEstado}>
-                        <Estado estado='FINALIZADO'></Estado>
+                        <Estado estado={row.status}></Estado>
                     </View>
 
                     <View
@@ -383,6 +380,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 25
     },
     letraAzul: {
         color: '#2B83F2',
@@ -515,7 +513,7 @@ const styles = StyleSheet.create({
     placaVIN: {
         color: '#B6B6B6',
         fontSize: 12,
-        fontWeight: '300'
+        fontWeight: '400'
     },
     contenedorCaracteristicas: {
         marginTop: 28,

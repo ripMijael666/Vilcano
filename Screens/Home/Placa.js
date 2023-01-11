@@ -11,7 +11,7 @@ export default function Placa() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status) {
-                        console.log(data.data);
+                        // console.log(data.data);
                         setData(data.data)
                     } else {
                         console.error(data.error)
