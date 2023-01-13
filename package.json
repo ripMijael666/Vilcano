@@ -35,7 +35,8 @@
     "svgo": "^3.0.2",
     "twrnc": "^3.5.0",
     "uuid": "^9.0.0",
-    "yet": "^0.1.0"
+    "yet": "^0.1.0",
+    "expo-font": "~11.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

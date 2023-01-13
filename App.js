@@ -23,6 +23,12 @@ import Assigned from './Screens/Assignied/Assigned';
 import Orders from './Screens/Orders/Orders';
 import VerTodo from './Screens/Assignied/progresschart/VerTodo';
 import Ver from './Screens/Orders/verMas/Ver';
+import Services from './Screens/ServiceRequirements/Services';
+import ServiceTimer from './Screens/ServiceRequirements/ServiceTimer';
+import Parts from './Screens/Adds/Parts';
+import Observations from './Screens/Adds/Observations';
+import External from './Screens/Adds/External';
+import Advices from './Screens/Adds/Advices';
 
 import Svg, {
   G,
@@ -119,9 +125,24 @@ function HomeFlow() {
             case 'Assigned':
               iconName = focused ? 'skull' : 'skull-outline';
               break;
+            case 'Services':
+              iconName = focused ? 'skull' : 'skull-outline';
+              break;
+            case 'Parts':
+              iconName = focused ? 'skull' : 'skull-outline';
+              break;
+            case 'Observations':
+              iconName = focused ? 'skull' : 'skull-outline';
+              break;
+            case 'External':
+              iconName = focused ? 'skull' : 'skull-outline';
+              break;
+            case 'Advices':
+              iconName = focused ? 'skull' : 'skull-outline';
+              break;
           }
           return (
-            <Ionicons name={iconName} size={30} color="#2B83F2" />
+            <Ionicons name={iconName} size={25} color="#2B83F2" />
           );
         },
       })}
@@ -156,6 +177,41 @@ function HomeFlow() {
       <Tab.Screen
         name="Assigned"
         component={Assigned}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Services"
+        component={Services}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Parts"
+        component={Parts}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Observations"
+        component={Observations}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="External"
+        component={External}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Advices"
+        component={Advices}
         options={{
           headerShown: false,
         }}
@@ -219,6 +275,26 @@ function App() {
           component={HomeFlow}
         />
         <Stack.Screen
+          name="Detalle"
+          component={Detalle}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Ver"
+          component={Ver}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerTodo"
+          component={VerTodo}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ServiceTimer"
+          component={ServiceTimer}
+          options={{ headerShown: false }}
+        />
+        {/* <Stack.Screen
           name="HomeDos"
           component={HomeDos}
           options={{
@@ -238,30 +314,15 @@ function App() {
           options={{
             headerShown: false,
           }}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="Home"
           component={Home}
           options={{
             headerShown: false,
           }}
-        />
-        <Stack.Screen
-          name="Detalle"
-          component={Detalle}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Ver"
-          component={Ver}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="VerTodo"
-          component={VerTodo}
-          options={{ headerShown: false }}
-        />
-        
+        /> */}
+
         {/* {state.isLoading ? (
           <Stack.Screen
             options={{ headerShown: false }}
