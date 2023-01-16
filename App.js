@@ -25,10 +25,10 @@ import VerTodo from './Screens/Assignied/progresschart/VerTodo';
 import Ver from './Screens/Orders/verMas/Ver';
 import Services from './Screens/ServiceRequirements/Services';
 import ServiceTimer from './Screens/ServiceRequirements/ServiceTimer';
-import Parts from './Screens/Adds/Parts';
-import Observations from './Screens/Adds/Observations';
-import External from './Screens/Adds/External';
-import Advices from './Screens/Adds/Advices';
+import Parts from './Screens/Adds/parts/Parts';
+import Observations from './Screens/Adds/observations/Observations';
+import External from './Screens/Adds/extrernal/External';
+import Advices from './Screens/Adds/advices/Advices';
 
 import Svg, {
   G,
@@ -128,18 +128,6 @@ function HomeFlow() {
             case 'Services':
               iconName = focused ? 'skull' : 'skull-outline';
               break;
-            case 'Parts':
-              iconName = focused ? 'skull' : 'skull-outline';
-              break;
-            case 'Observations':
-              iconName = focused ? 'skull' : 'skull-outline';
-              break;
-            case 'External':
-              iconName = focused ? 'skull' : 'skull-outline';
-              break;
-            case 'Advices':
-              iconName = focused ? 'skull' : 'skull-outline';
-              break;
           }
           return (
             <Ionicons name={iconName} size={25} color="#2B83F2" />
@@ -184,34 +172,6 @@ function HomeFlow() {
       <Tab.Screen
         name="Services"
         component={Services}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Parts"
-        component={Parts}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Observations"
-        component={Observations}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="External"
-        component={External}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Advices"
-        component={Advices}
         options={{
           headerShown: false,
         }}
@@ -292,6 +252,26 @@ function App() {
         <Stack.Screen
           name="ServiceTimer"
           component={ServiceTimer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Parts"
+          component={Parts}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Observations"
+          component={Observations}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="External"
+          component={External}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Advices"
+          component={Advices}
           options={{ headerShown: false }}
         />
         {/* <Stack.Screen

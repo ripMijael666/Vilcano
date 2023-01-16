@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import tailwind from 'twrnc';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 import {
     View,
     Text,
     TouchableOpacity,
+    Alert,
+    Modal,
+    Pressable,
+    StyleSheet,
+    TextInput
 } from "react-native";
 
 import Svg, {
@@ -14,27 +20,57 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
-export default function Parts() {
+export default function TableParts(props) {
+    const { row } = props;
+    console.log("row");
+    console.log("row");
+    console.log(row);
+    console.log("row");
+    console.log("row");
+    const [data, setData] = useState([]);
     const navigation = useNavigation();
+    const [showDots, setShowDots] = useState(true);
+
+    useEffect(() => {
+        console.log(row.id);
+        fetch('https://slogan.com.bo/vulcano/ordersParts/getByOrderId/' + row.id)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    console.log(data.data);
+                    setData(data.data)
+                } else {
+                    console.error(data.error)
+                }
+            })
+            .then(setShowDots(false))
+    }, []);
+
     return (
-        <View style={tailwind.style(
-            "flex-1 justify-between h-full  bg-[#F6F6FA] pt-5"
-        )}>
-            <StatusBar translucent style='auto' />
-            <View style={tailwind.style(
-                "flex flex-row justify-between items-end ml-[18px] mr-[18px]"
-            )}>
-                <Text style={tailwind.style(
-                    "font-700 text-[22px]"
-                )}>
-                    Parts
-                </Text>
+            <View>
+                <Table data={data} navigation={navigation} />
             </View>
-            <View style={tailwind.style(
-                "flex-1 justify-start items-center mt-6"
-            )}>
+    )
+}
+
+const Table = (props) => {
+    const { data, navigation } = props;
+    return (
+        <View>
+            {data.map(item => <TableRow key={data.id} item={item} navigation={navigation} />)}
+        </View>
+    );
+};
+
+class TableRow extends React.Component {
+    render() {
+        let item = this.props.item;
+        let key = this.props.key;
+        let navigation = this.props.navigation
+        return (
+            <View key={key}>
                 <View style={tailwind.style(
-                    "flex flex-row items-center w-[380px] h-[90px] bg-[#FFFFFF] rounded-5 pl-[12px] pr-[12px]"
+                    "flex flex-row items-center w-[380px] h-[90px] bg-[#FFFFFF] rounded-5 pl-[12px] pr-[12px] mt-4"
                 )}>
                     <View style={tailwind.style("flex w-[65px]")}>
                         <View style={tailwind.style("flex justify-center items-center bg-[#F6F6FA] w-[50px] h-[50px] rounded-full")}>
@@ -46,7 +82,7 @@ export default function Parts() {
                     <View style={tailwind.style("flex flex-col w-[280px]")}>
                         <View style={tailwind.style("flex justify-center items-center bg-[#71AD46] rounded-lg w-[85px] h-[16px]")}>
                             <Text style={tailwind.style("text-[#FFFFFF] text-[12px] font-light")}>
-                                READY TO PICKUP
+                                {item.status}
                             </Text>
                         </View>
                         <View style={tailwind.style("flex justify-start")}>
@@ -76,11 +112,6 @@ export default function Parts() {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity style={tailwind.style("flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl")}>
-                <Text style={tailwind.style("text-[20px] text-[#FFFFFF] font-bold")}>
-                    ADD NEW
-                </Text>
-            </TouchableOpacity>
-        </View>
-    )
+        )
+    }
 }
