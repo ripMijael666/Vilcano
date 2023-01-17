@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import tailwind from 'twrnc';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import axios from 'axios';
+
 import NumericInput from 'react-native-numeric-input'
 import TableParts from './TableParts';
 
@@ -22,18 +25,38 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
-export default function Parts({ route }) {
+export default function Parts({ route, onSubmit }) {
     const { row } = route.params;
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
+    const [formData, setFormData] = useState({});
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post('https://slogan.com.bo/vulcano/ordersParts/addMobile', formData);
+            onSubmit(response.data);
+        } catch (error) {
+              console.error("error");
+              console.error(error);
+              console.error("error");
+        }
+    };
 
     return (
         <View style={tailwind.style(
             "flex-1 justify-between h-full  bg-[#F6F6FA] pt-5"
         )}>
             <StatusBar translucent style='auto' />
+            <View style={tailwind.style("flex mt-[5px] ")}>
+                <TouchableOpacity
+                    style={tailwind.style("ml-[30px]")}
+                    onPress={() => navigation.goBack()}
+                >
+                    <AntDesign name="left" size={25} color="#2B83F2" />
+                </TouchableOpacity>
+            </View>
             <View style={tailwind.style(
-                "flex flex-row justify-between items-end ml-[18px] mr-[18px]"
+                "flex flex-row justify-between items-end mt-3 ml-[30px] mr-[18px]"
             )}>
                 <Text style={tailwind.style(
                     "font-700 text-[22px]"
@@ -44,11 +67,11 @@ export default function Parts({ route }) {
             <View style={tailwind.style(
                 "flex-1 justify-start items-center mt-3"
             )}>
-                <TableParts row={row}/>
+                <TableParts row={row} />
             </View>
             <View>
                 <Modal
-                    animationType="slide"
+                    animationType="fade"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
@@ -80,7 +103,8 @@ export default function Parts({ route }) {
                                     type='up-down'
                                     rightButtonBackgroundColor='#FF0000'
                                     leftButtonBackgroundColor='#FF0'
-                                    onChange={value => console.log(value)}
+                                    onChangeText={value => setFormData({ ...formData, quantity: value })}
+
                                 />
                             </View>
                             <View style={tailwind.style(
@@ -90,11 +114,24 @@ export default function Parts({ route }) {
                                     style={tailwind.style(
                                         "flex justify-center items-center text-[17px] w-full h-full border-[1px] border-[#CECBCA] rounded-lg p-[8px]"
                                     )}
+                                    onChangeText={text => setFormData({ ...formData, description: text })}
                                     textAlignVertical="top"
                                     placeholder="Description"
                                     editable
                                     multiline
                                 />
+                            </View>
+                            <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
+                                <TouchableOpacity
+                                    onPress={handleSubmit}
+                                    style={tailwind.style(
+                                        "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
+                                    )}
+                                >
+                                    <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>
+                                        Añadir
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>

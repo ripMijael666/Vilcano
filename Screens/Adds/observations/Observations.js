@@ -81,7 +81,7 @@ export default function Observations() {
             </View>
             <View>
                 <Modal
-                    animationType="slide"
+                    animationType="fade"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
@@ -113,6 +113,13 @@ export default function Observations() {
                                     editable
                                     multiline
                                 />
+                            </View>
+                            <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
+                                <TouchableOpacity style={tailwind.style("flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg")}>
+                                    <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>
+                                        Añadir
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
