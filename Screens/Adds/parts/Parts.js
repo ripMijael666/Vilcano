@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, handleSubmit } from 'react';
 import tailwind from 'twrnc';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import axios from 'axios';
 
 import NumericInput from 'react-native-numeric-input'
 import TableParts from './TableParts';
@@ -25,27 +24,46 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
-export default function Parts({ route, onSubmit }) {
+export default function Parts({ route }) {
     const { row } = route.params;
     const navigation = useNavigation();
-    const [modalVisible, setModalVisible] = useState(false);
-    const [formData, setFormData] = useState({});
 
-    const handleSubmit = async () => {
-        try {
-            const response = await axios.post('https://slogan.com.bo/vulcano/ordersParts/addMobile', formData);
-            onSubmit(response.data);
-        } catch (error) {
-              console.error("error");
-              console.error(error);
-              console.error("error");
-        }
+    const añadirDatos = () => {
+        let data = new FormData();
+
+        data.append("order_id", row.id);
+        data.append("qty", quantity);
+        data.append("description", description);
+
+        fetch('https://slogan.com.bo/vulcano/ordersParts/addMobile', {
+            method: "POST",
+            body: data,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    console.log(data.data);
+                    // getDatos();
+                } else {
+                    console.error(data.error)
+                }
+            })
+    }
+    function onSubmit(data) {
+        console.log('onSubmit data: ' + data);
+        añadirDatos();
     };
+
+    const [description, setDescription] = useState("");
+    const [quantity, setQuantity] = useState("");
+
 
     return (
         <View style={tailwind.style(
             "flex-1 justify-between h-full  bg-[#F6F6FA] pt-5"
-        )}>
+        )}
+        onSubmit={handleSubmit(onSubmit)}
+        >
             <StatusBar translucent style='auto' />
             <View style={tailwind.style("flex mt-[5px] ")}>
                 <TouchableOpacity
@@ -69,7 +87,9 @@ export default function Parts({ route, onSubmit }) {
             )}>
                 <TableParts row={row} />
             </View>
-            <View>
+            <View
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <Modal
                     animationType="fade"
                     transparent={true}
@@ -93,6 +113,8 @@ export default function Parts({ route, onSubmit }) {
                             </View>
                             <View style={tailwind.style("flex justify-center items-center pt-4")}>
                                 <NumericInput
+                                    name="quantity"
+                                    type='up-down' {...register('quantity')}
                                     totalWidth={240}
                                     totalHeight={50}
                                     iconSize={25}
@@ -100,21 +122,22 @@ export default function Parts({ route, onSubmit }) {
                                     valueType='real'
                                     iconStyle={{ color: '#2B83F2' }}
                                     inputStyle={{ fontSize: 35 }}
-                                    type='up-down'
                                     rightButtonBackgroundColor='#FF0000'
                                     leftButtonBackgroundColor='#FF0'
-                                    onChangeText={value => setFormData({ ...formData, quantity: value })}
-
+                                    // onChangeText={value}
+                                    onChange={(e) => setQuantity(e.target.value)}
                                 />
                             </View>
                             <View style={tailwind.style(
                                 "flex-1 pr-[20px] pl-[20px] pb-[20px] pt-[20px]"
                             )}>
                                 <TextInput
+                                    name="description"
+                                    type="text" {...register('description')}
                                     style={tailwind.style(
                                         "flex justify-center items-center text-[17px] w-full h-full border-[1px] border-[#CECBCA] rounded-lg p-[8px]"
                                     )}
-                                    onChangeText={text => setFormData({ ...formData, description: text })}
+                                    onChangeText={e => setDescription(e.target.value)}
                                     textAlignVertical="top"
                                     placeholder="Description"
                                     editable
@@ -123,10 +146,13 @@ export default function Parts({ route, onSubmit }) {
                             </View>
                             <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
                                 <TouchableOpacity
-                                    onPress={handleSubmit}
                                     style={tailwind.style(
                                         "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
                                     )}
+                                    type="button"
+                                    onClick={() => {
+                                        añadirDatos()
+                                    }}
                                 >
                                     <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>
                                         Añadir
@@ -137,8 +163,10 @@ export default function Parts({ route, onSubmit }) {
                     </View>
                 </Modal>
                 <Pressable
-                    style={tailwind.style("flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl")}
-                    onPress={() => setModalVisible(true)}>
+                    style={tailwind.style(
+                        "flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl"
+                    )}
+                >
                     <Text style={tailwind.style("text-[20px] text-[#FFFFFF] font-bold")}>
                         ADD NEW
                     </Text>
