@@ -30,7 +30,7 @@ const Parts = ({ route }) => {
     const { register, handleSubmit } = useForm();
     const { row } = route.params;
     const navigation = useNavigation();
-    const [modalVisible, setModalVisible] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState("");
 
