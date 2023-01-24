@@ -20,7 +20,7 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
-export default function TableParts(props) {
+export default function TableAdvices(props) {
     const { row } = props;
     console.log("row");
     console.log("row");
@@ -37,10 +37,10 @@ export default function TableParts(props) {
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
-                    console.log(data.data);
+                    // console.log(data.data);
                     setData(data.data)
                 } else {
-                    console.error(data.error)
+                    // console.error(data.error)
                 }
             })
             .then(setShowDots(false))

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, handleSubmit } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm } from "react-hook-form";
 import tailwind from 'twrnc';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
@@ -16,7 +17,8 @@ import {
     Modal,
     Pressable,
     StyleSheet,
-    TextInput
+    TextInput,
+    ScrollView
 } from "react-native";
 
 import Svg, {
@@ -24,21 +26,24 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
-export default function Parts({ route }) {
+const Parts = ({ route }) => {
+    const { register, handleSubmit } = useForm();
     const { row } = route.params;
     const navigation = useNavigation();
 
-    const añadirDatos = () => {
+    async function añadirDatos() {
         let data = new FormData();
 
         data.append("order_id", row.id);
         data.append("qty", quantity);
         data.append("description", description);
 
-        fetch('https://slogan.com.bo/vulcano/ordersParts/addMobile', {
-            method: "POST",
-            body: data,
-        })
+        fetch('https://slogan.com.bo/vulcano/ordersParts/addMobile',
+            {
+                method: "POST",
+                body: data,
+            }
+        )
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
@@ -49,20 +54,20 @@ export default function Parts({ route }) {
                 }
             })
     }
-    function onSubmit(data) {
+    function Enviar(data) {
         console.log('onSubmit data: ' + data);
         añadirDatos();
     };
 
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState("");
+    const [modalVisible, setModalVisible] = useState("");
 
 
     return (
-        <View style={tailwind.style(
-            "flex-1 justify-between h-full  bg-[#F6F6FA] pt-5"
-        )}
-        onSubmit={handleSubmit(onSubmit)}
+        <View
+            style={tailwind.style("flex-1 justify-between h-full  bg-[#F6F6FA] pt-5")}
+            onSubmit={handleSubmit(Enviar)}
         >
             <StatusBar translucent style='auto' />
             <View style={tailwind.style("flex mt-[5px] ")}>
@@ -82,13 +87,13 @@ export default function Parts({ route }) {
                     Parts
                 </Text>
             </View>
-            <View style={tailwind.style(
+            <ScrollView style={tailwind.style(
                 "flex-1 justify-start items-center mt-3"
             )}>
                 <TableParts row={row} />
-            </View>
+            </ScrollView>
             <View
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(Enviar)}
             >
                 <Modal
                     animationType="fade"
@@ -97,7 +102,8 @@ export default function Parts({ route }) {
                     onRequestClose={() => {
                         Alert.alert('Modal has been closed.');
                         setModalVisible(!modalVisible);
-                    }}>
+                    }}
+                >
                     <View style={tailwind.style("flex-1 justify-center items-center")}>
                         <View style={styles.modalView}>
                             <View style={tailwind.style("flex-row justify-between ml-[22px] mr-[18px] mt-[20px] ")}>
@@ -124,8 +130,9 @@ export default function Parts({ route }) {
                                     inputStyle={{ fontSize: 35 }}
                                     rightButtonBackgroundColor='#FF0000'
                                     leftButtonBackgroundColor='#FF0'
-                                    // onChangeText={value}
-                                    onChange={(e) => setQuantity(e.target.value)}
+                                    onChange={(value) => setQuantity(value)}
+                                // onChangeText={value}
+                                // onChange={(e) => setQuantity(e.target.value)}
                                 />
                             </View>
                             <View style={tailwind.style(
@@ -137,7 +144,9 @@ export default function Parts({ route }) {
                                     style={tailwind.style(
                                         "flex justify-center items-center text-[17px] w-full h-full border-[1px] border-[#CECBCA] rounded-lg p-[8px]"
                                     )}
-                                    onChangeText={e => setDescription(e.target.value)}
+                                    // onChange={(e) => setDescription(e)}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    // onChange={(value) => setQuantity(value)}
                                     textAlignVertical="top"
                                     placeholder="Description"
                                     editable
@@ -150,8 +159,8 @@ export default function Parts({ route }) {
                                         "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
                                     )}
                                     type="button"
-                                    onClick={() => {
-                                        añadirDatos()
+                                    onPress={() => {
+                                        añadirDatos();
                                     }}
                                 >
                                     <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>
@@ -163,6 +172,7 @@ export default function Parts({ route }) {
                     </View>
                 </Modal>
                 <Pressable
+                    onPress={() => setModalVisible()}
                     style={tailwind.style(
                         "flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl"
                     )}
@@ -173,8 +183,10 @@ export default function Parts({ route }) {
                 </Pressable>
             </View>
         </View>
-    )
-}
+    );
+};
+
+export default Parts;
 
 const styles = StyleSheet.create({
     modalView: {

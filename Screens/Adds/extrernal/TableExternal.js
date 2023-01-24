@@ -34,7 +34,7 @@ export default function TableExternal(props) {
                     // console.log(data.data);
                     setData(data.data)
                 } else {
-                    console.error(data.error)
+                    // console.error(data.error)
                 }
             })
             .then(setShowDots(false))

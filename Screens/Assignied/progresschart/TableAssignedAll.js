@@ -61,9 +61,9 @@ class TableRow extends React.Component {
                     <View style={styles.contenedorLatestOrders}>
                         <View style={styles.contenedorCirculos}>
                             <View style={styles.contenedorLogoAuto}>
-                                {/* <Image source={{
-                                uri: imagen 
-                            }} /> */}
+                                <Image source={{
+                                    uri: imagen
+                                }} />
                             </View>
                             <View style={styles.contenedorCircleAzul}>
                                 <Text style={styles.textOt}>OT</Text>

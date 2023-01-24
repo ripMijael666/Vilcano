@@ -133,10 +133,10 @@ function Login() {
                         </TouchableOpacity>
                     </View>
 
-                    <View
-                        style={styles.boton}
-                    >
+                    {/* <View
+                    > */}
                         <TouchableOpacity
+                            style={styles.boton}
                             title="Sign in"
                             onPress={() => signIn({ email, password })}
                         >
@@ -146,7 +146,7 @@ function Login() {
                                 INGRESAR
                             </Text>
                         </TouchableOpacity>
-                    </View>
+                    {/* </View> */}
 
                     <View
                         style={styles.top}
