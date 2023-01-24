@@ -52,7 +52,6 @@ const Advices = ({ route }) => {
             .then(data => {
                 if (data.status) {
                     console.log(data.data);
-                    // getDatos();
                 } else {
                     console.error(data.error)
                 }
