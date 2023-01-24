@@ -30,6 +30,9 @@ const Parts = ({ route }) => {
     const { register, handleSubmit } = useForm();
     const { row } = route.params;
     const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState("");
+    const [description, setDescription] = useState("");
+    const [quantity, setQuantity] = useState("");
 
     async function añadirDatos() {
         let data = new FormData();
@@ -59,10 +62,6 @@ const Parts = ({ route }) => {
         añadirDatos();
     };
 
-    const [description, setDescription] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [modalVisible, setModalVisible] = useState("");
-
 
     return (
         <View
@@ -79,7 +78,7 @@ const Parts = ({ route }) => {
                 </TouchableOpacity>
             </View>
             <View style={tailwind.style(
-                "flex flex-row justify-between items-end mt-3 ml-[30px] mr-[18px]"
+                "flex flex-row justify-between items-end ml-[30px] mr-[18px]"
             )}>
                 <Text style={tailwind.style(
                     "font-700 text-[22px]"
@@ -87,11 +86,13 @@ const Parts = ({ route }) => {
                     Parts
                 </Text>
             </View>
-            <ScrollView style={tailwind.style(
+            <View style={tailwind.style(
                 "flex-1 justify-start items-center mt-3"
             )}>
-                <TableParts row={row} />
-            </ScrollView>
+                <ScrollView>
+                    <TableParts row={row} />
+                </ScrollView>
+            </View>
             <View
                 onSubmit={handleSubmit(Enviar)}
             >
@@ -105,7 +106,10 @@ const Parts = ({ route }) => {
                     }}
                 >
                     <View style={tailwind.style("flex-1 justify-center items-center")}>
-                        <View style={styles.modalView}>
+                        <View
+                            onSubmit={handleSubmit(Enviar)}
+                            style={styles.modalView}
+                        >
                             <View style={tailwind.style("flex-row justify-between ml-[22px] mr-[18px] mt-[20px] ")}>
                                 <Text style={tailwind.style("text-[#000000] font-bold text-[18px]")}>
                                     Description
@@ -139,18 +143,18 @@ const Parts = ({ route }) => {
                                 "flex-1 pr-[20px] pl-[20px] pb-[20px] pt-[20px]"
                             )}>
                                 <TextInput
-                                    name="description"
-                                    type="text" {...register('description')}
                                     style={tailwind.style(
                                         "flex justify-center items-center text-[17px] w-full h-full border-[1px] border-[#CECBCA] rounded-lg p-[8px]"
                                     )}
-                                    // onChange={(e) => setDescription(e)}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    // onChange={(value) => setQuantity(value)}
+                                    name="description"
+                                    type="up-down" {...register('description')}
                                     textAlignVertical="top"
                                     placeholder="Description"
                                     editable
                                     multiline
+                                    onChangeText={(value) => setDescription(value)}
+                                    // onChange={(e) => setDescription(e)}
+                                    // onChange={(value) => setDescription(value)}
                                 />
                             </View>
                             <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
