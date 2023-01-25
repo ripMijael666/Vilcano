@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 export default function Placa() {
     const [showDots, setShowDots] = useState(true);
     const [data, setData] = useState([]);
@@ -20,6 +31,22 @@ export default function Placa() {
                 .then(setShowDots(false))
         }, 1000);
     }, [])
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
 
@@ -62,6 +89,6 @@ const styles = StyleSheet.create({
     TextoUno: {
         color: '#000000',
         fontSize: 18,
-        fontWeight: '600'
+        fontFamily: "Dosis_500Medium"
     },
 })

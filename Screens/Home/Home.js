@@ -1,5 +1,8 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
+
+import tailwind from 'twrnc';
+
 import {
     StyleSheet,
     View,
@@ -10,6 +13,7 @@ import {
     ScrollView,
     Dimensions,
     Text,
+    ActivityIndicator
 } from 'react-native';
 import Svg, {
     G,
@@ -37,9 +41,18 @@ const _colors = {
     inactive: `#BBBABA`,
     active: `#2B83F2`
 }
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 function Home() {
-
     const { signOut } = useContext(AuthContext);
     const navigation = useNavigation();
 
@@ -89,6 +102,21 @@ function Home() {
             placa: 'Placa/VIN'
         },
     ];
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -211,11 +239,13 @@ function Home() {
                 </View>
 
                 <View style={styles.containerDos}>
-                    <Text
-                        style={styles.TituloAuto}
-                    >
-                        ESTADO OTS
-                    </Text>
+                    <View style={tailwind.style("flex-1 w-full pl-7 justify-start items-start")}>
+                        <Text
+                            style={styles.TituloAuto}
+                        >
+                            ESTADO OTS
+                        </Text>
+                    </View>
 
                     <View
                         style={styles.margin}
@@ -321,9 +351,8 @@ function Home() {
                             >
                                 INGRESO DE OTS EN EL MES
                             </Text>
-
                             <View
-                                style={styles.lineaBlanca}
+                                style={tailwind.style("flex bg-[#FFFFFF] mt-[2px] h-[1px] w-full")}
                             />
                             <View
                                 style={styles.ContenedorDos}
@@ -447,6 +476,7 @@ const styles = StyleSheet.create({
     TextoVerificado: {
         fontSize: 16,
         color: '#FDFDFD',
+        fontFamily: "Dosis_400Regular"
     },
     verificado: {
         backgroundColor: '#2B83F2',
@@ -459,17 +489,17 @@ const styles = StyleSheet.create({
     },
     TextoBlancoPequeño: {
         fontSize: 12,
-        fontWeight: '300',
+        fontFamily: "Dosis_400Regular",
         color: '#FFFF'
     },
     TextoBlancoGrande: {
         fontSize: 22,
-        fontWeight: '700',
+        fontFamily: "Dosis_800ExtraBold",
         color: '#FFFF'
     },
     TextoBlancoDos: {
         marginTop: 15,
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
     },
     ImagenAutoPng: {
         marginTop: 28,
@@ -483,12 +513,8 @@ const styles = StyleSheet.create({
     },
     textoBlanco: {
         color: '#FFFF',
-        fontSize: 18
-    },
-    lineaBlanca: {
-        backgroundColor: '#FFFFFF',
-        height: 1,
-        width: 226
+        fontSize: 21,
+        fontFamily: "Dosis_700Bold"
     },
     mensaje: {
         justifyContent: 'center',
@@ -503,19 +529,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#2B83F2',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingRight:28,
+        paddingLeft: 28,
     },
     TextoColorVerde: {
         color: '#60BB29',
         marginTop: -6,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium"
     },
 
     TextoColorRojo: {
         color: '#DC2A2A',
         marginTop: -6,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium"
     },
     NumeroColorRojo: {
         color: '#DC2A2A',
@@ -526,7 +554,7 @@ const styles = StyleSheet.create({
         color: '#EA981E',
         marginTop: -6,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium"
     },
     NumeroColorNaranja: {
         color: '#EA981E',
@@ -537,7 +565,7 @@ const styles = StyleSheet.create({
         color: '#2B83F2',
         marginTop: -6,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium"
     },
     NumeroColorAzul: {
         color: '#2B83F2',
@@ -626,15 +654,13 @@ const styles = StyleSheet.create({
     },
     TituloAuto: {
         fontSize: 22,
-        marginTop: 28,
-        marginLeft: -225,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily: 'Dosis_700Bold'
     },
     TexoSeleccionAuto: {
         fontSize: 22,
-        fontWeight: '600',
-        marginLeft: 10
+        marginLeft: 10,
+        fontFamily: "Dosis_700Bold"
     },
     containerDos: {
         flex: 1,
@@ -699,6 +725,8 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 5,
         justifyContent: 'center',
+        fontFamily: "Dosis_500Medium",
+
     },
     lupa: {
         marginLeft: -105
@@ -713,7 +741,8 @@ const styles = StyleSheet.create({
     textoSeleccionar: {
         color: '#FFFF',
         fontSize: 20,
-        fontWeight: '400',
+        // fontWeight: '400',
+        fontFamily: "Dosis_500Medium",
     },
     botonseleccionar: {
         flex: 1,
@@ -751,12 +780,11 @@ const styles = StyleSheet.create({
     TextoUno: {
         color: '#000000',
         fontSize: 18,
-        fontWeight: '600'
     },
     TextoDos: {
         color: '#B6B6B6',
         fontSize: 18,
-        fontWeight: '600'
+        fontFamily: "Dosis_300Light"
     },
 });
 

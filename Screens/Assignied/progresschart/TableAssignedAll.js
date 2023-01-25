@@ -61,9 +61,12 @@ class TableRow extends React.Component {
                     <View style={styles.contenedorLatestOrders}>
                         <View style={styles.contenedorCirculos}>
                             <View style={styles.contenedorLogoAuto}>
-                                <Image source={{
-                                    uri: imagen
-                                }} />
+                                <Image
+                                    style={styles.imagenLogo}
+                                    source={{
+                                        uri: imagen
+                                    }}
+                                />
                             </View>
                             <View style={styles.contenedorCircleAzul}>
                                 <Text style={styles.textOt}>OT</Text>
@@ -119,6 +122,10 @@ class TableRow extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    imagenLogo: {
+        width: 35,
+        height: 35,
+    },
     contenedorLatestOrders: {
         backgroundColor: '#FFFFFF',
         borderRadius: 20,

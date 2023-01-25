@@ -11,8 +11,8 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Provider as AuthProvider } from './context/AuthContext'
 import { Context as AuthContext } from './context/AuthContext'
-import { AntDesign } from '@expo/vector-icons';
 
+import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 

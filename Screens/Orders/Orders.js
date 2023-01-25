@@ -85,11 +85,12 @@ function Orders() {
             <View style={styles.containerOrders}>
                 <View style={styles.blancoOrders}>
                     <View style={styles.typeStatus}>
-                        <Text style={styles.textOrders}>Open</Text>
-                        <Svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <Text style={styles.textOrders}>
+                            Open
+                        </Text>
+                        <Svg align-items="flex-end" width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <Path d="M11.0645 2.14816H8.61121C8.61121 1.06566 7.7311 0.185547 6.64859 0.185547C5.56609 0.185547 4.68598 1.06566 4.68598 2.14816H2.2327C1.42006 2.14816 0.760742 2.80748 0.760742 3.62013V14.4145C0.760742 15.2272 1.42006 15.8865 2.2327 15.8865H11.0645C11.8771 15.8865 12.5364 15.2272 12.5364 14.4145V3.62013C12.5364 2.80748 11.8771 2.14816 11.0645 2.14816ZM6.64859 1.41218C7.05645 1.41218 7.38457 1.74031 7.38457 2.14816C7.38457 2.55602 7.05645 2.88415 6.64859 2.88415C6.24074 2.88415 5.91261 2.55602 5.91261 2.14816C5.91261 1.74031 6.24074 1.41218 6.64859 1.41218ZM10.3653 8.52053L5.98008 12.869C5.83595 13.0131 5.60289 13.01 5.45876 12.8659L2.92575 10.3114C2.78162 10.1673 2.78469 9.93423 2.92882 9.7901L3.79973 8.92532C3.94386 8.78119 4.17692 8.78426 4.32105 8.92839L5.73168 10.3513L8.98227 7.12524C9.1264 6.98111 9.35946 6.98417 9.50359 7.1283L10.3684 7.99922C10.5125 8.14641 10.5094 8.3764 10.3653 8.52053Z" fill="#3682F7" />
                         </Svg>
-
                     </View>
                     <Text style={styles.numberOrders}>
                         177
@@ -353,22 +354,23 @@ const styles = StyleSheet.create({
     blancoOrders: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        width: 103,
-        height: 69,
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         borderRadius: 14,
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 15
+        padding: 12,
+        marginLeft: 6,
+        marginRight: 6
     },
     typeStatus: {
         flexDirection: 'row',
+        justifyContent: "space-between"
     },
     containerOrders: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 12
     },
     contenedorPorcentaje: {
         flexDirection: 'row',
@@ -434,12 +436,10 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: '#000000',
         fontWeight: '400',
-        marginRight: 40
     },
     textOrders: {
         fontSize: 15,
         fontWeight: '300',
-        marginRight: 40
     },
     titleBar: {
         fontSize: 20,
