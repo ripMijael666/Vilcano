@@ -18,7 +18,8 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from "react-native";
 
 import Svg, {
@@ -33,8 +34,10 @@ const Parts = ({ route }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState("");
+    const [loading, setLoading] = useState(false)
 
     async function añadirDatos() {
+        setLoading(true)
         let data = new FormData();
 
         data.append("order_id", row.id);
@@ -55,6 +58,12 @@ const Parts = ({ route }) => {
                     console.error(data.error)
                 }
             })
+            .then(setLoading(false))
+            .then(
+                setTimeout(() => {
+                    setModalVisible(false)
+                }, 2000)
+            );
     }
     function Enviar(data) {
         console.log('onSubmit data: ' + data);
@@ -152,18 +161,25 @@ const Parts = ({ route }) => {
                                     editable
                                     multiline
                                     onChangeText={(value) => setDescription(value)}
-                                    // onChange={(e) => setDescription(e)}
-                                    // onChange={(value) => setDescription(value)}
+                                // onChange={(e) => setDescription(e)}
+                                // onChange={(value) => setDescription(value)}
                                 />
                             </View>
-                            <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
+                            <View
+                                style={tailwind.style(
+                                    "flex-row justify-end items-end mb-[15px] ml-[22px] mr-[18px] "
+                                )}
+                            >
+                                <ActivityIndicator size="small" color="#2B83F2" animating={loading} />
                                 <TouchableOpacity
                                     style={tailwind.style(
                                         "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
                                     )}
                                     type="button"
+                                    disabled={loading}
                                     onPress={() => {
-                                        añadirDatos();
+                                        loading ? null :
+                                            añadirDatos();
                                     }}
                                 >
                                     <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>

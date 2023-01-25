@@ -1,15 +1,15 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
     StyleSheet,
-    Text,
     View,
     Image,
     TextInput,
     TouchableOpacity,
     FlatList,
     ScrollView,
-    Dimensions
+    Dimensions,
+    Text,
 } from 'react-native';
 import Svg, {
     G,
@@ -89,6 +89,7 @@ function Home() {
             placa: 'Placa/VIN'
         },
     ];
+
     return (
         <View style={styles.container}>
             <StatusBar translucent style='auto' />
@@ -445,7 +446,7 @@ function Home() {
 const styles = StyleSheet.create({
     TextoVerificado: {
         fontSize: 16,
-        color: '#FDFDFD'
+        color: '#FDFDFD',
     },
     verificado: {
         backgroundColor: '#2B83F2',
@@ -697,7 +698,7 @@ const styles = StyleSheet.create({
         width: 220,
         height: 45,
         padding: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     lupa: {
         marginLeft: -105

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
+import * as SecureStore from 'expo-secure-store';
 import TableExternal from './TableExternal';
 
 import {
@@ -17,6 +18,7 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
+    ActivityIndicator,
     ScrollView
 } from "react-native";
 
@@ -31,16 +33,19 @@ const External = ({ route }) => {
     console.log("Row trabajos externos")
     console.log(row)
     console.log("Row trabajos externos")
-    const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
+    const navigation = useNavigation();
     const [description, setDescription] = useState("");
+    const [userId, setUserId] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     async function añadirDatos() {
+        setLoading(true)
         let data = new FormData();
 
         data.append("order_id", row.id);
         data.append("description", description);
-        data.append("user_id", 1);
+        data.append("user_id", userId);
 
         fetch('https://slogan.com.bo/vulcano/ordersExternalsServices/addMobile',
             {
@@ -52,12 +57,33 @@ const External = ({ route }) => {
             .then(data => {
                 if (data.status) {
                     console.log(data.data);
-                    // getDatos();
                 } else {
                     console.error(data.error)
                 }
             })
+            .then(setLoading(false))
+            .then(
+                setTimeout(() => {
+                    setModalVisible(false)
+                }, 2000)
+            );
+    };
+
+    async function getId() {
+
+        let id = await SecureStore.getItemAsync("id")
+
+        console.log("dddddddddddddddddddddd");
+        console.log(id);
+        console.log(id);
+        console.log("dddddddddddddddddddddd");
+        setUserId(id)
     }
+
+    useEffect(() => {
+        getId()
+    }, [])
+
     function Enviar(data) {
         console.log('onSubmit data: ' + data);
         añadirDatos();
@@ -65,10 +91,10 @@ const External = ({ route }) => {
 
     return (
         <View
-            onSubmit={handleSubmit(Enviar)}
             style={tailwind.style(
                 "flex-1 justify-between h-full  bg-[#F6F6FA] pt-5"
             )}
+            onSubmit={handleSubmit(Enviar)}
         >
             <StatusBar translucent style='auto' />
             <View style={tailwind.style("flex mt-[5px] ")}>
@@ -103,10 +129,13 @@ const External = ({ route }) => {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
                         setModalVisible(!modalVisible);
                     }}>
-                    <View style={tailwind.style("flex-1 justify-center items-center")}>
+                    <View
+                        style={tailwind.style(
+                            "flex-1 justify-center items-center"
+                        )}
+                    >
                         <View style={styles.modalView}>
                             <View style={tailwind.style("flex-row justify-between ml-[22px] mr-[18px] mt-[20px] ")}>
                                 <Text style={tailwind.style("text-[#000000] font-bold text-[18px]")}>
@@ -137,16 +166,19 @@ const External = ({ route }) => {
                             </View>
                             <View
                                 style={tailwind.style(
-                                    "flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] "
+                                    "flex-row justify-end items-end mb-[15px] ml-[22px] mr-[18px] "
                                 )}
                             >
+                                <ActivityIndicator size="small" color="#2B83F2" animating={loading} />
                                 <TouchableOpacity
                                     style={tailwind.style(
                                         "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
                                     )}
                                     type="button"
+                                    disabled={loading}
                                     onPress={() => {
-                                        añadirDatos();
+                                        loading ? null :
+                                            añadirDatos();
                                     }}
                                 >
 
@@ -159,7 +191,9 @@ const External = ({ route }) => {
                     </View>
                 </Modal>
                 <Pressable
-                    style={tailwind.style("flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl")}
+                    style={tailwind.style(
+                        "flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl"
+                    )}
                     onPress={() => setModalVisible(true)}>
                     <Text style={tailwind.style("text-[20px] text-[#FFFFFF] font-bold")}>
                         ADD NEW

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
+import * as SecureStore from 'expo-secure-store';
 import TableAdvices from './TableAdvices'
 
 import {
@@ -17,7 +18,8 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
-    ScrollView
+    ScrollView,
+    ActivityIndicator,
 } from "react-native";
 
 import Svg, {
@@ -34,13 +36,16 @@ const Advices = ({ route }) => {
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const [description, setDescription] = useState("");
+    const [userId, setUserId] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     async function añadirDatos() {
+        setLoading(true)
         let data = new FormData();
 
         data.append("order_id", row.id);
         data.append("description", description);
-        data.append("user_id", 1);
+        data.append("user_id", userId);
 
         fetch('https://slogan.com.bo/vulcano/ordersAdvices/addMobile',
             {
@@ -56,7 +61,29 @@ const Advices = ({ route }) => {
                     console.error(data.error)
                 }
             })
+            .then(setLoading(false))
+            .then(
+                setTimeout(() => {
+                    setModalVisible(false)
+                }, 2000)
+            );
     }
+
+    async function getId() {
+
+        let id = await SecureStore.getItemAsync("id")
+
+        console.log("dddddddddddddddddddddd");
+        console.log(id);
+        console.log(id);
+        console.log("dddddddddddddddddddddd");
+        setUserId(id)
+    }
+
+    useEffect(() => {
+        getId()
+    }, [])
+
     function Enviar(data) {
         console.log('onSubmit data: ' + data);
         añadirDatos();
@@ -134,14 +161,21 @@ const Advices = ({ route }) => {
                                     onChangeText={value => setDescription(value)}
                                 />
                             </View>
-                            <View style={tailwind.style("flex justify-end items-end mb-[15px] ml-[22px] mr-[18px] ")}>
+                            <View
+                                style={tailwind.style(
+                                    "flex-row justify-end items-end mb-[15px] ml-[22px] mr-[18px] "
+                                )}
+                            >
+                                <ActivityIndicator size="small" color="#2B83F2" animating={loading} />
                                 <TouchableOpacity
                                     style={tailwind.style(
                                         "flex justify-center items-center w-[120px] h-[30px] bg-[#2B83F2] rounded-lg"
                                     )}
                                     type="button"
+                                    disabled={loading}
                                     onPress={() => {
-                                        añadirDatos();
+                                        loading ? null :
+                                            añadirDatos();
                                     }}
                                 >
                                     <Text style={tailwind.style("text-[#FFFFFF] text-[16px] ")}>

@@ -82,7 +82,7 @@ class TableRow extends React.Component {
                     <View style={tailwind.style("flex flex-col w-[280px]")}>
                         <View style={tailwind.style("flex justify-start")}>
                             <Text style={tailwind.style("text-[#000000] text-[18px] font-normal ")}>
-                                The fuel tank needs to be replaced
+                                {item.description}
                             </Text>
                             <View style={tailwind.style("flex flex-row items-center")}>
                                 <Svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">

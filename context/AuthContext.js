@@ -51,15 +51,17 @@ const signIn = dispatch => {
         }
       );
       const json = await response.json();
-      console.log('data: ' + Object.keys(json));
+      console.log("DATAAAAAAAAA  LOGGGGGIIIIN");
+      console.log('data: ' + JSON.stringify(json.data));
+      console.log("DATAAAAAAAAA  LOGGGGGIIIIN");
 
       if (json.status) {
         Alert.alert('Bienvenido ' + json.data.name);
         console.log(email);
         console.log(password);
         console.log(json.data.role);
+        await SecureStore.setItemAsync('id', json.data.id.toString());
         await SecureStore.setItemAsync('email', email);
-        await SecureStore.setItemAsync('password', password);
         await SecureStore.setItemAsync('role', json.data.role);
         await SecureStore.setItemAsync('userToken', 'dummy-auth-token');
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
