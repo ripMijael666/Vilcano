@@ -18,7 +18,6 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
-    ScrollView,
     ActivityIndicator
 } from "react-native";
 
@@ -30,9 +29,6 @@ import Svg, {
 const Observations = ({ route }) => {
     const { register, handleSubmit } = useForm();
     const { row } = route.params;
-    console.log("ROW observaciones")
-    console.log(row)
-    console.log("ROW observaciones")
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const [description, setDescription] = useState("");
@@ -117,9 +113,10 @@ const Observations = ({ route }) => {
             <View style={tailwind.style(
                 "flex-1 justify-start items-center mt-6"
             )}>
-                <ScrollView>
-                    <TableObservations row={row} />
-                </ScrollView>
+                <TableObservations
+                    row={row}
+                    modalVisible={modalVisible}
+                />
             </View>
             <View
                 onSubmit={handleSubmit(Enviar)}

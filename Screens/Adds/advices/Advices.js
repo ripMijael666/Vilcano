@@ -18,7 +18,6 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
-    ScrollView,
     ActivityIndicator,
 } from "react-native";
 
@@ -65,7 +64,7 @@ const Advices = ({ route }) => {
             .then(
                 setTimeout(() => {
                     setModalVisible(false)
-                }, 2000)
+                },2000)
             );
     }
 
@@ -117,9 +116,10 @@ const Advices = ({ route }) => {
             <View style={tailwind.style(
                 "flex-1 justify-start items-center mt-6"
             )}>
-                <ScrollView>
-                    <TableAdvices row={row} />
-                </ScrollView>
+                <TableAdvices
+                    row={row}
+                    modalVisible={modalVisible}
+                />
             </View>
             <View
                 onSubmit={handleSubmit(Enviar)}

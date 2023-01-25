@@ -19,7 +19,6 @@ import {
     StyleSheet,
     TextInput,
     ActivityIndicator,
-    ScrollView
 } from "react-native";
 
 import Svg, {
@@ -119,7 +118,10 @@ const External = ({ route }) => {
             <View style={tailwind.style(
                 "flex-1 justify-start items-center mt-3"
             )}>
-                <TableExternal row={row} />
+                <TableExternal
+                    row={row}
+                    modalVisible={modalVisible}
+                />
             </View>
             <View
                 onSubmit={handleSubmit(Enviar)}

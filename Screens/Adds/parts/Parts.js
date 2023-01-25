@@ -18,7 +18,6 @@ import {
     Pressable,
     StyleSheet,
     TextInput,
-    ScrollView,
     ActivityIndicator
 } from "react-native";
 
@@ -95,11 +94,12 @@ const Parts = ({ route }) => {
                 </Text>
             </View>
             <View style={tailwind.style(
-                "flex-1 justify-start items-center mt-3"
+                "flex-1 justify-center items-center mt-3"
             )}>
-                <ScrollView>
-                    <TableParts row={row} />
-                </ScrollView>
+                <TableParts
+                    row={row}
+                    modalVisible={modalVisible}
+                />
             </View>
             <View
                 onSubmit={handleSubmit(Enviar)}
