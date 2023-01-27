@@ -1,6 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
+
 import tailwind from 'twrnc';
+import ProgressChart from './progresschart/Progresschart';
+
 import {
     View,
     StyleSheet,
@@ -17,7 +21,6 @@ import Svg, {
     Defs,
     ClipPath,
 } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
 
 function Assigned() {
     const navigation = useNavigation();
@@ -73,7 +76,7 @@ function Assigned() {
 
             <View style={styles.contenedorPorcentaje}>
                 <View style={styles.porcentaje}>
-                    {/* <ProgressChart /> */}
+                    <ProgressChart />
                     <View style={styles.porcentajeAzul}>
                         <Text style={styles.textSeeAll}>
                             See all

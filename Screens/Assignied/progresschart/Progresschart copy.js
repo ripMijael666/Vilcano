@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { Gauge } from '@wz-mobile/rn-gauge';
-
+import Gauge from "react-native-gauge";
 
 export default function ProgressChart() {
+    const [label, setLabel] = useState("hooa")
     return (
         <View>
             <Gauge
@@ -12,10 +12,17 @@ export default function ProgressChart() {
                 sweepAngle={250}
                 strokeWidth={10}
                 fillProgress={60}
-                renderLabel="Label"
+                renderLabel={() => {
+                    return (
+                        <Text>
+                            {label()}
+                        </Text>
+                    )
+
+                }}
                 size={200}
                 thickness={60}
-            />;
+            />
         </View>
     )
 }

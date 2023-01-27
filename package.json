@@ -14,6 +14,8 @@
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "@react-navigation/stack": "^6.2.2",
+    "@shopify/react-native-skia": "0.1.157",
+    "@wz-mobile/rn-gauge": "^1.0.0",
     "axios": "^1.2.3",
     "expo": "^47.0.12",
     "expo-cli": "^6.1.0",
@@ -25,7 +27,6 @@
     "react-hook-form": "^7.42.1",
     "react-native": "0.70.5",
     "react-native-chart-kit": "^6.12.0",
-    "react-native-gauge": "^0.1.2",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-numeric-input": "^1.9.1",
@@ -38,6 +39,7 @@
     "svgo": "^3.0.2",
     "twrnc": "^3.5.0",
     "uuid": "^9.0.0",
+    "victory": "^36.6.8",
     "yet": "^0.1.0"
   },
   "devDependencies": {
