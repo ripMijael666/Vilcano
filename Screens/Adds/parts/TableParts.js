@@ -63,7 +63,12 @@ export default function TableParts(props) {
 
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 

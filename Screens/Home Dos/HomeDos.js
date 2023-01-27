@@ -54,7 +54,12 @@ function HomeDos() {
 
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 

@@ -48,7 +48,12 @@ export default function Azul() {
 
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 

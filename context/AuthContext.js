@@ -25,8 +25,6 @@ const authReducer = (state, action) => {
 };
 
 const signUp = dispatch => {
-
-
   return ({ email, password }) => {
     dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
   };
@@ -34,8 +32,6 @@ const signUp = dispatch => {
 
 const signIn = dispatch => {
   return async ({ email, password }) => {
-
-
     try {
 
       var data = new FormData();
@@ -56,7 +52,7 @@ const signIn = dispatch => {
       console.log("DATAAAAAAAAA  LOGGGGGIIIIN");
 
       if (json.status) {
-        Alert.alert('Bienvenido ' + json.data.name);
+        // Alert.alert('Bienvenido ' + json.data.name);
         console.log(email);
         console.log(password);
         console.log(json.data.role);

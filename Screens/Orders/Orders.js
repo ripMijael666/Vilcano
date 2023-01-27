@@ -47,7 +47,12 @@ function Orders() {
 
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 
@@ -479,12 +484,12 @@ const styles = StyleSheet.create({
         fontFamily: "Dosis_400Regular",
     },
     titleBar: {
-        fontSize: 20,
-        fontWeight: '800'
+        fontSize: 22,
+        fontFamily: "Dosis_700Bold"
     },
     textEntered: {
-        fontSize: 12,
-        fontWeight: '400'
+        fontSize: 14,
+        fontFamily: "Dosis_500Medium"
     },
     contenedorOrdersEntered: {
         justifyContent: 'flex-start',

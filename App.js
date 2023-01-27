@@ -7,8 +7,8 @@ import { StatusBar } from 'expo-status-bar';
 
 import * as SecureStore from 'expo-secure-store';
 
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as AuthProvider } from './context/AuthContext'
 import { Context as AuthContext } from './context/AuthContext'
 
@@ -38,7 +38,6 @@ import Svg, {
   Defs,
   ClipPath,
 } from 'react-native-svg';
-
 
 function Splash() {
   return (
@@ -214,7 +213,6 @@ function App() {
 
   return (
     <NavigationContainer>
-
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {state.isLoading ? (
           <Stack.Screen
@@ -230,12 +228,12 @@ function App() {
               component={AuthFlow}
             />
           </>
-        ) : null}
-        <Stack.Screen
+        ) : <Stack.Screen
           options={{ headerShown: false }}
           name="HomeFlow"
           component={HomeFlow}
         />
+        }
         <Stack.Screen
           name="Detalle"
           component={Detalle}

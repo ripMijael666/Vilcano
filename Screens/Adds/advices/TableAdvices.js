@@ -60,10 +60,15 @@ export default function TableAdvices(props) {
         Dosis_700Bold,
         Dosis_800ExtraBold,
     });
-
+    
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 
@@ -126,4 +131,4 @@ export default function TableAdvices(props) {
             />
         </View>
     );
-}
+};

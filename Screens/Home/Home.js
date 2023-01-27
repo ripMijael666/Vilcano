@@ -22,7 +22,7 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
-import { Context as AuthContext } from '../../context/AuthContext'
+import { Context as AuthContext } from '../../context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -55,9 +55,10 @@ import {
 function Home() {
     const { signOut } = useContext(AuthContext);
     const navigation = useNavigation();
-
     const ref = useRef < FlatList > (null);
     const [index, setIndex] = React.useState(0);
+
+
     React.useEffect(() => {
         ref.current?.scrollToIndex({
             index,
@@ -115,7 +116,12 @@ function Home() {
 
     if (!fontsLoaded) {
         return (
-            <ActivityIndicator size="large" />
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
         );
     };
 

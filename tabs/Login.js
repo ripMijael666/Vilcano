@@ -1,6 +1,9 @@
 import React from 'react'; Svg
 import { Context as AuthContext } from '../context/AuthContext'
 import { StatusBar } from 'expo-status-bar';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import tailwind from 'twrnc';
+
 import {
     StyleSheet,
     Text,
@@ -9,7 +12,8 @@ import {
     TextInput,
     SafeAreaView,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from 'react-native';
 import Svg, {
     G,
@@ -19,10 +23,42 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 function Login() {
     const [email, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const { signIn } = React.useContext(AuthContext);
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+    
+    if (!fontsLoaded) {
+        return (
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    };
     return (
         <SafeAreaView
             style={{
@@ -31,7 +67,10 @@ function Login() {
             }}
         >
             <StatusBar translucent style='auto' />
-            <ScrollView>
+            <KeyboardAwareScrollView
+                contentContainerStyle={[{ flexGrow: 1 }, tailwind.style("bg-[#fff]")]}
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={styles.container}>
                     <View style={styles.logo}>
                         <Svg width="185" height="35" viewBox="0 0 145 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,17 +174,17 @@ function Login() {
 
                     {/* <View
                     > */}
-                        <TouchableOpacity
-                            style={styles.boton}
-                            title="Sign in"
-                            onPress={() => signIn({ email, password })}
+                    <TouchableOpacity
+                        style={styles.boton}
+                        title="Sign in"
+                        onPress={() => signIn({ email, password })}
+                    >
+                        <Text
+                            style={styles.textoBoton}
                         >
-                            <Text
-                                style={styles.textoBoton}
-                            >
-                                INGRESAR
-                            </Text>
-                        </TouchableOpacity>
+                            INGRESAR
+                        </Text>
+                    </TouchableOpacity>
                     {/* </View> */}
 
                     <View
@@ -226,7 +265,7 @@ function Login() {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 }
@@ -252,21 +291,21 @@ const styles = StyleSheet.create({
         height: 30
     },
     contenedorSignUp: {
-        marginTop: 20
+        marginTop: 18
     },
     contenedorRegistro: {
-        marginTop: 25,
+        marginTop: 20,
     },
     signUp: {
         color: '#000000',
-        fontSize: 40,
-        fontWeight: '500'
+        fontSize: 45,
+        fontFamily: "Dosis_600SemiBold"
     },
     texto: {
         fontSize: 20,
         color: '#000000',
         textAlign: 'left',
-        fontWeight: '500'
+        fontFamily: "Dosis_600SemiBold"
     },
     vistaInput: {
         fontSize: 16,
@@ -283,36 +322,38 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     input: {
-        fontSize: 16,
+        fontSize: 18,
         borderRadius: 12,
         width: 300,
         height: 45,
         padding: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: "Dosis_600SemiBold"
     },
     contenedorContraseña: {
         marginTop: 20,
     },
     top: {
-        marginTop: 20
+        marginTop: 16
     },
     textP: {
         fontSize: 16,
         color: '#B6B6B6',
-        fontWeight: '400'
+        fontFamily: "Dosis_600SemiBold"
     },
     textoBoton: {
         textAlign: 'center',
-        fontSize: 30,
+        fontSize: 34,
         color: '#FFFFFF',
+        fontFamily:"Dosis_500Medium"
     },
     boton: {
         backgroundColor: "#2B83F2",
         padding: 5,
-        marginTop: 20,
+        marginTop: 25,
         width: 300,
         height: 60,
-        borderRadius: 8,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -324,6 +365,7 @@ const styles = StyleSheet.create({
     dos: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: "flex-end",
         marginVertical: 20
     },
     GGFB: {
@@ -340,8 +382,9 @@ const styles = StyleSheet.create({
     },
     registrar: {
         color: '#2B83F2',
-        fontWeight: '700',
-        marginHorizontal: 10
+        fontFamily: "Dosis_600SemiBold",
+        marginHorizontal: 10,
+        fontSize: 16
     },
 });
 
