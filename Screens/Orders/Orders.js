@@ -51,7 +51,6 @@ function Orders() {
         );
     };
 
-
     return (
         <View style={styles.containerGobal}>
             <View style={styles.contenedorLogo}>
@@ -321,8 +320,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     textUser: {
-        textAlign: 'right',
-        fontSize: 18,
+        textAlign: 'center',
+        fontSize: 22,
         color: '#000000',
         fontFamily: "Dosis_700Bold",
     },
@@ -334,6 +333,7 @@ const styles = StyleSheet.create({
     },
     textSingOut: {
         fontSize: 14,
+        textAlign: 'right',
         color: '#000000',
         fontWeight: '400',
         color: '#2B83F2',
@@ -454,7 +454,8 @@ const styles = StyleSheet.create({
     },
     textEstado: {
         color: '#FFFFFF',
-        fontFamily: "Dosis_500Medium"
+        fontSize: 14,
+        fontFamily: "Dosis_500Medium",
     },
     contenedorDatos: {
         flexDirection: 'row'
@@ -478,12 +479,12 @@ const styles = StyleSheet.create({
         fontFamily: "Dosis_400Regular",
     },
     titleBar: {
-        fontSize: 22,
-        fontFamily: "Dosis_700Bold",
+        fontSize: 20,
+        fontWeight: '800'
     },
     textEntered: {
-        fontSize: 14,
-        fontFamily: "Dosis_500Medium",
+        fontSize: 12,
+        fontWeight: '400'
     },
     contenedorOrdersEntered: {
         justifyContent: 'flex-start',
@@ -500,7 +501,7 @@ const styles = StyleSheet.create({
     textSeeAll: {
         color: '#FFFFFF',
         fontSize: 14,
-        fontWeight: '300'
+        fontFamily: "Dosis_400Regular",
     },
     textLatest: {
         color: '#000000',
@@ -525,8 +526,9 @@ const styles = StyleSheet.create({
     },
     datosAuto: {
         color: '#000000',
-        fontSize: 16,
-        fontFamily: "Dosis_400Regular"
+        fontFamily: "Dosis_400Regular",
+        fontWeight: '300',
+        fontSize: 16
     },
     contenedorDatosLatersOrders: {
         marginLeft: 15,

@@ -82,7 +82,7 @@ function Assigned() {
                 </View>
             </View>
             <View style={styles.contenedorTitleLatest}>
-                <Text style={styles.textLatest}>
+                <Text style={styles.tituloOrdersEstatus}>
                     Assigned orders
                 </Text>
                 <Text style={styles.textLatestDelgado}>
@@ -133,7 +133,10 @@ function Assigned() {
                 <TouchableOpacity
                     onPress={() => navigation.navigate("VerTodo")}
                 >
-                    <Text style={tailwind.style("text-[#3682F7] text-[16px] font-normal")}>
+                    <Text style={[
+                        { fontFamily: "Dosis_400Regular" },
+                        tailwind.style("text-[#3682F7] text-[16px] font-normal"),
+                    ]}>
                         Ver todo
                     </Text>
                 </TouchableOpacity>
@@ -164,23 +167,24 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     textUser: {
-        textAlign: 'right',
-        fontSize: 18,
+        textAlign: "center",
+        fontSize: 22,
         color: '#000000',
-        fontWeight: '800',
+        fontFamily: "Dosis_700Bold",
     },
     textTipo: {
         textAlign: 'right',
         fontSize: 16,
         color: '#000000',
-        fontWeight: '400',
+        fontFamily: "Dosis_500Medium",
     },
     textSingOut: {
         fontSize: 14,
+        textAlign: 'right',
         color: '#000000',
         fontWeight: '400',
         color: '#2B83F2',
-        textAlign: 'right',
+        fontFamily: "Dosis_400Regular",
     },
     usuarioImage: {
         backgroundColor: '#D9D9D9',
@@ -197,6 +201,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         borderRadius: 12,
         height: 45,
+        fontFamily: "Dosis_500Medium",
     },
     containerInput: {
         flexDirection: 'row',
@@ -273,7 +278,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 15,
-        marginRight: 15
+        marginRight: 15,
+        marginTop: 5
     },
     contenedorEstado: {
         backgroundColor: '#71AD46',
@@ -286,7 +292,8 @@ const styles = StyleSheet.create({
     },
     textEstado: {
         color: '#FFFFFF',
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: "Dosis_500Medium",
     },
     contenedorDatos: {
         flexDirection: 'row'
@@ -294,7 +301,7 @@ const styles = StyleSheet.create({
     tituloOrdersEstatus: {
         color: '#000000',
         fontSize: 24,
-        fontWeight: '700'
+        fontFamily: "Dosis_700Bold"
     },
     contenedorOrdersEstatus: {
         marginTop: 14,
@@ -334,7 +341,7 @@ const styles = StyleSheet.create({
     textSeeAll: {
         color: '#FFFFFF',
         fontSize: 14,
-        fontWeight: '300'
+        fontFamily: "Dosis_400Regular",
     },
     textLatest: {
         color: '#000000',
@@ -344,7 +351,7 @@ const styles = StyleSheet.create({
     textLatestDelgado: {
         color: '#000000',
         fontSize: 18,
-        fontWeight: '300'
+        fontFamily: "Dosis_500Medium",
     },
     contenedorTitleLatest: {
         flexDirection: 'row',
@@ -354,12 +361,12 @@ const styles = StyleSheet.create({
     },
     textName: {
         color: '#000000',
-        fontWeight: '700',
+        fontFamily: "Dosis_700Bold",
         fontSize: 16
     },
     datosAuto: {
         color: '#000000',
-        fontWeight: '300',
+        fontFamily: "Dosis_400Regular",
         fontSize: 16
     },
     contenedorDatosLatersOrders: {
@@ -396,15 +403,14 @@ const styles = StyleSheet.create({
     },
     textOt: {
         color: '#FFFFFF',
-        fontWeight: '300',
         fontSize: 10,
-        // lineHeight: 12
+        fontFamily: "Dosis_400Regular"
     },
     textAge: {
         color: '#FFFFFF',
         fontSize: 12,
-        fontWeight: '700',
-        lineHeight: 14
+        lineHeight: 14,
+        fontFamily: "Dosis_700Bold"
     },
 });
 

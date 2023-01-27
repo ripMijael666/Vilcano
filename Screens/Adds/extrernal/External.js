@@ -26,6 +26,17 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 const External = ({ route }) => {
     const { register, handleSubmit } = useForm();
     const { row } = route.params;
@@ -88,6 +99,23 @@ const External = ({ route }) => {
         añadirDatos();
     };
 
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
+
     return (
         <View
             style={tailwind.style(
@@ -109,9 +137,12 @@ const External = ({ route }) => {
                     "flex flex-row justify-between items-end ml-[18px] mr-[18px]"
                 )}
             >
-                <Text style={tailwind.style(
-                    "font-700 text-[22px]"
-                )}>
+                <Text style={[
+                    { fontFamily: "Dosis_700Bold" },
+                    tailwind.style(
+                        "text-[24px]"
+                    )
+                ]}>
                     External Jobs
                 </Text>
             </View>
@@ -197,7 +228,12 @@ const External = ({ route }) => {
                         "flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl"
                     )}
                     onPress={() => setModalVisible(true)}>
-                    <Text style={tailwind.style("text-[20px] text-[#FFFFFF] font-bold")}>
+                    <Text style={[
+                        { fontFamily: "Dosis_700Bold" },
+                        tailwind.style(
+                            "text-[22px] text-[#FFFFFF]"
+                        )
+                    ]}>
                         ADD NEW
                     </Text>
                 </Pressable>

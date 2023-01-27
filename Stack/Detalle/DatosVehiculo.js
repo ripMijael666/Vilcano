@@ -1,8 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import {
+    View,
+    ActivityIndicator,
+    Text,
+    StyleSheet
+} from 'react-native';
+
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 export default function DatosVehiculo(props) {
     const { row } = props;
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
         <View>
             <Table row={row} />
@@ -174,8 +206,8 @@ class TableRow extends React.Component {
 
 const styles = StyleSheet.create({
     contenedorTresClaro: {
-        fontSize: 14,
-        fontWeight: '500',
+        fontSize: 15,
+        fontFamily: "Dosis_600SemiBold",
         color: '#B6B6B6',
         marginLeft: 5,
     },
@@ -192,8 +224,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     textoTresNegro: {
-        fontSize: 14,
-        fontWeight: '500',
+        fontSize: 15,
+        fontFamily: "Dosis_600SemiBold",
         marginLeft: 5
     },
     contenedorBlancoLargo: {

@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
+
+import * as Progress from 'react-native-progress';
+import tailwind from "twrnc";
+
+import DatosVehiculo from "./DatosVehiculo";
+import DatosCliente from "./DatosCliente";
+
 import {
     View,
     Image,
     TouchableOpacity,
     StyleSheet,
     Text,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from "react-native";
 
 import Svg, {
@@ -17,11 +27,16 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from '@expo/vector-icons';
-import * as Progress from 'react-native-progress';
-import DatosVehiculo from "./DatosVehiculo";
-import DatosCliente from "./DatosCliente";
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 export default function Detalle({ route }) {
     const navigation = useNavigation();
@@ -100,6 +115,22 @@ export default function Detalle({ route }) {
         );
     }
 
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
         <View style={styles.container}>
             <StatusBar translucent style='auto' />
@@ -129,7 +160,7 @@ export default function Detalle({ route }) {
                                 {row.car.cars_models_version.cars_model.catalogues_record.name}&nbsp; {row.car.year}
                             </Text>
                             <Text style={styles.placaVIN}>
-                                {row.car.plate}&nbsp; /&nbsp; {row.car.vin}
+                                {row.car.plate} / {row.car.vin}
                             </Text>
                         </View>
                         <View style={styles.contenedorAuto}>
@@ -150,17 +181,21 @@ export default function Detalle({ route }) {
                     </View>
                 </View>
                 <View style={styles.containerCliente}>
-                    <Text style={styles.Cliente}>
-                        DATOS DEL CLIENTE
-                    </Text>
+                    <View style={tailwind.style("w-full ml-[75px]")}>
+                        <Text style={styles.Cliente}>
+                            DATOS DEL CLIENTE
+                        </Text>
+                    </View>
                     <DatosCliente row={row} />
-                    <Text style={styles.estadoOt}>
-                        ESTADO OT
-                    </Text>
+                    <View style={tailwind.style("w-full ml-[75px] mb-[-20px]")}>
+                        <Text style={styles.estadoOt}>
+                            ESTADO OT
+                        </Text>
+                    </View>
                     <View style={styles.ContenedorDosEstado}>
                         <Estado estado={row.status}></Estado>
                     </View>
-                    <View style={styles.circuloDos}>
+                    <View style={[styles.circuloDos, tailwind.style("w-full")]}>
                         <View style={styles.finalizacion}>
                             <Text style={styles.TituloAutoFinalizacion}>
                                 FINALIZACIÓN
@@ -198,7 +233,7 @@ export default function Detalle({ route }) {
                     <View style={styles.ContenedorDosAzul}>
                         <TouchableOpacity onPress={() => navigation.navigate("Parts", { row: row })}>
                             <View style={styles.contenedorAzul}>
-                                <View style={styles.circuloDos}>
+                                <View style={styles.circuloDosParts}>
                                     <Svg width="58" height="58" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <G clip-path="url(#clip0_17_33)">
                                             <Path d="M0.131318 36.9632C0.390029 35.6628 1.15441 35.855 2.03442 35.957C2.44013 34.994 2.83799 34.0486 3.23782 33.0954C2.14613 31.7088 2.13634 31.3459 3.17118 30.2947C4.86065 28.5765 4.99589 28.555 6.62068 29.7769C7.08322 29.5572 7.54381 29.316 8.02203 29.1179C8.46498 28.9335 8.92752 28.7923 9.36067 28.6373C9.59586 26.7388 10.7895 26.7094 12.7161 26.8663C14.1429 26.982 14.0665 27.5017 14.2468 28.0058C14.3487 28.2941 14.3742 28.6648 14.6172 28.7864C15.3404 29.1453 16.1087 29.4121 16.8849 29.7259C18.6469 28.602 18.8997 28.655 20.5735 30.532C21.332 31.3832 21.2771 31.8676 20.2677 33.0778C20.644 33.9878 21.0243 34.9096 21.4143 35.853C23.3056 36.2218 24.1994 37.9046 23.3017 39.6972C23.09 40.1189 22.4041 40.2994 21.9396 40.5955C21.7044 40.7465 21.3692 40.8583 21.2634 41.076C20.8969 41.8331 20.6127 42.6294 20.2893 43.4316C21.4574 45.1066 21.4143 45.3302 19.5445 47.0522C18.6586 47.8681 18.2137 47.825 16.9496 46.7992C16.1401 47.1248 15.3169 47.4209 14.5349 47.7975C14.3193 47.9014 14.1312 48.2349 14.0861 48.4898C13.9018 49.5588 13.4844 49.9648 12.4162 49.9961C12.1889 50.002 11.9615 49.9961 11.7342 49.9961C9.84869 49.9961 9.59194 49.7745 9.37439 47.9603C8.45518 47.5778 7.53205 47.1914 6.59716 46.8011C4.98413 48.0015 4.84889 47.9779 3.11238 46.1912C2.15201 45.2007 2.16965 44.8143 3.24174 43.4551L2.25981 41.1035C1.3112 40.4778 0.725179 41.029 0.36063 40.4013C-0.0979953 39.6149 -0.0411571 37.8556 0.137197 36.9612L0.131318 36.9632ZM7.45953 38.2184C7.43405 40.5759 9.33127 42.5353 11.6695 42.5706C14.0704 42.6059 16.0323 40.6818 16.0421 38.2831C16.0499 35.9335 14.1351 33.9976 11.7832 33.98C9.43319 33.9623 7.48501 35.8727 7.45953 38.2184Z" fill="white" />
@@ -289,14 +324,8 @@ export default function Detalle({ route }) {
 }
 
 const styles = StyleSheet.create({
-    // circuloDosNuevo: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-    // },
     ContenedorDosEstado: {
         flex: 1,
-        // display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
@@ -325,8 +354,13 @@ const styles = StyleSheet.create({
     circuloDos: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        // alignItems: 'center',
         // marginTop: 25
+    },
+    circuloDosParts: {
+        flexDirection: 'row',
+        justifyContent: "space-evenly",
+        alignItems: 'center',
     },
     letraAzul: {
         color: '#2B83F2',
@@ -413,31 +447,30 @@ const styles = StyleSheet.create({
     },
     TituloAutoFinalizacion: {
         fontSize: 22,
-        marginLeft: 28,
+        marginLeft: 40,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily:"Dosis_700Bold"
     },
     Cliente: {
         fontSize: 22,
         marginTop: 5,
         color: '#000000',
-        marginLeft: -140,
+        // marginLeft: -130,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily: "Dosis_700Bold"
     },
     TituloAuto: {
         fontSize: 22,
         marginTop: 38,
         marginLeft: 50,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily: "Dosis_600SemiBold",
     },
     estadoOt: {
         fontSize: 22,
-        marginTop: 38,
-        marginLeft: -220,
+        marginTop: 22,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily: "Dosis_700Bold"
     },
     ContenedorDos: {
         flexDirection: 'row',
@@ -450,16 +483,16 @@ const styles = StyleSheet.create({
     },
     OT: {
         fontSize: 28,
-        fontWeight: '600'
+        fontFamily: "Dosis_700Bold"
     },
     marcaauto: {
         fontSize: 18,
-        fontWeight: '500',
+        fontFamily: "Dosis_600SemiBold",
     },
     placaVIN: {
         color: '#B6B6B6',
-        fontSize: 12,
-        fontWeight: '400'
+        fontSize: 13,
+        fontFamily: "Dosis_600SemiBold",
     },
     contenedorCaracteristicas: {
         marginTop: 28,
@@ -542,7 +575,7 @@ const styles = StyleSheet.create({
         fontSize: 45,
         color: '#2B83F2',
         marginTop: 15,
-        fontWeight: '600',
+        fontFamily:"Dosis_700Bold",
         paddingHorizontal: 65
     },
     imagenGigante: {
@@ -559,14 +592,14 @@ const styles = StyleSheet.create({
         marginTop: 24,
         color: '#000000',
         fontSize: 16,
-        fontWeight: '600',
-        marginLeft: -190,
+        fontFamily: "Dosis_600SemiBold",
+        marginLeft: -215,
         padding: 5
     },
     verTodo: {
         color: '#FFFF',
         fontSize: 20,
-        fontWeight: '400',
+        fontFamily:"Dosis_600SemiBold"
     },
     contenedorVerTodo: {
         width: 100,
@@ -596,7 +629,7 @@ const styles = StyleSheet.create({
     textoPartes: {
         color: '#FFFF',
         fontSize: 16,
-        fontWeight: '600',
+        fontFamily: "Dosis_500Medium",
         marginLeft: 12
     },
     externos: {
@@ -606,7 +639,7 @@ const styles = StyleSheet.create({
     texoExternos: {
         color: '#FFFF',
         fontSize: 16,
-        fontWeight: '600',
+        fontFamily: "Dosis_500Medium",
         marginLeft: 12
     },
     observaciones: {
@@ -616,7 +649,7 @@ const styles = StyleSheet.create({
     textoObservaciones: {
         color: '#FFFF',
         fontSize: 14,
-        fontWeight: '600',
+        fontFamily: "Dosis_500Medium",
         marginTop: 5
     },
     recomendaciones: {
@@ -626,7 +659,7 @@ const styles = StyleSheet.create({
     textoRecomendaciones: {
         color: '#FFFF',
         fontSize: 14,
-        fontWeight: '600',
+        fontFamily: "Dosis_500Medium",
         marginTop: 12
     },
 });

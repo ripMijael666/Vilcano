@@ -5,8 +5,21 @@ import {
     Text,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+
 } from 'react-native';
+
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 import { useNavigation } from '@react-navigation/native';
 import tailwind from 'twrnc';
 
@@ -26,7 +39,23 @@ export default function TableAssignedAll() {
                 }
             })
             .then(setShowDots(false))
-    }, [])
+    }, []);
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
         showDots ?
@@ -75,21 +104,23 @@ class TableRow extends React.Component {
                         </View>
                         <View style={styles.contenedorDatosLatersOrders}>
                             <View style={styles.contenedorEstado}>
-                                <Text style={tailwind.style(
-                                    row.status == "ABIERTO" ?
-                                        "text-[#FFFF] bg-[#3682F7] border-[#3682F7] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                        : row.status == "EN PAUSA" ?
-                                            "text-[#FFFF] bg-[#D6312D] border-[#D6312D] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                            : row.status == "EN CURSO" ?
-                                                "text-[#FFFF] bg-[#84CC16] border-[#84CC16] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                                : row.status == "FINALIZADO" ?
-                                                    "text-[#FFFF] bg-[#4ADE80] border-[#4ADE80] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                                    : row.status == "CERRADO" ?
-                                                        "text-[#FFFF] bg-[#F1CA7B] border-[#F1CA7B] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                                        : row.status == "ENTREGADO" ?
-                                                            "text-[#FFFF] bg-[#5EE592] border-[#5EE592] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
-                                                            : null
-                                )}>
+                                <Text style={[
+                                    { fontFamily: "Dosis_500Medium" },
+                                    tailwind.style(
+                                        row.status == "ABIERTO" ?
+                                            "text-[#FFFF] bg-[#3682F7] border-[#3682F7] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                            : row.status == "EN PAUSA" ?
+                                                "text-[#FFFF] bg-[#D6312D] border-[#D6312D] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                                : row.status == "EN CURSO" ?
+                                                    "text-[#FFFF] bg-[#84CC16] border-[#84CC16] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                                    : row.status == "FINALIZADO" ?
+                                                        "text-[#FFFF] bg-[#4ADE80] border-[#4ADE80] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                                        : row.status == "CERRADO" ?
+                                                            "text-[#FFFF] bg-[#F1CA7B] border-[#F1CA7B] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                                            : row.status == "ENTREGADO" ?
+                                                                "text-[#FFFF] bg-[#5EE592] border-[#5EE592] w-full h-full justify-center items-center text-center font-normal rounded-[12px]"
+                                                                : null
+                                    )]}>
                                     {row.status}
                                 </Text>
                             </View>
@@ -165,15 +196,14 @@ const styles = StyleSheet.create({
     },
     textOt: {
         color: '#FFFFFF',
-        fontWeight: '300',
         fontSize: 10,
-        // lineHeight: 12
+        fontFamily: "Dosis_400Regular"
     },
     textAge: {
         color: '#FFFFFF',
         fontSize: 12,
-        fontWeight: '700',
-        lineHeight: 14
+        lineHeight: 14,
+        fontFamily: "Dosis_700Bold"
     },
     contenedorDatosLatersOrders: {
         marginLeft: 15,
@@ -194,12 +224,12 @@ const styles = StyleSheet.create({
     },
     textName: {
         color: '#000000',
-        fontWeight: '700',
+        fontFamily: "Dosis_700Bold",
         fontSize: 16
     },
     datosAuto: {
         color: '#000000',
-        fontWeight: '300',
+        fontFamily: "Dosis_400Regular",
         fontSize: 16
     },
     contenedorDatos: {

@@ -1,8 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 export default function DatosCliente(props) {
     const { row } = props;
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
         <View>
             <Table row={row} />
@@ -65,7 +92,7 @@ const styles = StyleSheet.create({
     contenedorTransparente: {
         width: 245,
         height: 55,
-        borderRadius: 12,
+        borderRadius: 8,
         justifyContent: 'center',
         marginTop: 10,
         borderColor: '#BBBABA',
@@ -74,24 +101,19 @@ const styles = StyleSheet.create({
     },
     textoTresNegro: {
         fontSize: 14,
-        fontWeight: '500',
-        marginLeft: 5
+        marginLeft: 5,
+        fontFamily: "Dosis_600SemiBold"
     },
     contenedorTresClaro: {
         fontSize: 14,
-        fontWeight: '500',
+        fontFamily: "Dosis_600SemiBold",
         color: '#B6B6B6',
         marginLeft: 5,
-    },
-    textoTresNegro: {
-        fontSize: 14,
-        fontWeight: '500',
-        marginLeft: 5
     },
     contenedorTransparenteLargo: {
         width: 350,
         height: 55,
-        borderRadius: 12,
+        borderRadius: 8,
         justifyContent: 'center',
         marginTop: 10,
         borderColor: '#BBBABA',
@@ -100,7 +122,7 @@ const styles = StyleSheet.create({
     contenedorTransparenteTelefono: {
         width: 93,
         height: 55,
-        borderRadius: 12,
+        borderRadius: 8,
         justifyContent: 'center',
         marginTop: 10,
         borderColor: '#BBBABA',

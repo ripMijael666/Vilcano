@@ -1,4 +1,10 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
+
+import TableOrdersAll from './TableOrdersAll';
+
 import {
     View,
     StyleSheet,
@@ -8,16 +14,38 @@ import {
     TouchableOpacity,
     TextInput,
     SafeAreaView,
+    ActivityIndicator
 } from "react-native";
 
-import { StatusBar } from 'expo-status-bar';
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from '@expo/vector-icons';
-
-import TableOrdersAll from './TableOrdersAll';
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 export default function Ver() {
     const navigation = useNavigation();
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
         <View style={styles.container}>
             <StatusBar translucent style='auto' />
@@ -69,6 +97,6 @@ const styles = StyleSheet.create({
     tituloOrdersEstatus: {
         color: '#000000',
         fontSize: 24,
-        fontWeight: '700'
+        fontFamily: "Dosis_700Bold"
     },
 })
