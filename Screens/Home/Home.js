@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-
 import tailwind from 'twrnc';
 
 import {
@@ -41,6 +40,7 @@ const _colors = {
     inactive: `#BBBABA`,
     active: `#2B83F2`
 }
+
 import {
     useFonts,
     Dosis_200ExtraLight,
@@ -102,6 +102,7 @@ function Home() {
             placa: 'Placa/VIN'
         },
     ];
+    
     const [fontsLoaded] = useFonts({
         Dosis_200ExtraLight,
         Dosis_300Light,
@@ -488,7 +489,7 @@ const styles = StyleSheet.create({
         marginTop: 22
     },
     TextoBlancoPequeño: {
-        fontSize: 12,
+        fontSize: 14,
         fontFamily: "Dosis_400Regular",
         color: '#FFFF'
     },
@@ -534,15 +535,15 @@ const styles = StyleSheet.create({
     },
     TextoColorVerde: {
         color: '#60BB29',
-        marginTop: -6,
-        fontSize: 12,
+        marginTop: -4,
+        fontSize: 14,
         fontFamily: "Dosis_500Medium"
     },
 
     TextoColorRojo: {
         color: '#DC2A2A',
-        marginTop: -6,
-        fontSize: 12,
+        marginTop: -4,
+        fontSize: 14,
         fontFamily: "Dosis_500Medium"
     },
     NumeroColorRojo: {
@@ -552,8 +553,8 @@ const styles = StyleSheet.create({
     },
     TextoColorNaranja: {
         color: '#EA981E',
-        marginTop: -6,
-        fontSize: 12,
+        marginTop: -4,
+        fontSize: 14,
         fontFamily: "Dosis_500Medium"
     },
     NumeroColorNaranja: {
@@ -563,8 +564,8 @@ const styles = StyleSheet.create({
     },
     TextoColorAzul: {
         color: '#2B83F2',
-        marginTop: -6,
-        fontSize: 12,
+        marginTop: -4,
+        fontSize: 14,
         fontFamily: "Dosis_500Medium"
     },
     NumeroColorAzul: {
@@ -726,7 +727,6 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: 'center',
         fontFamily: "Dosis_500Medium",
-
     },
     lupa: {
         marginLeft: -105
@@ -740,8 +740,7 @@ const styles = StyleSheet.create({
     },
     textoSeleccionar: {
         color: '#FFFF',
-        fontSize: 20,
-        // fontWeight: '400',
+        fontSize: 22,
         fontFamily: "Dosis_500Medium",
     },
     botonseleccionar: {

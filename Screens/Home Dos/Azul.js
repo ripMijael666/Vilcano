@@ -1,6 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View, Text, StyleSheet } from 'react-native';
+import {
+    ActivityIndicator,
+    View,
+    Text,
+    StyleSheet
+} from 'react-native';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 export default function Azul() {
     const [showDots, setShowDots] = useState(true);
@@ -19,7 +34,23 @@ export default function Azul() {
                 }
             })
             .then(setShowDots(false))
-    }, [])
+    }, []);
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
 
@@ -40,7 +71,7 @@ const styles = StyleSheet.create({
     TextoColorAzul: {
         color: '#2B83F2',
         marginTop: -6,
-        fontSize: 20,
-        fontWeight: '800'
+        fontSize: 24,
+        fontFamily: "Dosis_800ExtraBold"
     },
 })

@@ -1,6 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View, Text, StyleSheet } from 'react-native';
+import {
+    ActivityIndicator,
+    View,
+    Text,
+    StyleSheet
+} from 'react-native';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
 
 export default function Verde() {
     const [showDots, setShowDots] = useState(true);
@@ -21,7 +36,23 @@ export default function Verde() {
                 })
                 .then(setShowDots(false))
         }, 1000);
-    }, [])
+    }, []);
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
 
@@ -30,7 +61,7 @@ export default function Verde() {
             :
             <View>
                 <Text
-                style={styles.NumeroColorVerde}
+                    style={styles.NumeroColorVerde}
                 >
                     {data}
                 </Text>
@@ -41,7 +72,7 @@ export default function Verde() {
 const styles = StyleSheet.create({
     NumeroColorVerde: {
         color: '#60BB29',
-        fontSize: 20,
-        fontWeight: '900',
+        fontSize: 24,
+        fontFamily: "Dosis_800ExtraBold"
     },
 })

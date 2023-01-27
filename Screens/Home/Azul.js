@@ -34,6 +34,22 @@ export default function Azul() {
         }, 1000);
     }, [])
 
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
 
         showDots ?
@@ -41,7 +57,7 @@ export default function Azul() {
             :
             <View>
                 <Text
-                style={styles.TextoColorAzul}
+                    style={styles.TextoColorAzul}
                 >
                     {data}
                 </Text>
@@ -52,7 +68,7 @@ export default function Azul() {
 const styles = StyleSheet.create({
     TextoColorAzul: {
         color: '#2B83F2',
-        fontSize: 20,
-        fontWeight: '800'
+        fontSize: 24,
+        fontFamily: "Dosis_800ExtraBold",
     },
 })

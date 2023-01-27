@@ -4,10 +4,9 @@ import {
     View,
     StyleSheet,
     Text,
-    Image,
-    ScrollView,
     TouchableOpacity,
     TextInput,
+    ActivityIndicator
 } from "react-native";
 
 import { Entypo } from '@expo/vector-icons';
@@ -28,9 +27,37 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 function HomeDos() {
     const { signOut } = useContext(AuthContext);
     const navigation = useNavigation();
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
     return (
         <View
             style={styles.containerGobal}
@@ -76,7 +103,7 @@ function HomeDos() {
                 </TouchableOpacity>
             </View>
 
-            <ScrollView>
+            {/* <ScrollView> */}
                 <View
                     style={styles.busqueda}
                 >
@@ -196,9 +223,9 @@ function HomeDos() {
                             <View
                                 style={styles.circuloCentroRojo}
                             >
-                               <Svg width="45" height="25" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<Path d="M10.5563 4.70469C11.7793 3.53849 12.9766 2.40289 14.1641 1.26117C14.8207 0.63062 15.5867 0.232701 16.52 0.0765944C18.4832 -0.250923 20.588 1.16628 20.9228 3.06098C21.1641 4.42003 20.7361 5.55563 19.7287 6.51675C18.6216 7.56971 17.5113 8.62572 16.4041 9.67868C16.3011 9.77969 16.2014 9.88376 16.0759 10.0062C16.211 10.1409 16.3205 10.2541 16.4331 10.3643C17.6143 11.4938 18.834 12.5927 19.9733 13.7619C21.6211 15.4546 21.2253 18.1268 19.188 19.3818C17.7205 20.2878 15.7894 20.1776 14.4988 19.0328C13.2726 17.9462 12.1108 16.7922 10.9264 15.6658C10.8106 15.5556 10.7172 15.424 10.5917 15.274C10.4018 15.4424 10.2731 15.5556 10.1476 15.6719C9.01793 16.7433 7.90759 17.8299 6.76184 18.8859C4.52184 20.9428 0.914024 20.0215 0.138392 17.1932C-0.247815 15.7852 0.157702 14.5578 1.21977 13.5293C2.33655 12.4488 3.46299 11.3744 4.60552 10.3153C4.86943 10.0705 4.85655 9.92967 4.59908 9.69092C3.45012 8.62266 2.30437 7.54828 1.18759 6.44635C-0.975171 4.3129 -0.0225276 0.887736 2.94161 0.140874C4.42207 -0.232558 5.71586 0.146995 6.79724 1.15404C7.91724 2.19781 9.01471 3.25994 10.1251 4.3129C10.2506 4.43227 10.3825 4.54553 10.5563 4.70469Z" fill="white"/>
-</Svg>
+                                <Svg width="45" height="25" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <Path d="M10.5563 4.70469C11.7793 3.53849 12.9766 2.40289 14.1641 1.26117C14.8207 0.63062 15.5867 0.232701 16.52 0.0765944C18.4832 -0.250923 20.588 1.16628 20.9228 3.06098C21.1641 4.42003 20.7361 5.55563 19.7287 6.51675C18.6216 7.56971 17.5113 8.62572 16.4041 9.67868C16.3011 9.77969 16.2014 9.88376 16.0759 10.0062C16.211 10.1409 16.3205 10.2541 16.4331 10.3643C17.6143 11.4938 18.834 12.5927 19.9733 13.7619C21.6211 15.4546 21.2253 18.1268 19.188 19.3818C17.7205 20.2878 15.7894 20.1776 14.4988 19.0328C13.2726 17.9462 12.1108 16.7922 10.9264 15.6658C10.8106 15.5556 10.7172 15.424 10.5917 15.274C10.4018 15.4424 10.2731 15.5556 10.1476 15.6719C9.01793 16.7433 7.90759 17.8299 6.76184 18.8859C4.52184 20.9428 0.914024 20.0215 0.138392 17.1932C-0.247815 15.7852 0.157702 14.5578 1.21977 13.5293C2.33655 12.4488 3.46299 11.3744 4.60552 10.3153C4.86943 10.0705 4.85655 9.92967 4.59908 9.69092C3.45012 8.62266 2.30437 7.54828 1.18759 6.44635C-0.975171 4.3129 -0.0225276 0.887736 2.94161 0.140874C4.42207 -0.232558 5.71586 0.146995 6.79724 1.15404C7.91724 2.19781 9.01471 3.25994 10.1251 4.3129C10.2506 4.43227 10.3825 4.54553 10.5563 4.70469Z" fill="white" />
+                                </Svg>
                             </View>
                             <Text
                                 style={styles.NumeroColorRojo}
@@ -550,7 +577,7 @@ function HomeDos() {
 
                 <Reservas />
 
-            </ScrollView>
+            {/* </ScrollView> */}
         </View>
     )
 }
@@ -707,8 +734,8 @@ const styles = StyleSheet.create({
     TextoColorVerde: {
         color: '#60BB29',
         marginTop: -3,
-        fontSize: 12,
-        fontWeight: '500'
+        fontSize: 14,
+        fontFamily: "Dosis_700Bold"
     },
     NumeroColorVerde: {
         color: '#60BB29',
@@ -719,8 +746,8 @@ const styles = StyleSheet.create({
     TextoColorRojo: {
         color: '#DC2A2A',
         marginTop: -3,
-        fontSize: 12,
-        fontWeight: '500'
+        fontSize: 14,
+        fontFamily: "Dosis_700Bold"
     },
     NumeroColorRojo: {
         color: '#DC2A2A',
@@ -731,8 +758,8 @@ const styles = StyleSheet.create({
     TextoColorAzul: {
         color: '#2B83F2',
         marginTop: -3,
-        fontSize: 12,
-        fontWeight: '500'
+        fontSize: 14,
+        fontFamily: "Dosis_700Bold"
     },
     NumeroColorAzul: {
         color: '#2B83F2',
@@ -844,7 +871,8 @@ const styles = StyleSheet.create({
         width: 200,
         height: 45,
         padding: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: "Dosis_500Medium",
     },
     lupa: {
         marginLeft: -105
@@ -858,8 +886,8 @@ const styles = StyleSheet.create({
     },
     textoSeleccionar: {
         color: '#FFFF',
-        fontSize: 20,
-        fontWeight: '400',
+        fontSize: 22,
+        fontFamily: "Dosis_500Medium",
     },
     botonseleccionar: {
         flex: 1,
@@ -871,7 +899,7 @@ const styles = StyleSheet.create({
         marginTop: 28,
         marginLeft: 18,
         color: '#000000',
-        fontWeight: '600'
+        fontFamily: "Dosis_700Bold",
     },
     margin: {
         marginTop: 24

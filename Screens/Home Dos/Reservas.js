@@ -1,14 +1,28 @@
 import React, { useEffect, useState, useContext } from 'react';
+import tailwind from 'twrnc';
+import { Ionicons } from '@expo/vector-icons';
+
 import {
     View,
     StyleSheet,
     Text,
     Image,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    FlatList
 } from "react-native";
 
-import { Ionicons } from '@expo/vector-icons';
+import {
+    useFonts,
+    Dosis_200ExtraLight,
+    Dosis_300Light,
+    Dosis_400Regular,
+    Dosis_500Medium,
+    Dosis_600SemiBold,
+    Dosis_700Bold,
+    Dosis_800ExtraBold,
+} from '@expo-google-fonts/dosis';
+
 
 function Reservas() {
     const [showDots, setShowDots] = useState(true);
@@ -28,230 +42,235 @@ function Reservas() {
                 })
                 .then(setShowDots(false))
         }, 1000);
-    }, [])
+    }, []);
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
 
     return (
 
         showDots ?
             <ActivityIndicator />
             :
-            <View>
+            <View
+                style={tailwind.style(
+                    "flex justify-center items-center mb-4"
+                )}
+            >
+                <FlatList
+                    data={data}
+                    extraData={data}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                        <View
+                            styles={styles.derecha}
+                        >
+                            <View style={styles.ContenedorReservaAzul}>
+                                <View style={styles.ContenedorReservaBlanco}>
+                                    <View style={styles.ContenedorDosReserva}>
+                                        <View style={styles.contenedorAuto}>
+                                            <Image
+                                                style={styles.logoAuto}
+                                                source={require("../../assets/logoAuto.png")}
+                                            />
+                                        </View>
+                                        <View style={styles.contenedorDatosUno}>
+                                            <Text style={styles.titulo}>
+                                                {item.code}
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Modelo
+                                            </Text>
+                                            <Text style={styles.datos}>
+                                                {item.car.cars_models_version.cars_model.catalogues_record.name}
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Cliente
+                                            </Text>
+                                            <Text style={styles.datos}>
+                                                {item.contact_name}
+                                            </Text>
+                                        </View>
 
-                <Table data={data} />
+                                        <View style={styles.contenedorDatosDos}>
+                                            <Text style={styles.subtituloHora}>
+                                                Hora
+                                            </Text>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Ionicons
+                                                    name="md-time-outline"
+                                                    size={18}
+                                                    color="#B6B6B6"
+                                                />
+                                                <Text style={styles.datosHora}>
+                                                    {item.modified}
+                                                </Text>
+                                            </View>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Text style={styles.subtituloHora}>
+                                                    Estado
+                                                </Text>
+                                                <View style={styles.contenedorEstado}>
+                                                    <Text style={styles.TextoColorAzul}>
+                                                        {item.status}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <TouchableOpacity>
+                                                <Text style={styles.verDetalles}>
+                                                    Ver detalles
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.ContenedorReservaVerde}>
+                                <View style={styles.ContenedorReservaBlancoVerde}>
+                                    <View style={styles.ContenedorDosReserva}>
+                                        <View style={styles.contenedorAuto}>
+                                            <Image
+                                                style={styles.logoAuto}
+                                                source={require("../../assets/logoAuto.png")}
+                                            />
+                                        </View>
+                                        <View style={styles.contenedorDatosUno}>
+                                            <Text style={styles.titulo}>
+                                                {item.code}
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Modelo
+                                            </Text>
+                                            <Text style={styles.datos}>
+                                                {item.car.cars_models_version.cars_model.catalogues_record.name}
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Cliente
+                                            </Text>
+                                            <Text style={styles.datos}>
+                                                {item.contact_name}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.contenedorDatosDos}>
+                                            <Text style={styles.subtituloHora}>
+                                                Hora
+                                            </Text>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Ionicons
+                                                    name="md-time-outline"
+                                                    size={18}
+                                                    color="#B6B6B6"
+                                                />
+                                                <Text style={styles.datosHora}>
+                                                    {item.modified}
+                                                </Text>
+                                            </View>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Text style={styles.subtituloHora}>
+                                                    Estado
+                                                </Text>
+                                                <View style={styles.contenedorEstadoVerde}>
+                                                    <Text style={styles.TextoColorVerde}>
+                                                        {item.status}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <TouchableOpacity>
+                                                <Text style={styles.verDetalles}>
+                                                    Ver detalles
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.ContenedorReservaRojo}>
+                                <View style={styles.ContenedorReservaBlancoRojo}>
+                                    <View style={styles.ContenedorDosReserva}>
+                                        <View style={styles.contenedorAuto}>
+                                            <Image
+                                                style={styles.logoAuto}
+                                                source={require("../../assets/logoAuto.png")}
+                                            />
+                                        </View>
+                                        <View style={styles.contenedorDatosUno}>
+                                            <Text style={styles.titulo}>
+                                                OT 523673
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Modelo
+                                            </Text>
+                                            <Text style={styles.datos}>
+                                                {item.car.cars_models_version.cars_model.catalogues_record.name}
+                                            </Text>
+                                            <Text style={styles.subtitulo}>
+                                                Cliente
+                                            </Text>
+
+                                            <Text style={styles.datos}>
+                                                {item.contact_name}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.contenedorDatosDos}>
+                                            <Text style={styles.subtituloHora}>
+                                                Hora
+                                            </Text>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Ionicons
+                                                    name="md-time-outline"
+                                                    size={18}
+                                                    color="#B6B6B6"
+                                                />
+                                                <Text style={styles.datosHora}>
+                                                    {item.modified}
+                                                </Text>
+                                            </View>
+                                            <View style={styles.ContenedorDosHora}>
+                                                <Text style={styles.subtituloHora}>
+                                                    Estado
+                                                </Text>
+                                                <View style={styles.contenedorEstadoRojo}>
+                                                    <Text style={styles.TextoColorRojo}>
+                                                        {item.status}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <TouchableOpacity>
+                                                <Text style={styles.verDetalles}>
+                                                    Ver detalles
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    )}
+                    keyExtractor={(item) => item.id}
+                />
             </View>
-    )
-}
-
-const Table = (props) => {
-
-    const { data } = props;
-
-    return (
-        <View>
-            {data.map(row => <TableRow key={data.id} row={row} />)}
-        </View>
     );
 };
-
-class TableRow extends React.Component {
-    render() {
-        let row = this.props.row;
-        let key = this.props.key;
-        return (
-            <View
-                key={key}
-                styles={styles.derecha}
-            >
-                <View style={styles.ContenedorReservaAzul}>
-                    <View style={styles.ContenedorReservaBlanco}>
-                        <View style={styles.ContenedorDosReserva}>
-                            <View style={styles.contenedorAuto}>
-                                <Image
-                                    style={styles.logoAuto}
-                                    source={require("../../assets/logoAuto.png")}
-                                />
-                            </View>
-                            <View style={styles.contenedorDatosUno}>
-                                <Text style={styles.titulo}>
-                                    {row.code}
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Modelo
-                                </Text>
-                                <Text style={styles.datos}>
-                                    {row.car.cars_models_version.cars_model.catalogues_record.name}
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Cliente
-                                </Text>
-                                <Text style={styles.datos}>
-                                    {row.contact_name}
-                                </Text>
-                            </View>
-
-                            <View style={styles.contenedorDatosDos}>
-                                <Text style={styles.subtituloHora}>
-                                    Hora
-                                </Text>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Ionicons
-                                        name="md-time-outline"
-                                        size={18}
-                                        color="#B6B6B6"
-                                    />
-                                    <Text style={styles.datosHora}>
-                                        {row.modified}
-                                    </Text>
-                                </View>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Text style={styles.subtituloHora}>
-                                        Estado
-                                    </Text>
-                                    <View style={styles.contenedorEstado}>
-                                        <Text style={styles.TextoColorAzul}>
-                                            {row.status}
-                                        </Text>
-                                    </View>
-                                </View>
-                                <TouchableOpacity>
-                                    <Text style={styles.verDetalles}>
-                                        Ver detalles
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.ContenedorReservaVerde}>
-                    <View style={styles.ContenedorReservaBlancoVerde}>
-                        <View style={styles.ContenedorDosReserva}>
-                            <View style={styles.contenedorAuto}>
-                                <Image
-                                    style={styles.logoAuto}
-                                    source={require("../../assets/logoAuto.png")}
-                                />
-                            </View>
-                            <View style={styles.contenedorDatosUno}>
-                                <Text style={styles.titulo}>
-                                    {row.code}
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Modelo
-                                </Text>
-                                <Text style={styles.datos}>
-                                    {row.car.cars_models_version.cars_model.catalogues_record.name}
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Cliente
-                                </Text>
-                                <Text style={styles.datos}>
-                                    {row.contact_name}
-                                </Text>
-                            </View>
-                            <View style={styles.contenedorDatosDos}>
-                                <Text style={styles.subtituloHora}>
-                                    Hora
-                                </Text>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Ionicons
-                                        name="md-time-outline"
-                                        size={18}
-                                        color="#B6B6B6"
-                                    />
-                                    <Text style={styles.datosHora}>
-                                        {row.modified}
-                                    </Text>
-                                </View>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Text style={styles.subtituloHora}>
-                                        Estado
-                                    </Text>
-                                    <View style={styles.contenedorEstadoVerde}>
-                                        <Text style={styles.TextoColorVerde}>
-                                            {row.status}
-                                        </Text>
-                                    </View>
-                                </View>
-                                <TouchableOpacity>
-                                    <Text style={styles.verDetalles}>
-                                        Ver detalles
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.ContenedorReservaRojo}>
-                    <View style={styles.ContenedorReservaBlancoRojo}>
-                        <View style={styles.ContenedorDosReserva}>
-                            <View style={styles.contenedorAuto}>
-                                <Image
-                                    style={styles.logoAuto}
-                                    source={require("../../assets/logoAuto.png")}
-                                />
-                            </View>
-                            <View style={styles.contenedorDatosUno}>
-                                <Text style={styles.titulo}>
-                                    OT 523673
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Modelo
-                                </Text>
-                                <Text style={styles.datos}>
-                                    {row.car.cars_models_version.cars_model.catalogues_record.name}
-                                </Text>
-                                <Text style={styles.subtitulo}>
-                                    Cliente
-                                </Text>
-
-                                <Text style={styles.datos}>
-                                    {row.contact_name}
-                                </Text>
-                            </View>
-                            <View style={styles.contenedorDatosDos}>
-                                <Text style={styles.subtituloHora}>
-                                    Hora
-                                </Text>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Ionicons
-                                        name="md-time-outline"
-                                        size={18}
-                                        color="#B6B6B6"
-                                    />
-                                    <Text style={styles.datosHora}>
-                                        {row.modified}
-                                    </Text>
-                                </View>
-                                <View style={styles.ContenedorDosHora}>
-                                    <Text style={styles.subtituloHora}>
-                                        Estado
-                                    </Text>
-                                    <View style={styles.contenedorEstadoRojo}>
-                                        <Text style={styles.TextoColorRojo}>
-                                            {row.status}
-                                        </Text>
-                                    </View>
-                                </View>
-                                <TouchableOpacity>
-                                    <Text style={styles.verDetalles}>
-                                        Ver detalles
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        )
-    }
-}
 
 const styles = StyleSheet.create({
     verDetalles: {
         color: '#2B83F2',
         marginTop: 8,
         fontSize: 12,
-        fontWeight: '600',
+        fontFamily: "Dosis_500Medium",
         marginLeft: 78,
     },
     contenedorEstado: {
@@ -291,22 +310,21 @@ const styles = StyleSheet.create({
     },
     datosHora: {
         color: '#B6B6B6',
-        fontWeight: '700',
+        fontFamily: "Dosis_600SemiBold",
     },
     datos: {
         color: '#B6B6B6',
-        fontWeight: '700',
+        fontFamily: "Dosis_600SemiBold",
         marginLeft: -15
     },
     subtitulo: {
         color: '#000000',
-        fontWeight: '700',
+        fontFamily: "Dosis_700Bold",
         marginLeft: -15
     },
     subtituloHora: {
         color: '#000000',
-        fontWeight: '700',
-        // marginLeft: -15
+        fontFamily: "Dosis_700Bold"
     },
     ContenedorDosReserva: {
         flexDirection: 'row',
@@ -320,7 +338,7 @@ const styles = StyleSheet.create({
     titulo: {
         fontSize: 16,
         color: '#000000',
-        fontWeight: '700',
+        fontFamily: "Dosis_700Bold",
         marginLeft: -15
     },
     ContenedorReservaBlanco: {
@@ -400,7 +418,7 @@ const styles = StyleSheet.create({
         color: '#60BB29',
         marginTop: -3,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium",
     },
     NumeroColorVerde: {
         color: '#60BB29',
@@ -412,7 +430,7 @@ const styles = StyleSheet.create({
         color: '#DC2A2A',
         marginTop: -3,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium",
     },
     NumeroColorRojo: {
         color: '#DC2A2A',
@@ -424,7 +442,7 @@ const styles = StyleSheet.create({
         color: '#2B83F2',
         marginTop: -3,
         fontSize: 12,
-        fontWeight: '500'
+        fontFamily: "Dosis_500Medium",
     },
     NumeroColorAzul: {
         color: '#2B83F2',

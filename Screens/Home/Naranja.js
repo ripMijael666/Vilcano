@@ -34,6 +34,23 @@ export default function Naranja() {
         }, 1000);
     }, [])
 
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <ActivityIndicator size="large" />
+        );
+    };
+
+
     return (
 
         showDots ?
@@ -52,7 +69,7 @@ export default function Naranja() {
 const styles = StyleSheet.create({
     NumeroColorNaranja: {
         color: '#EA981E',
-        fontSize: 20,
-        fontWeight: '900',
+        fontSize: 24,
+        fontFamily: "Dosis_800ExtraBold"
     },
 })
