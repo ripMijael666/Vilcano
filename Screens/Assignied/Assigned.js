@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import tailwind from 'twrnc';
 import ProgressChart from './progresschart/Progresschart';
+// import GaugeCustom from './progresschart/GaugeCustom';
 
 import {
     View,
@@ -77,6 +78,7 @@ function Assigned() {
             <View style={styles.contenedorPorcentaje}>
                 <View style={styles.porcentaje}>
                     <ProgressChart />
+                    {/* <GaugeCustom /> */}
                     <View style={styles.porcentajeAzul}>
                         <Text style={styles.textSeeAll}>
                             See all

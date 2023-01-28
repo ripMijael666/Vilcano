@@ -4,6 +4,21 @@ import { Gauge } from '@wz-mobile/rn-gauge';
 
 
 export default function ProgressChart() {
+    const Label = () => (
+        <View>
+            <Text
+                style={{
+                    color: 'darkgray',
+                    fontWeight: 'bold',
+                    fontSize: 30,
+                    top: 50,
+                }}
+            >
+                Km/h
+            </Text>
+        </View>
+    );
+
     return (
         <View>
             <Gauge
@@ -12,13 +27,13 @@ export default function ProgressChart() {
                 sweepAngle={250}
                 strokeWidth={10}
                 fillProgress={60}
-                renderLabel="Label"
+                renderLabel={Label}
                 size={200}
                 thickness={60}
             />;
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     imagen: {
