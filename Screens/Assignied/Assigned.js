@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 
 import tailwind from 'twrnc';
-import ProgressChart from './progresschart/Progresschart';
+// import ProgressChart from './progresschart/Progresschart';
 // import GaugeCustom from './progresschart/GaugeCustom';
 
 import {
@@ -77,7 +77,7 @@ function Assigned() {
 
             <View style={styles.contenedorPorcentaje}>
                 <View style={styles.porcentaje}>
-                    <ProgressChart />
+                    {/* <ProgressChart /> */}
                     {/* <GaugeCustom /> */}
                     <View style={styles.porcentajeAzul}>
                         <Text style={styles.textSeeAll}>

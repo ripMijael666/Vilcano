@@ -1,34 +1,52 @@
-// import React, { useState } from 'react';
-// import { View, Text, StyleSheet, Image } from 'react-native';
-// import Gauge from "react-native-gauge";
+import React from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { Gauge } from '@wz-mobile/rn-gauge';
+import LabelDOS from './LabelDOS';
 
-// export default function ProgressChart() {
-//     const [label, setLabel] = useState("hooa")
-//     return (
-//         <View>
-//             <Gauge
-//                 emptyColor="#C1C1C1"
-//                 colors={['cyan', 'magenta', 'yellow', 'red', 'white']}
-//                 sweepAngle={250}
-//                 strokeWidth={10}
-//                 fillProgress={60}
-//                 renderLabel={() => {
-//                     return (
-//                         <Text>
-//                             {label()}
-//                         </Text>
-//                     )
+export default function ProgressChart() {
 
-//                 }}
-//                 size={200}
-//                 thickness={60}
-//             />
-//         </View>
-//     )
-// }
+    const Label = () => (
+        <View>
+            <Text
+                style={{
+                    color: 'darkgray',
+                    fontWeight: 'bold',
+                    fontSize: 30,
+                    top: 50,
+                }}
+            >
+                Km/h
+            </Text>
+        </View>
+    );
 
-// const styles = StyleSheet.create({
-//     imagen: {
-//         backgroundColor: "#FF0000"
-//     }
-// })
+    return (
+        <View>
+            <Gauge
+                emptyColor="#FF0000"
+                colors={['cyan', 'magenta', 'yellow', 'red', 'white']}
+                sweepAngle={250}
+                strokeWidth={10}
+                fillProgress={60}
+                renderLabel={() =>
+                    <View>
+                        <Text
+                            style={{
+                                color: 'darkgray',
+                                fontWeight: 'bold',
+                                fontSize: 30,
+                                top: 50,
+                            }}
+                        >
+                            Km/h
+                            {Label}
+                            <LabelDOS />
+                        </Text>
+                    </View>
+                }
+                size={200}
+                thickness={60}
+            />;
+        </View>
+    );
+};
