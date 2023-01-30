@@ -3,6 +3,8 @@ import tailwind from 'twrnc';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 
+import TooltipPayment from './Tooltip';
+
 import {
     View,
     Text,
@@ -71,9 +73,12 @@ export default function Services() {
             <View style={tailwind.style(
                 "flex justify-center items-center mt-6"
             )}>
-                <View style={tailwind.style(
+                <TouchableOpacity 
+                style={tailwind.style(
                     "flex flex-row items-center w-[380px] h-[90px] bg-[#FFFFFF] rounded-t-5 pl-[12px] pr-[12px]"
-                )}>
+                )}
+                 onPress={() => navigation.navigate("ServiceTimer")}
+                >
                     <View style={tailwind.style("flex w-[65px]")}>
                         <View style={tailwind.style("flex justify-center items-center bg-[#F6F6FA] w-[50px] h-[50px] rounded-full")}>
                             <Svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,18 +121,14 @@ export default function Services() {
                             </View>
                         </View>
                     </View>
-                    <View style={tailwind.style("flex mb-12")}>
+                    <View style={tailwind.style("flex w-[20px] h-[50px]")}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ServiceTimer")}
+                            style={tailwind.style("flex-1")}
                         >
-                            <Svg width="6" height="25" viewBox="0 0 5 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <Circle cx="2.58622" cy="2.41379" r="2.41379" fill="#D9D9D9" />
-                                <Circle cx="2.58622" cy="9.99998" r="2.41379" fill="#D9D9D9" />
-                                <Circle cx="2.58622" cy="17.5862" r="2.41379" fill="#D9D9D9" />
-                            </Svg>
+                            <TooltipPayment />
                         </TouchableOpacity>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={tailwind.style(
                     "flex justify-center items-center w-[380px] h-[30px] bg-[#DC2A2A] rounded-b-6"
                 )}>

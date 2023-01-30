@@ -225,7 +225,7 @@ const Advices = ({ route }) => {
                 <Pressable
                     style={tailwind.style("flex justify-center items-center bg-[#2B83F2] w-full h-[45px] rounded-t-3xl")}
                     onPress={() => setModalVisible(true)}>
-                        <Text style={[
+                    <Text style={[
                         { fontFamily: "Dosis_700Bold" },
                         tailwind.style(
                             "text-[22px] text-[#FFFFFF]"
