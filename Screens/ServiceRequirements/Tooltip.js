@@ -5,6 +5,7 @@ import Tooltip from 'react-native-walkthrough-tooltip';
 import { useNavigation } from "@react-navigation/native";
 
 import ModalAsignar from "./ModalAsignar";
+import ModalControl from "./ModalControl";
 
 import {
     View,
@@ -39,12 +40,21 @@ export default function TooltipPayment() {
     const [chooseData, setchooseData] = useState();
     const changeModalVisible = (bool) => {
         setIsModalVisible(bool);
-    }
+    };
 
     const setData = (data) => {
         setchooseData(data);
-    }
+    };
 
+    const [isModalVisibleControl, setIsModalVisibleControl] = useState(false);
+    const [chooseDataControl, setchooseDataControl] = useState();
+    const changeModalVisibleControl = (bool) => {
+        setIsModalVisibleControl(bool);
+    };
+
+    const setDataControl = (data) => {
+        setchooseDataControl(data);
+    };
 
     const [fontsLoaded] = useFonts({
         Dosis_200ExtraLight,
@@ -78,9 +88,10 @@ export default function TooltipPayment() {
             <Tooltip
                 isVisible={toolTip}
                 content={
-                    <View style={tailwind.style("")}>
+                    <View style={tailwind.style("flex justify-center items-center")}>
                         <TouchableOpacity
-                        onPress={() => changeModalVisible(true)}
+                        style={tailwind.style("")}
+                            onPress={() => changeModalVisible(true)}
                         >
                             <Text style={[
                                 { fontFamily: "Dosis_500Medium" },
@@ -89,6 +100,19 @@ export default function TooltipPayment() {
                                 Asignar Mecánico
                             </Text>
                         </TouchableOpacity>
+
+                        <TouchableOpacity
+                        style={tailwind.style("mt-[5px]")}
+                            onPress={() => changeModalVisibleControl(true)}
+                        >
+                            <Text style={[
+                                { fontFamily: "Dosis_500Medium" },
+
+                            ]}>
+                                Control de Calidad
+                            </Text>
+                        </TouchableOpacity>
+
                         <Modal
                             transparent={true}
                             animationType='fade'
@@ -98,25 +122,20 @@ export default function TooltipPayment() {
                             <ModalAsignar
                                 changeModalVisible={changeModalVisible}
                                 setData={setData}
-
                             />
                         </Modal>
 
-                        {/* <TouchableOpacity style={tailwind.style("mt-5")}>
-                            <Text style={[
-                                { fontFamily: "Dosis_500Medium" },
-
-                            ]}>
-                                Control de Calidad
-                            </Text>
-                        </TouchableOpacity>
                         <Modal
                             transparent={true}
                             animationType='fade'
-                            visible={isModalVisible}
-                            nRequestClose={() => changeModalVisible(false)}
+                            visible={isModalVisibleControl}
+                            nRequestClose={() => changeModalVisibleControl(false)}
                         >
-                        </Modal> */}
+                            <ModalControl
+                                changeModalVisible={changeModalVisibleControl}
+                                setData={setDataControl}
+                            />
+                        </Modal>
                     </View>
                 }
                 placement="bottom"
@@ -124,7 +143,9 @@ export default function TooltipPayment() {
                 arrowSize={{ width: 10, height: 8 }}
                 backgroundColor={'rgba(0,0,0,0.5)'}
             >
-                <TouchableOpacity onPress={() => setToolTip(true)}>
+                <TouchableOpacity
+                    onPress={() => setToolTip(true)}
+                >
                     <Svg width="6" height="25" viewBox="0 0 5 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <Circle cx="2.58622" cy="2.41379" r="2.41379" fill="#D9D9D9" />
                         <Circle cx="2.58622" cy="9.99998" r="2.41379" fill="#D9D9D9" />

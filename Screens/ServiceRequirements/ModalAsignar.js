@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
@@ -37,7 +37,57 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT_MODAL = 221;
 
 export default function ModalAsignar(props) {
+    const [heighEnabled, setHeighEnabled] = useState(true);
+    const [mediumEnabled, setMediumEnabled] = useState(false);
+    const [lowEnabled, setLowEnabled] = useState(false);
 
+    const tabsEnabler = (tabIndex) => {
+        switch (tabIndex) {
+            case 0:
+                setHeighEnabled(true);
+                setMediumEnabled(false);
+                setLowEnabled(false);
+                break;
+            case 1:
+                setHeighEnabled(false);
+                setMediumEnabled(true);
+                setLowEnabled(false);
+                break;
+            case 2:
+                setHeighEnabled(false);
+                setMediumEnabled(false);
+                setLowEnabled(true);
+                break;
+            default:
+                break;
+        }
+    };
+
+    useEffect(() => {
+        tabsEnabler(0);
+    }, []);
+
+
+    const [fontsLoaded] = useFonts({
+        Dosis_200ExtraLight,
+        Dosis_300Light,
+        Dosis_400Regular,
+        Dosis_500Medium,
+        Dosis_600SemiBold,
+        Dosis_700Bold,
+        Dosis_800ExtraBold,
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <View style={{
+                justifyContent: 'center',
+                alignItems: "center"
+            }}>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    };
     return (
 
         <TouchableOpacity
@@ -99,41 +149,114 @@ export default function ModalAsignar(props) {
                     {},
                     tailwind.style("flex-row justify-center items-center ml-3 mr-3 mt-[10px]")
                 ]}>
-                    <TouchableOpacity style={[
-                        {},
-                        tailwind.style("flex justify-center items-center bg-[#DC2A2A] w-[85px] h-[35px] rounded-[8px] m-4")
-                    ]}>
-                        <Text
-                            style={[
-                                { fontFamily: "Dosis_400Regular" },
-                                tailwind.style("text-[#FFFF] text-[18px]")
-                            ]}>
-                            HIGH
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            tabsEnabler(0);
+                        }}
+                    >
+                        {heighEnabled ? (
+                            <View style={[
+                                {},
+                                tailwind.style("flex justify-center items-center bg-[#DC2A2A] w-[85px] h-[35px] rounded-[8px] m-4")
+                            ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    HIGH
+                                </Text>
+                            </View>
+                        ) : (
+                            <View style={[
+                                {},
+                                tailwind.style("flex justify-center items-center bg-[#B6B6B6] w-[85px] h-[35px] rounded-[8px] m-4")
+                            ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    HIGH
+                                </Text>
+                            </View>
+                        )}
                     </TouchableOpacity>
-                    <TouchableOpacity style={[
-                        {},
-                        tailwind.style("flex justify-center items-center bg-[#EBB733] w-[85px] h-[35px] rounded-[8px] m-4")
-                    ]}>
-                        <Text
-                            style={[
-                                { fontFamily: "Dosis_400Regular" },
-                                tailwind.style("text-[#FFFF] text-[18px]")
-                            ]}>
-                            MEDIUM
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            tabsEnabler(1);
+                        }}
+                    >
+                        {mediumEnabled ? (
+                            <View
+                                style={[
+                                    {},
+                                    tailwind.style("flex justify-center items-center bg-[#EBB733] w-[85px] h-[35px] rounded-[8px] m-4")
+                                ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    MEDIUM
+                                </Text>
+                            </View>
+                        ) : (
+                            <View
+                                style={[
+                                    {},
+                                    tailwind.style("flex justify-center items-center bg-[#B6B6B6] w-[85px] h-[35px] rounded-[8px] m-4")
+                                ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    MEDIUM
+                                </Text>
+                            </View>
+                        )}
                     </TouchableOpacity>
-                    <TouchableOpacity style={[
-                        {},
-                        tailwind.style("flex justify-center items-center bg-[#71AD46] w-[85px] h-[35px] rounded-[8px] m-4")
-                    ]}>
-                        <Text
-                            style={[
-                                { fontFamily: "Dosis_400Regular" },
-                                tailwind.style("text-[#FFFF] text-[18px]")
-                            ]}>
-                            LOW
-                        </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            tabsEnabler(2);
+                        }}
+                    >
+                        {lowEnabled ? (
+                            <View
+                                style={[
+                                    {},
+                                    tailwind.style("flex justify-center items-center bg-[#71AD46] w-[85px] h-[35px] rounded-[8px] m-4")
+                                ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    LOW
+                                </Text>
+                            </View>
+                        ) : (
+                            <View
+                                style={[
+                                    {},
+                                    tailwind.style("flex justify-center items-center bg-[#B6B6B6] w-[85px] h-[35px] rounded-[8px] m-4")
+                                ]}
+                            >
+                                <Text
+                                    style={[
+                                        { fontFamily: "Dosis_400Regular" },
+                                        tailwind.style("text-[#FFFF] text-[18px]")
+                                    ]}>
+                                    LOW
+                                </Text>
+                            </View>
+                        )}
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={[
