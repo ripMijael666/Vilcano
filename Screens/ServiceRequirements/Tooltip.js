@@ -88,7 +88,7 @@ export default function TooltipPayment() {
             <Tooltip
                 isVisible={toolTip}
                 content={
-                    <View style={tailwind.style("flex-1 justify-center items-center ")}>
+                    <View style={tailwind.style("flex justify-center items-center ")}>
                         <TouchableOpacity
                             style={tailwind.style("")}
                             onPress={() => changeModalVisible(true)}
@@ -114,6 +114,8 @@ export default function TooltipPayment() {
                                 Control de Calidad
                             </Text>
                         </TouchableOpacity>
+
+
                     </View>
                 }
                 placement="top"
