@@ -73,11 +73,11 @@ export default function Services() {
             <View style={tailwind.style(
                 "flex justify-center items-center mt-6"
             )}>
-                <TouchableOpacity 
-                style={tailwind.style(
-                    "flex flex-row items-center w-[380px] h-[90px] bg-[#FFFFFF] rounded-t-5 pl-[12px] pr-[12px]"
-                )}
-                 onPress={() => navigation.navigate("ServiceTimer")}
+                <TouchableOpacity
+                    style={tailwind.style(
+                        "flex flex-row items-center w-[380px] h-[90px] bg-[#FFFFFF] rounded-t-5 pl-[12px] pr-[12px]"
+                    )}
+                    onPress={() => navigation.navigate("ServiceTimer")}
                 >
                     <View style={tailwind.style("flex w-[65px]")}>
                         <View style={tailwind.style("flex justify-center items-center bg-[#F6F6FA] w-[50px] h-[50px] rounded-full")}>
@@ -122,11 +122,11 @@ export default function Services() {
                         </View>
                     </View>
                     <View style={tailwind.style("flex w-[20px] h-[50px]")}>
-                        <TouchableOpacity
+                        {/* <TouchableOpacity
                             style={tailwind.style("flex-1")}
-                        >
-                            <TooltipPayment />
-                        </TouchableOpacity>
+                        > */}
+                        <TooltipPayment />
+                        {/* </TouchableOpacity> */}
                     </View>
                 </TouchableOpacity>
                 <View style={tailwind.style(
